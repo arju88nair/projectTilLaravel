@@ -2,7 +2,7 @@ import json
 from flask import Flask
 from scrapy.crawler import CrawlerRunner
 import os, sys
-from TILScraper.TILScraper.spiders.til_spider import TILSpider
+from scraper.scraperSpider.spiders.til_spider import TILSpider
 
 app = Flask('Scrape With Flask')
 crawl_runner = CrawlerRunner()      # requires the Twisted reactor to run
@@ -22,7 +22,7 @@ def crawl_for_quotes():
         scrape_in_progress = True
         global quotes_list
         # start the crawler and execute a callback when complete
-        eventual = crawl_runner.crawl(QuoteSpider, quotes_list=quotes_list)
+        eventual = crawl_runner.crawl(TILSpider, quotes_list=quotes_list)
         eventual.addCallback(finished_scrape)
         return 'SCRAPING'
     elif scrape_complete:
@@ -53,7 +53,6 @@ if __name__=='__main__':
     from twisted.logger import globalLogBeginner, textFileLogObserver
     from twisted.web import server, wsgi
     from twisted.internet import endpoints, reactor
-    app.run(debug=True)
     # start the logger
     globalLogBeginner.beginLoggingTo([textFileLogObserver(stdout)])
 
