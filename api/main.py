@@ -2,7 +2,7 @@ import json
 from flask import Flask
 from scrapy.crawler import CrawlerRunner
 import os, sys
-from scraper.scraperSpider.spiders.til_spider import TILSpider
+from scraper.scraper.spiders.urlScraper import TILSpider
 
 app = Flask('Scrape With Flask')
 crawl_runner = CrawlerRunner()      # requires the Twisted reactor to run
