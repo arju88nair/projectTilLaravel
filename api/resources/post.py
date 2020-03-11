@@ -2,7 +2,7 @@ from flask import Response, request
 from database.model import Post, Category, User
 from flask_restful import Resource
 from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist, ValidationError, InvalidQueryError
-from resources.errors import SchemaValidationError, InternalServerError, UpdatingPostError, DeletingPostError,PostNotExistsError,PostAlreadyExistsError,UpdatingPostError
+from resources.errors import SchemaValidationError, InternalServerError, UpdatingItemError, DeletingItemError,ItemNotExistsError,ItemAlreadyExistsError,UpdatingItemError
 from newspaper import Article   
 from  util.helpers import validateURL
 import json
@@ -40,7 +40,7 @@ class PostsApi(Resource):
         
         Raises:
             SchemaValidationError: [If there are validation error in the post data]
-            PostAlreadyExistsError: [If the post already exist]
+            ItemAlreadyExistsError: [If the post already exist]
             InternalServerError: [Error in insertion]
         
         Returns:
@@ -95,7 +95,7 @@ class PostsApi(Resource):
         except (FieldDoesNotExist, ValidationError):
             raise SchemaValidationError
         except NotUniqueError:
-            raise PostAlreadyExistsError
+            raise ItemAlreadyExistsError
         except Exception as e:
             print(e)
             raise InternalServerError
@@ -115,7 +115,7 @@ class PostApi(Resource):
         
         Raises:
             SchemaValidationError: [If there are validation error in the post data]
-            UpdatingPostError: [Error in update]
+            UpdatingItemError: [Error in update]
             InternalServerError: [Error in insertion]
         
         Returns:
@@ -123,15 +123,14 @@ class PostApi(Resource):
         """
         try:
             user_id = get_jwt_identity()
-            post = Post.objects.get(id=id, added_by=user_id)
             body = request.get_json()
-            Post.objects.get(id=id).update(**body)
+            Post.objects.get(id=id, added_by=user_id).update(**body)
             data =  json.dumps({'message':"Successfully updated"})
             return Response(data, mimetype="application/json", status=200)
         except InvalidQueryError:
             raise SchemaValidationError
         except DoesNotExist:
-            raise UpdatingPostError
+            raise UpdatingItemError
         except Exception:
             raise InternalServerError       
     
@@ -143,7 +142,7 @@ class PostApi(Resource):
             id {[Object ID]} -- [Mongo Object ID]
         
         Raises:
-            DeletingPostError: [Error in deletion]
+            DeletingItemError: [Error in deletion]
             InternalServerError: [Error in insertion]    
                 
         Returns:
@@ -155,7 +154,7 @@ class PostApi(Resource):
             data =  json.dumps({'message':"Successfully deleted"})
             return Response(data, mimetype="application/json", status=200)
         except DoesNotExist:
-            raise DeletingPostError
+            raise DeletingItemError
         except Exception:
             raise InternalServerError
 
@@ -167,7 +166,7 @@ class PostApi(Resource):
             id {[Object ID]} -- [Mongo Object ID]
         
         Raises:
-            PostNotExistsError: [Can't find the post item]
+            ItemNotExistsError: [Can't find the post item]
             InternalServerError: [Error in insertion]    
         
         Returns:
@@ -178,6 +177,6 @@ class PostApi(Resource):
             data =  json.dumps({'data':json.loads(posts), 'message':"Successfully retreived", "count" : len(json.loads(posts))})
             return Response(data, mimetype="application/json", status=200)
         except DoesNotExist:
-            raise PostNotExistsError
+            raise ItemNotExistsError
         except Exception:
             raise InternalServerError

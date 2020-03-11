@@ -99,7 +99,7 @@ class RevokedTokenModel(db.Document):
         except Exception as e:
             raise InternalServerError
 
-class Comments(db.Document):
+class Comment(db.Document):
     post_id = db.ReferenceField('Post')
     slug = db.StringField()
     full_slug = db.StringField()
