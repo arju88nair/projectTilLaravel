@@ -72,6 +72,10 @@ class EntryDoesnotExistsError(HTTPException):
     pass
 
 
+class ActionAlreadyDone(HTTPException):
+    pass
+
+
 errors = {
     "InternalServerError": {
         "message": "Something went wrong",
@@ -135,6 +139,10 @@ errors = {
     },
     "EntryDoesnotExistsError": {
         "message": "Entry cannot be found",
+        "status": 403
+    },
+    "ActionAlreadyDone": {
+        "message": "Already observed the action",
         "status": 403
     }
 }

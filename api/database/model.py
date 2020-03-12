@@ -36,6 +36,8 @@ class Post(db.Document):
     added_by = db.ReferenceField('User')
     creation_date = db.DateTimeField()
     modified_date = db.DateTimeField(default=datetime.datetime.now)
+    liked_by = db.ListField()
+    like_count=db.IntField()
     
     def save(self, *args, **kwargs):
         if not self.creation_date:
@@ -107,4 +109,10 @@ class Comment(db.Document):
     creation_date = db.DateTimeField(default=datetime.datetime.now)
     modified_date = db.DateTimeField(default=datetime.datetime.now)
     added_by = db.ReferenceField('User')
-#    liked_by = db.ListField(db.ReferenceField('User'))
+    liked_by = db.ListField()
+    like_count=db.IntField()
+
+class Like(db.EmbeddedDocumentListField):
+    user_id=db.ReferenceField('User')
+    creation_date = db.DateTimeField(default=datetime.datetime.now)
+    modified_date = db.DateTimeField(default=datetime.datetime.now)
