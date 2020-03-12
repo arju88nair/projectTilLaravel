@@ -156,7 +156,7 @@ class CommentApi(Resource):
             raise InternalServerError
 
     @jwt_required
-    def get(self, id):
+    def post(self):
         """[Get single comment item]
         
         Arguments:
@@ -170,10 +170,14 @@ class CommentApi(Resource):
             [json] -- [Json object with message and status code]
         """
         try:
-            comments = Comment.objects.get(id=id).to_json()
+            payload = request.get_json()
+            post_id=payload['post_id']    
+            print(post_id)        
+            comments = Comment.objects(post_id=post_id).order_by('full_slug').to_json()
             data =  json.dumps({'data':json.loads(comments), 'message':"Successfully retreived", "count" : len(json.loads(comments))})
             return Response(data, mimetype="application/json", status=200)
         except DoesNotExist:
             raise ItemNotExistsError
-        except Exception:
+        except Exception as e:
+            print(e)
             raise InternalServerError

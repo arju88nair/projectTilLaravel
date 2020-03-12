@@ -2,7 +2,7 @@ from flask import Response, request
 from database.model import Post, Category, User
 from flask_restful import Resource
 from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist, ValidationError, InvalidQueryError
-from resources.errors import SchemaValidationError, InternalServerError, UpdatingItemError, DeletingItemError,ItemNotExistsError,ItemAlreadyExistsError,UpdatingItemError
+from resources.errors import SchemaValidationError, InternalServerError, DeletingItemError,ItemNotExistsError,ItemAlreadyExistsError,UpdatingItemError
 from newspaper import Article   
 from  util.helpers import validateURL
 import json
@@ -149,6 +149,7 @@ class PostApi(Resource):
             [json] -- [Json object with message and status code]
         """
         try:
+            user_id = get_jwt_identity()
             post = Post.objects.get(id=id, added_by=user_id)
             post.delete()
             data =  json.dumps({'message':"Successfully deleted"})

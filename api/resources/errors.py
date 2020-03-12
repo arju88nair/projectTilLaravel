@@ -9,19 +9,19 @@ class SchemaValidationError(HTTPException):
     pass
 
 
-class PostAlreadyExistsError(HTTPException):
+class ItemAlreadyExistsError(HTTPException):
     pass
 
 
-class UpdatingPostError(HTTPException):
+class UpdatingItemError(HTTPException):
     pass
 
 
-class DeletingPostError(HTTPException):
+class DeletingItemError(HTTPException):
     pass
 
 
-class PostNotExistsError(HTTPException):
+class ItemNotExistsError(HTTPException):
     pass
 
 
@@ -81,20 +81,20 @@ errors = {
         "message": "Request is missing required fields",
         "status": 400
     },
-    "PostAlreadyExistsError": {
-        "message": "Post with given name already exists",
+    "ItemAlreadyExistsError": {
+        "message": "Item with given name already exists",
         "status": 400
     },
-    "UpdatingPostError": {
-        "message": "Updating post added by other is forbidden",
+    "UpdatingItemError": {
+        "message": "Updating Item added by other is forbidden",
         "status": 403
     },
-    "DeletingPostError": {
-        "message": "Deleting post added by other is forbidden",
+    "DeletingItemError": {
+        "message": "Deleting Item added by other is forbidden",
         "status": 403
     },
-    "PostNotExistsError": {
-        "message": "Post with given id doesn't exists",
+    "ItemNotExistsError": {
+        "message": "Item with given id doesn't exists",
         "status": 400
     },
     "CategoryNotExistsError": {
