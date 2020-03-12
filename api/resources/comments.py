@@ -1,9 +1,8 @@
 from flask import Response, request
-from database.model import Comment, Category, User
+from database.model import Comment, User
 from flask_restful import Resource
 from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist, ValidationError, InvalidQueryError
 from resources.errors import SchemaValidationError, InternalServerError, UpdatingItemError, DeletingItemError,ItemNotExistsError,ItemAlreadyExistsError,UpdatingItemError
-import bson
 from datetime import datetime
 from flask_jwt_extended import jwt_required,get_jwt_identity
 from util.slugGenerator import generateSlug
@@ -31,7 +30,7 @@ class CommentsApi(Resource):
             data = json.dumps(data)
             response= Response(data, mimetype="application/json", status=200)
             return response
-        except Exception as e:
+        except Exception:
             raise InternalServerError
         
     
@@ -61,7 +60,7 @@ class CommentsApi(Resource):
         if 'slug_id'in payload:
             slug_id=payload['slug_id']
             parent = Comment.objects.get(slug=slug_id, post_id=post_id)
-            parent_full_slug=parent['full_slug']
+            parent['full_slug']
             parent_slug=parent['slug']
              
         # generate the unique portions of the slug and full_slug
@@ -119,7 +118,7 @@ class CommentApi(Resource):
             [json] -- [Json object with message and status code]
         """
         try:
-            user_id = get_jwt_identity()
+            get_jwt_identity()
             body = request.get_json()
             Comment.objects.get(id=id).update(**body)
             data =  json.dumps({'message':"Successfully updated"})

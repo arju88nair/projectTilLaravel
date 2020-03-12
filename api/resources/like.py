@@ -1,12 +1,9 @@
 from flask import Response, request
-from database.model import Like, Category, User, Post, Comment
+from database.model import Comment, Post
 from flask_restful import Resource
-from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist, ValidationError, InvalidQueryError
-from resources.errors import SchemaValidationError, InternalServerError, UpdatingItemError, ActionAlreadyDone,DeletingItemError,ItemNotExistsError,ItemAlreadyExistsError,UpdatingItemError
-import bson
-from datetime import datetime
+from mongoengine.errors import FieldDoesNotExist, ValidationError
+from resources.errors import ActionAlreadyDone, InternalServerError, SchemaValidationError
 from flask_jwt_extended import jwt_required,get_jwt_identity
-from util.slugGenerator import generateSlug
 import json
 
 
