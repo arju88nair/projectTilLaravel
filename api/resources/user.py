@@ -6,7 +6,7 @@ import datetime
 import json
 from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist
 from resources.errors import (SchemaValidationError, EmailAlreadyExistsError, UnauthorizedError,
-                      InternalServerError, BadTokenError)
+                      InternalServerError, BadTokenError,UserDoesnotExistError)
 from util.helpers import add_token_to_database,revoke_token
 from flask import current_app as app
 
@@ -68,8 +68,10 @@ class LoginApi(Resource):
             
             data = json.dumps({'access_token': access_token, "refresh_token": refresh_token, 'message':"Successfully logged in"})
             return Response(data, mimetype="application/json", status=200)
-        except (UnauthorizedError, DoesNotExist):
+        except (UnauthorizedError):
             raise UnauthorizedError
+        except  DoesNotExist:
+            raise UserDoesnotExistError
         except Exception as e:
             raise InternalServerError
 

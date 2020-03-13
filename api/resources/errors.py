@@ -25,21 +25,6 @@ class ItemNotExistsError(HTTPException):
     pass
 
 
-class CategoryAlreadyExistsError(HTTPException):
-    pass
-
-
-class UpdatingCategoryError(HTTPException):
-    pass
-
-
-class DeletingCategoryError(HTTPException):
-    pass
-
-
-class CategoryNotExistsError(HTTPException):
-    pass
-
 class EmailAlreadyExistsError(HTTPException):
     pass
 
@@ -48,7 +33,7 @@ class UnauthorizedError(HTTPException):
     pass
 
 
-class EmailAlreadyExistsError(HTTPException):
+class UserDoesnotExistError(HTTPException):
     pass
 
 
@@ -101,22 +86,6 @@ errors = {
         "message": "Item with given id doesn't exists",
         "status": 400
     },
-    "CategoryNotExistsError": {
-        "message": "Category with given id doesn't exists",
-        "status": 400
-    },
-    "CategoryAlreadyExistsError": {
-        "message": "Category with given name already exists",
-        "status": 400
-    },
-    "UpdatingCategoryError": {
-        "message": "Updating Category added by other is forbidden",
-        "status": 403
-    },
-    "DeletingCategoryError": {
-        "message": "Deleting Category added by other is forbidden",
-        "status": 403
-    },
     "EmailAlreadyExistsError": {
         "message": "User with given email address already exists",
         "status": 400
@@ -125,7 +94,7 @@ errors = {
         "message": "Invalid username or password",
         "status": 401
     },
-    "EmailDoesnotExistsError": {
+    "UserDoesnotExistError": {
         "message": "Couldn't find the user with given email address",
         "status": 400
     },

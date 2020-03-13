@@ -7,9 +7,9 @@ from resources.errors import TokenNotFound, InternalServerError
 
 
 class Category(db.Document):
-    title = db.StringField(required=True)
-    symbol = db.StringField(required=True)
-    description = db.StringField()
+    name = db.StringField(required=True)
+    symbol = db.StringField()
+    description = db.StringField(default = "")
     is_admin = db.BooleanField(default = False)
     added_by = db.ReferenceField('User')
     creation_date = db.DateTimeField()

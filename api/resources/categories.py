@@ -2,7 +2,7 @@ from flask import Response, request
 from database.model import Category, User
 from flask_restful import Resource
 from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist, ValidationError, InvalidQueryError
-from resources.errors import SchemaValidationError, UpdatingCategoryError, CategoryAlreadyExistsError, InternalServerError,DeletingCategoryError,CategoryNotExistsError
+from resources.errors import SchemaValidationError, UpdatingItemError, ItemAlreadyExistsError, InternalServerError,DeletingItemError,ItemNotExistsError
 from newspaper import Article   
 import json
 from flask_jwt_extended import jwt_required,get_jwt_identity
@@ -37,14 +37,19 @@ class CategoriesApi(Resource):
         
         Raises:
             SchemaValidationError: [If there are validation error in the category data]
-            CategoryAlreadyExistsError: [If the category already exist]
+            ItemAlreadyExistsError: [If the category already exist]
             InternalServerError: [Error in insertion]
         
         Returns:
             [json] -- [Json object with message and status code]
         """
+        body = request.get_json()
+
+        #validations
+        if 'name' not in  body:
+            raise SchemaValidationError
+        
         try:
-            body = request.get_json()
             user_id = get_jwt_identity()
             user = User.objects.get(id=user_id)
             category =  Category(**body, added_by=user)
@@ -55,7 +60,7 @@ class CategoriesApi(Resource):
         except (FieldDoesNotExist, ValidationError):
             raise SchemaValidationError
         except NotUniqueError:
-            raise CategoryAlreadyExistsError
+            raise ItemAlreadyExistsError
         except Exception as e:
             print(e)
             raise InternalServerError
@@ -75,7 +80,7 @@ class CategoryApi(Resource):
         
         Raises:
             SchemaValidationError: [If there are validation error in the category data]
-            UpdatingCategoryError: [Error in update]
+            UpdatingItemError: [Error in update]
             InternalServerError: [Error in insertion]
         
         Returns:
@@ -91,7 +96,7 @@ class CategoryApi(Resource):
         except InvalidQueryError:
             raise SchemaValidationError
         except DoesNotExist:
-            raise UpdatingCategoryError
+            raise UpdatingItemError
         except Exception:
             raise InternalServerError       
     
@@ -103,20 +108,22 @@ class CategoryApi(Resource):
             id {[Object ID]} -- [Mongo Object ID]
         
         Raises:
-            DeletingCategoryError: [Error in deletion]
+            DeletingItemError: [Error in deletion]
             InternalServerError: [Error in insertion]    
                 
         Returns:
             [json] -- [Json object with message and status code]
         """
         try:
+            user_id = get_jwt_identity()
             category = Category.objects.get(id=id, added_by=user_id)
             category.delete()
             data =  json.dumps({'message':"Successfully deleted"})
             return Response(data, mimetype="application/json", status=200)
         except DoesNotExist:
-            raise DeletingCategoryError
-        except Exception:
+            raise DeletingItemError
+        except Exception as e:
+            print(e)
             raise InternalServerError
 
     @jwt_required
@@ -127,7 +134,7 @@ class CategoryApi(Resource):
             id {[Object ID]} -- [Mongo Object ID]
         
         Raises:
-            CategoryNotExistsError: [Can't find the post item]
+            ItemNotExistsError: [Can't find the post item]
             InternalServerError: [Error in insertion]    
         
         Returns:
@@ -138,6 +145,6 @@ class CategoryApi(Resource):
             data =  json.dumps({'data':json.loads(posts), 'message':"Successfully retreived", "count" : len(json.loads(posts))})
             return Response(data, mimetype="application/json", status=200)
         except DoesNotExist:
-            raise CategoryNotExistsError
+            raise ItemNotExistsError
         except Exception:
             raise InternalServerError
