@@ -13,7 +13,7 @@ def initialize_routes(api):
     api.add_resource(CategoryApi, '/api/category/<id>')
     
     api.add_resource(CommentsApi, '/api/comments')
-    api.add_resource(CommentApi, '/api/comment')   
+    api.add_resource(CommentApi, '/api/comment/<id>')   
     
     api.add_resource(LikeApi, '/api/like')
     api.add_resource(UnLikeApi, '/api/unlike')

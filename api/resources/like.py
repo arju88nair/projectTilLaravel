@@ -34,7 +34,7 @@ class LikeApi(Resource):
         item_id=payload['item_id']
         item=payload['item']
         itemObj= ""
-        try:
+        try:        
             if item is 'P':
                 itemObj = Post
             elif item  is 'C':

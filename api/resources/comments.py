@@ -145,17 +145,19 @@ class CommentApi(Resource):
             [json] -- [Json object with message and status code]
         """
         try:
+            user_id = get_jwt_identity()
             comment = Comment.objects.get(id=id, added_by=user_id)
             comment.delete()
             data =  json.dumps({'message':"Successfully deleted"})
             return Response(data, mimetype="application/json", status=200)
         except DoesNotExist:
             raise DeletingItemError
-        except Exception:
+        except Exception as e:
+            print(e)
             raise InternalServerError
 
     @jwt_required
-    def post(self):
+    def get(self,id):
         """[Get single comment item]
         
         Arguments:
@@ -168,11 +170,8 @@ class CommentApi(Resource):
         Returns:
             [json] -- [Json object with message and status code]
         """
-        try:
-            payload = request.get_json()
-            post_id=payload['post_id']    
-            print(post_id)        
-            comments = Comment.objects(post_id=post_id).order_by('full_slug').to_json()
+        try: 
+            comments = Comment.objects(post_id=id).order_by('full_slug').to_json()
             data =  json.dumps({'data':json.loads(comments), 'message':"Successfully retreived", "count" : len(json.loads(comments))})
             return Response(data, mimetype="application/json", status=200)
         except DoesNotExist:
