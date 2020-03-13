@@ -49,15 +49,23 @@ class PostsApi(Resource):
         body = request.get_json()
         
         # source validations
-        if 'source' not in  body and 'source_url' not in  body:
+        if 'source' not in  body or 'source_url' not in  body or  'category' not in body:
             raise SchemaValidationError
+        
         
         source = body['source']
         source_url = body['source_url']
+        category = body['category']
         
-         #TODO : Bad logic. Replace by a query and id
-        if 'category' not in body:
-            body['category'] = '5e566beea690a4c14bfe604c'
+        if source is  None or  source == '':
+            raise SchemaValidationError
+                    
+        if source_url is  None or  source_url == '':
+            raise SchemaValidationError
+                    
+        if category is  None or  category == '':
+            raise SchemaValidationError
+            
                       
         if validateURL(source_url) is False and source is not None:
             summary = summarize(body['source'],3)
@@ -121,6 +129,24 @@ class PostApi(Resource):
         Returns:
             [json] -- [Json object with message and status code]
         """
+         # source validations
+        if 'source' not in  body or 'source_url' not in  body or  'category' not in body:
+            raise SchemaValidationError
+        
+        
+        source = body['source']
+        source_url = body['source_url']
+        category = body['category']
+        
+        if source is  None or  source == '':
+            raise SchemaValidationError
+                    
+        if source_url is  None or  source_url == '':
+            raise SchemaValidationError
+                    
+        if category is  None or  category == '':
+            raise SchemaValidationError
+        
         try:
             user_id = get_jwt_identity()
             body = request.get_json()

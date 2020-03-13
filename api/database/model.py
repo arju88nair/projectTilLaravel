@@ -30,7 +30,7 @@ class Post(db.Document):
     text = db.StringField()
     slug = db.StringField()
     type = db.StringField()
-    category = db.ReferenceField('Category')
+    category = db.ReferenceField('Category',required=True)
     keywords = db.ListField()
     tags = db.ListField()
     added_by = db.ReferenceField('User')
