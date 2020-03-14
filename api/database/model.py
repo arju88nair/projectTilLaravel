@@ -3,7 +3,7 @@ import datetime
 from flask_bcrypt import generate_password_hash, check_password_hash
 from mongoengine.errors import FieldDoesNotExist, DoesNotExist
 from resources.errors import TokenNotFound, InternalServerError
-
+from bson import json_util
 
 
 class Category(db.Document):
@@ -38,6 +38,12 @@ class Post(db.Document):
     modified_date = db.DateTimeField(default=datetime.datetime.now)
     liked_by = db.ListField()
     like_count=db.IntField()
+    
+    # def to_json(self):
+    #         data = self.to_mongo() 
+            
+    #         data["category"] = {"category": {"name": self.category.name,"id":self.category.id}}
+    #         return json_util.dumps(data)
     
     def save(self, *args, **kwargs):
         if not self.creation_date:

@@ -9,6 +9,7 @@ import json
 from util.slugGenerator import generateSlug
 from flask_jwt_extended import jwt_required,get_jwt_identity
 from util.summariser import summarize, get_keywords
+from bson.json_util import dumps
 
 
 class PostsApi(Resource):
@@ -200,10 +201,19 @@ class PostApi(Resource):
             [json] -- [Json object with message and status code]
         """
         try:
-            posts = Post.objects.get(id=id).to_json()
-            data =  json.dumps({'data':json.loads(posts), 'message':"Successfully retreived", "count" : len(json.loads(posts))})
+            posts =Post.objects.aggregate(
+    {"$lookup": {
+        "from": "category", 
+        "foreignField": "_id", 
+        "localField": "category",
+        "as": "category",
+    }},
+    {"$unwind": "$category"})
+            post=list(posts)
+            data =  dumps({'data':post[0], 'message':"Successfully retreived"})
             return Response(data, mimetype="application/json", status=200)
         except DoesNotExist:
             raise ItemNotExistsError
-        except Exception:
+        except Exception as e:
+            print(e)
             raise InternalServerError
