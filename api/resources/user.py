@@ -1,6 +1,6 @@
 from flask import Response, request, jsonify
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_refresh_token_required, get_jwt_identity,jwt_required,get_raw_jwt,unset_jwt_cookies
-from database.model import User, RevokedTokenModel
+from database.model import User, RevokedTokenModel, Category
 from flask_restful import Resource
 import datetime
 import json
@@ -30,6 +30,8 @@ class SignupApi(Resource):
             user.hash_password()
             user.save()
             id = user.id
+            category=Category(name="Miscellaneous",added_by=id)
+            category.save()
             data = json.dumps({'id': str(id), 'message':"Successfully registered"})
             return Response(data, mimetype="application/json", status=200)
         except FieldDoesNotExist:
@@ -37,6 +39,7 @@ class SignupApi(Resource):
         except NotUniqueError:
             raise EmailAlreadyExistsError
         except Exception as e:
+            print(e)
             raise InternalServerError
 
 class LoginApi(Resource):

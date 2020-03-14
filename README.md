@@ -7,4 +7,4 @@ Activate virtual environment
 
 > export ENV_FILE_LOCATION=./.env.test
 
-> python run.py
+> python run.pypo

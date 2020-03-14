@@ -61,6 +61,7 @@ class User(db.Document):
     modified_date = db.DateTimeField(default=datetime.datetime.now)
     
     def save(self, *args, **kwargs):
+        self.full_name=self.first_name + " " + self.last_name
         if not self.creation_date:
             self.creation_date = datetime.datetime.now()
         self.modified_date = datetime.datetime.now()
