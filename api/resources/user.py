@@ -76,6 +76,7 @@ class LoginApi(Resource):
         except  DoesNotExist:
             raise UserDoesnotExistError
         except Exception as e:
+            print(e)
             raise InternalServerError
 
 

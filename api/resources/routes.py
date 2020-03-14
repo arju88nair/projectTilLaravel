@@ -3,9 +3,16 @@ from .comments import CommentsApi, CommentApi
 from .like import LikeApi, UnLikeApi
 from .categories import CategoriesApi, CategoryApi
 from .user import SignupApi, LoginApi, TokenApi, LogoutApi, LogoutRefreshAPI
-
+from .main import ByCategoryApi
 
 def initialize_routes(api):
+    
+    api.add_resource(SignupApi, '/api/auth/signup')
+    api.add_resource(LoginApi, '/api/auth/login')
+    api.add_resource(TokenApi, '/api/auth/refresh')
+    api.add_resource(LogoutApi, '/api/auth/logout')
+    api.add_resource(LogoutRefreshAPI, '/api/auth/revokerefresh')
+    
     api.add_resource(PostsApi, '/api/posts')
     api.add_resource(PostApi, '/api/post/<id>')
     
@@ -18,8 +25,4 @@ def initialize_routes(api):
     api.add_resource(LikeApi, '/api/like')
     api.add_resource(UnLikeApi, '/api/unlike')
 
-    api.add_resource(SignupApi, '/api/auth/signup')
-    api.add_resource(LoginApi, '/api/auth/login')
-    api.add_resource(TokenApi, '/api/auth/refresh')
-    api.add_resource(LogoutApi, '/api/auth/logout')
-    api.add_resource(LogoutRefreshAPI, '/api/auth/revokerefresh')
+    api.add_resource(ByCategoryApi, '/api/byCategory/<id>')
