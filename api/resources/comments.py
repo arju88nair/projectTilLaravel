@@ -7,6 +7,9 @@ from datetime import datetime
 from flask_jwt_extended import jwt_required,get_jwt_identity
 from util.slugGenerator import generateSlug
 import json
+from bson import ObjectId
+from bson.json_util import dumps
+
 
 
 
@@ -171,8 +174,20 @@ class CommentApi(Resource):
             [json] -- [Json object with message and status code]
         """
         try: 
-            comments = Comment.objects(post_id=id).order_by('full_slug').to_json()
-            data =  json.dumps({'data':json.loads(comments), 'message':"Successfully retreived", "count" : len(json.loads(comments))})
+            user_id = get_jwt_identity()
+            comments = Comment.objects.aggregate(
+    { "$match": {"post_id": ObjectId(id)} },
+     {
+        "$addFields": {
+            "liked": {
+               "$in": [ user_id, "$liked_by" ]
+            }
+        }
+    },{"$sort":{"full_slug":1}})
+            converted=[]
+            for item in list(comments):
+                converted.append(item)
+            data =  dumps({'data':list(converted), 'message':"Successfully retreived" })
             return Response(data, mimetype="application/json", status=200)
         except DoesNotExist:
             raise ItemNotExistsError

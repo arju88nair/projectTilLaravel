@@ -10,6 +10,7 @@ from util.slugGenerator import generateSlug
 from flask_jwt_extended import jwt_required,get_jwt_identity
 from util.summariser import summarize, get_keywords
 from bson.json_util import dumps
+from bson import ObjectId
 
 
 class PostsApi(Resource):
@@ -28,6 +29,7 @@ class PostsApi(Resource):
         """
         try:
             posts = Post.objects().to_json()
+            print(type(posts))
             data = {'data':json.loads(posts), 'message':"Successfully retreived", "count" : len(json.loads(posts))}
             data = json.dumps(data)
             response= Response(data, mimetype="application/json", status=200)
@@ -203,6 +205,7 @@ class PostApi(Resource):
         try:
             user_id = get_jwt_identity()
             posts =Post.objects.aggregate(
+    { "$match": {"_id": ObjectId(id)} },
     {"$lookup": {
         "from": "category", 
         "foreignField": "_id", 
@@ -216,8 +219,7 @@ class PostApi(Resource):
                "$in": [ user_id, "$liked_by" ]
             }
         }
-    },
-    )
+    })
             post=list(posts)
             data =  dumps({'data':post[0], 'message':"Successfully retreived"})
             return Response(data, mimetype="application/json", status=200)
