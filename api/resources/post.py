@@ -201,6 +201,7 @@ class PostApi(Resource):
             [json] -- [Json object with message and status code]
         """
         try:
+            user_id = get_jwt_identity()
             posts =Post.objects.aggregate(
     {"$lookup": {
         "from": "category", 
@@ -208,7 +209,13 @@ class PostApi(Resource):
         "localField": "category",
         "as": "category",
     }},
-    {"$unwind": "$category"})
+    {"$unwind": "$category"},
+    {"$project": {
+        "document": "$$ROOT",
+      "liked" : {
+        "$in": [ user_id, "$liked_by" ]
+      }}},
+    )
             post=list(posts)
             data =  dumps({'data':post[0], 'message':"Successfully retreived"})
             return Response(data, mimetype="application/json", status=200)
