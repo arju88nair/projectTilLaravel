@@ -39,12 +39,6 @@ class Post(db.Document):
     liked_by = db.ListField()
     like_count=db.IntField()
     
-    # def to_json(self):
-    #         data = self.to_mongo() 
-            
-    #         data["category"] = {"category": {"name": self.category.name,"id":self.category.id}}
-    #         return json_util.dumps(data)
-    
     def save(self, *args, **kwargs):
         if not self.creation_date:
             self.creation_date = datetime.datetime.now()

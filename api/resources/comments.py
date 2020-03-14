@@ -176,7 +176,7 @@ class CommentApi(Resource):
         try: 
             user_id = get_jwt_identity()
             comments = Comment.objects.aggregate(
-    { "$match": {"post_id": ObjectId(id)} },
+    { "$match": {"post_id": ObjectId(id)}},
      {
         "$addFields": {
             "liked": {
