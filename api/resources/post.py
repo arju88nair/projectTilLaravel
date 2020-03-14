@@ -210,11 +210,13 @@ class PostApi(Resource):
         "as": "category",
     }},
     {"$unwind": "$category"},
-    {"$project": {
-        "document": "$$ROOT",
-      "liked" : {
-        "$in": [ user_id, "$liked_by" ]
-      }}},
+     {
+        "$addFields": {
+            "liked": {
+               "$in": [ user_id, "$liked_by" ]
+            }
+        }
+    },
     )
             post=list(posts)
             data =  dumps({'data':post[0], 'message':"Successfully retreived"})
