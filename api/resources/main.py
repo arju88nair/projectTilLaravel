@@ -28,6 +28,13 @@ class ByCategoryApi(Resource):
         try:
             user_id = get_jwt_identity()
             posts =Post.objects.aggregate(
+                {"$lookup": {
+        "from": "category", 
+        "foreignField": "_id", 
+        "localField": "category",
+        "as": "category",
+    }},
+    {"$unwind": "$category"},
     { "$match": {"category._id": ObjectId(id)} },
      {
         "$addFields": {
@@ -39,6 +46,7 @@ class ByCategoryApi(Resource):
             converted=[]
             for item in list(posts):
                 converted.append(item)
+            print(converted)
             data =  dumps({'data':list(converted), 'message':"Successfully retreived" })
             return Response(data, mimetype="application/json", status=200)
         except  DoesNotExist:
