@@ -1,4 +1,6 @@
 body{
   background-color: #F8F7F7;
+  font-family: Montserrat !important;
 }
+
 a, a:hover, a:focus { outline: none; }

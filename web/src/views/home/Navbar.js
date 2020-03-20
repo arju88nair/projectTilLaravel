@@ -2,13 +2,11 @@ import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
-import Paper from "@material-ui/core/Paper";
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types'
-import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import SearchBar from 'material-ui-search-bar'
 
@@ -43,11 +41,10 @@ function a11yProps(index) {
 }
 
 const useStyles = makeStyles(theme => ({
-    root: {
+    appBar: {
         background: 'transparent',
         boxShadow: 'none',
         color: '#0038FF',
-        fontSize: 12,
         alignItems: 'flex-end',
         // width: 600, // a number of your choice
 
@@ -55,11 +52,22 @@ const useStyles = makeStyles(theme => ({
     navContainer: {
     },
     tab: {
-        fontWeight: 'bolder',
+        fontWeight: 'bold',
         textTransform: 'capitalize',
+        width: 20, // a number of your choice
     },
     indicator: {
         backgroundColor: '#0038FF',
+    },
+    signUp: {
+        background: 'linear-gradient(45deg, #0038FF 30%, #A49EE9 90%)',
+        border: 0,
+        borderRadius: 50,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        color: 'white',
+        height: 48,
+        padding: '0 30px',
+        fontWeight: 'bold',
     },
 }));
 
@@ -73,47 +81,43 @@ export function Navbar() {
     };
 
     return (
-        <Grid item xs={12}><div className={classes.navContainer}  style={{ backgroundColor: 'yellow'}}>
-                <Grid container spacing={6} direction="row"
-                      justify="flex-end"
-                      alignItems="flex-end">
-                    <Grid item xs={5} style={{alignSelf: 'flex-end',backgroundColor: 'grey'}}>
-                        <AppBar position="static" className={classes.root}>
-                            <Tabs value={value} onChange={handleChange} aria-label="Main tabs"
-                                  style={{alignSelf: 'flex-end'}}
-                                  classes={{indicator: classes.indicator}}>
-                                <Tab value="one" label="Popular" {...a11yProps('One')} className={classes.tab}/>
-                                <Tab value="two" label="Recent" {...a11yProps('two')} className={classes.tab}/>
-                                <Tab value="three" label="Your Notes" {...a11yProps('three')} className={classes.tab}/>
-                            </Tabs>
-                        </AppBar>
-                    </Grid>
-                    <Grid item xs={4} style={{alignSelf: 'flex-end',backgroundColor: 'green'}}>
-                        <SearchBar
-                            onChange={(newValue) => this.setState({value: newValue})}
-                            onRequestSearch={() => console.log('onRequestSearch')}
-                            style={{
-                                margin: '0 auto',
-                                maxWidth: 800,
-                                borderBottomRightRadius: 50,
-                                borderTopRightRadius: 50
-                            }}
-                        />
-                    </Grid>
-                    <Grid item xs={3} style={{backgroundColor: 'red'}}
-                          >
-                        <Link href="#" underline='none'>
-                            Link
-                        </Link>
-                        <Button variant="outlined" color="primary" href="#outlined-buttons">
-                            Link
-                        </Button>
-                        <Button variant="outlined" color="primary">
-                            Primary
-                        </Button>
-                    </Grid>
+        <Grid item xs={12}><div className={classes.navContainer}   >
+            <Grid container spacing={3}>
+                <Grid item xs={12} sm={6} >
+                    <AppBar position="static" className={classes.appBar}>
+                        <Tabs value={value} onChange={handleChange} aria-label="Main tabs"
+                              classes={{indicator: classes.indicator}}>
+                            <Tab value="one" label="Popular" {...a11yProps('One')} className={classes.tab}/>
+                            <Tab value="two" label="Recent" {...a11yProps('two')} className={classes.tab}/>
+                            <Tab value="three" label="Your Notes" {...a11yProps('three')} className={classes.tab}/>
+                        </Tabs>
+                    </AppBar>                </Grid>
+                <Grid item xs={12} sm={3} >
+                    <SearchBar
+                        onChange={(newValue) => this.setState({value: newValue})}
+                        onRequestSearch={() => console.log('onRequestSearch')}
+                        style={{
+                            maxWidth: 800,
+                            borderBottomRightRadius: 50,
+                            borderTopRightRadius: 50
+                        }}
+                    />                </Grid>
+                <Grid item xs={12} sm={3} container
+                      direction="row"
+                      justify="center"
+                      alignItems="center"
+                >
+
+                    <Button variant="outlined" color="primary" href="#outlined-buttons" disableRipple style={{border:'none',marginRight :60,fontWeight:'bold'}}>
+                        Login
+                    </Button>
+                    <Button variant="outlined" className={classes.signUp}>
+                        Sign Up
+                    </Button>
                 </Grid>
-            </div>
+
+            </Grid>
+        </div>
             {/*<TabPanel value={value} index="one">*/}
             {/*    Item One*/}
             {/*</TabPanel>*/}
