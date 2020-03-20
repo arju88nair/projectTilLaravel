@@ -4,3 +4,14 @@ body{
 }
 
 a, a:hover, a:focus { outline: none; }
+
+.MuiTab-textColorInherit.Mui-selected
+{
+  color: #0038FF!important;
+
+}
+.MuiTab-textColorInherit
+{
+  color: #464855!important;
+
+}
