@@ -49,8 +49,7 @@ const useStyles = makeStyles(theme => ({
         // width: 600, // a number of your choice
 
     },
-    navContainer: {
-    },
+    navContainer: {},
     tab: {
         fontWeight: 'bold',
         textTransform: 'capitalize',
@@ -81,43 +80,55 @@ export function Navbar() {
     };
 
     return (
-        <Grid item xs={12}><div className={classes.navContainer}   >
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} >
-                    <AppBar position="static" className={classes.appBar}>
-                        <Tabs value={value} onChange={handleChange} aria-label="Main tabs"
-                              classes={{indicator: classes.indicator}}>
-                            <Tab value="one" label="Popular" {...a11yProps('One')} className={classes.tab}/>
-                            <Tab value="two" label="Recent" {...a11yProps('two')} className={classes.tab}/>
-                            <Tab value="three" label="Your Notes" {...a11yProps('three')} className={classes.tab}/>
-                        </Tabs>
-                    </AppBar>                </Grid>
-                <Grid item xs={12} sm={3} >
-                    <SearchBar
-                        onChange={(newValue) => this.setState({value: newValue})}
-                        onRequestSearch={() => console.log('onRequestSearch')}
-                        style={{
-                            maxWidth: 800,
-                            borderBottomRightRadius: 50,
-                            borderTopRightRadius: 50
-                        }}
-                    />                </Grid>
-                <Grid item xs={12} sm={3} container
-                      direction="row"
-                      justify="center"
-                      alignItems="center"
-                >
+        <Grid item xs={12}>
+            <div className={classes.navContainer}>
+                <Grid container spacing={3} >
+                    <Grid item xs={12} sm={6}>
+                        <Grid container spacing={3} >
+                            <Grid item xs={2} sm={2}  container
+                                  direction="row"
+                                  justify="flex-start"
+                                  alignItems="center">
+                                <Typography variant={'h3'} style={{color:'#0038FF', fontWeight: '590'}}>til</Typography>
+                            </Grid>
+                            <Grid item xs={8} sm={10}>
+                                <AppBar position="static" className={classes.appBar} >
+                                    <Tabs value={value} onChange={handleChange} aria-label="Main tabs"
+                                          classes={{indicator: classes.indicator}}>
+                                        <Tab value="one" label="Popular" {...a11yProps('One')} className={classes.tab}/>
+                                        <Tab value="two" label="Recent" {...a11yProps('two')} className={classes.tab}/>
+                                        <Tab value="four" label="Topics" {...a11yProps('four')} className={classes.tab}/>
+                                        <Tab value="three" label="Your Notes" {...a11yProps('three')} className={classes.tab}/>
+                                    </Tabs>
+                                </AppBar>
+                            </Grid>
+                        </Grid>
+                        </Grid>
+                    <Grid item xs={12} sm={3}>
+                        <SearchBar
+                            onChange={(newValue) => this.setState({value: newValue})}
+                            onRequestSearch={() => console.log('onRequestSearch')}
+                            style={{
+                                maxWidth: 800,
+                                borderBottomRightRadius: 50,
+                                borderTopRightRadius: 50
+                            }}
+                        /> </Grid>
+                    <Grid item xs={12} sm={3} container
+                          direction="row"
+                          justify="center"
+                          alignItems="center">
+                        <Button variant="outlined" color="primary" href="#outlined-buttons" disableRipple
+                                style={{border: 'none', marginRight: 60, fontWeight: 'bold'}}>
+                            Login
+                        </Button>
+                        <Button variant="outlined" className={classes.signUp}>
+                            Sign Up
+                        </Button>
+                    </Grid>
 
-                    <Button variant="outlined" color="primary" href="#outlined-buttons" disableRipple style={{border:'none',marginRight :60,fontWeight:'bold'}}>
-                        Login
-                    </Button>
-                    <Button variant="outlined" className={classes.signUp}>
-                        Sign Up
-                    </Button>
                 </Grid>
-
-            </Grid>
-        </div>
+            </div>
             {/*<TabPanel value={value} index="one">*/}
             {/*    Item One*/}
             {/*</TabPanel>*/}
