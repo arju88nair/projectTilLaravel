@@ -16,7 +16,7 @@ export function LeftPane() {
     const classes = useStyles();
 
     return (
-        <Grid item xs={8}>
+        <Grid item xs={9}>
             <Paper className={classes.paper}>xs=6</Paper>
         </Grid>
     );

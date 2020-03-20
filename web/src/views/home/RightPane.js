@@ -17,7 +17,7 @@ export function RightPane() {
     const classes = useStyles();
 
     return (
-        <Grid item xs={4}>
+        <Grid item xs={3}>
             <Paper className={classes.paper}>xs=4</Paper>
         </Grid>
     );

@@ -1,11 +1,8 @@
 import React from 'react';
 import './Main.css';
 import {makeStyles} from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import './Navbar'
-import './LeftPane'
-import './RightPane'
+
 import {Navbar} from "./Navbar";
 import {LeftPane} from "./LeftPane";
 import {RightPane} from "./RightPane";
@@ -24,7 +21,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function Main() {
     const classes = useStyles();
-
     return (
         <div className={classes.root}>
             <Grid container spacing={3}>
