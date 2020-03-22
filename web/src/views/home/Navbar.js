@@ -68,6 +68,9 @@ const useStyles = makeStyles(theme => ({
         padding: '0 30px',
         fontWeight: 'bold',
     },
+    logo:{
+        color:'#0038FF', fontWeight: '590'
+    }
 }));
 
 
@@ -85,12 +88,12 @@ export function Navbar() {
                 <Grid container spacing={3} >
                     <Grid item xs={12} sm={6}>
                         <Grid container spacing={3} >
-                            {/*<Grid item xs={2} sm={1}  container*/}
-                            {/*      direction="row"*/}
-                            {/*      justify="flex-start"*/}
-                            {/*      alignItems="center">*/}
-                            {/*    <Typography variant={'h3'} style={{color:'#0038FF', fontWeight: '590'}}>til</Typography>*/}
-                            {/*</Grid>*/}
+                            <Grid item xs={2} sm={1}  container
+                                  direction="row"
+                                  justify="flex-start"
+                                  alignItems="center">
+                                <img src={require('../../images/til.png')} className={classes.logo}/>
+                            </Grid>
                             <Grid item xs={8} sm={11}>
                                 <AppBar position="static" className={classes.appBar} >
                                     <Tabs value={value} onChange={handleChange} aria-label="Main tabs"
