@@ -8,7 +8,7 @@ import { ThemeProvider } from '@material-ui/styles';
 const theme = createMuiTheme({
     typography: {
         fontFamily: [
-            'Roboto'
+            'Camphor', 'Open Sans', 'Segoe UI', 'sans-serif'
         ].join(','),
         fontSize: 14,
     }

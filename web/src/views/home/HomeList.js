@@ -64,7 +64,7 @@ export function HomeList() {
                                     fontSize: '10',
                                     fontWeight: 'medium',
                                     color: '#464855',
-                                    fontFamily: "Poppins"
+
                                 }}>
                                     If, like me, you’ve read the Redux docs, watched Dan’s videos, done Wes’ course
                                     and still not quite grasped how to use Redux,
@@ -110,7 +110,7 @@ export function HomeList() {
                                     fontSize: '10',
                                     fontWeight: 'medium',
                                     color: '#464855',
-                                    fontFamily: "Poppins"
+
                                 }}>
                                     If, like me, you’ve read the Redux docs, watched Dan’s videos, done Wes’ course
                                     and still not quite grasped how to use Redux,
@@ -156,7 +156,7 @@ export function HomeList() {
                                     fontSize: '10',
                                     fontWeight: 'medium',
                                     color: '#464855',
-                                    fontFamily: "Poppins"
+
                                 }}>
                                     If, like me, you’ve read the Redux docs, watched Dan’s videos, done Wes’ course
                                     and still not quite grasped how to use Redux,
@@ -202,7 +202,7 @@ export function HomeList() {
                                     fontSize: '10',
                                     fontWeight: 'medium',
                                     color: '#464855',
-                                    fontFamily: "Poppins"
+
                                 }}>
                                     If, like me, you’ve read the Redux docs, watched Dan’s videos, done Wes’ course
                                     and still not quite grasped how to use Redux,
@@ -248,7 +248,7 @@ export function HomeList() {
                                     fontSize: '10',
                                     fontWeight: 'medium',
                                     color: '#464855',
-                                    fontFamily: "Poppins"
+
                                 }}>
                                     If, like me, you’ve read the Redux docs, watched Dan’s videos, done Wes’ course
                                     and still not quite grasped how to use Redux,
@@ -294,7 +294,7 @@ export function HomeList() {
                                     fontSize: '10',
                                     fontWeight: 'medium',
                                     color: '#464855',
-                                    fontFamily: "Poppins"
+
                                 }}>
                                     If, like me, you’ve read the Redux docs, watched Dan’s videos, done Wes’ course
                                     and still not quite grasped how to use Redux,
@@ -340,7 +340,7 @@ export function HomeList() {
                                     fontSize: '10',
                                     fontWeight: 'medium',
                                     color: '#464855',
-                                    fontFamily: "Poppins"
+
                                 }}>
                                     If, like me, you’ve read the Redux docs, watched Dan’s videos, done Wes’ course
                                     and still not quite grasped how to use Redux,
@@ -386,7 +386,7 @@ export function HomeList() {
                                     fontSize: '10',
                                     fontWeight: 'medium',
                                     color: '#464855',
-                                    fontFamily: "Poppins"
+
                                 }}>
                                     If, like me, you’ve read the Redux docs, watched Dan’s videos, done Wes’ course
                                     and still not quite grasped how to use Redux,
@@ -432,7 +432,7 @@ export function HomeList() {
                                     fontSize: '10',
                                     fontWeight: 'medium',
                                     color: '#464855',
-                                    fontFamily: "Poppins"
+
                                 }}>
                                     If, like me, you’ve read the Redux docs, watched Dan’s videos, done Wes’ course
                                     and still not quite grasped how to use Redux,
