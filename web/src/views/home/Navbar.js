@@ -9,6 +9,9 @@ import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button';
 import SearchBar from 'material-ui-search-bar'
+import {connect, mapStateToProps, useDispatch, useSelector} from 'react-redux';
+import { MiscActions } from '../../_actions';
+import SignUp from "./SignUp";
 
 function TabPanel(props) {
     const {children, value, index, ...other} = props;
@@ -74,12 +77,18 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export function Navbar() {
+function Navbar() {
+
     const classes = useStyles();
     const [value, setValue] = React.useState('one');
+    const dispatch = useDispatch();
+
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+    };
+    const handleClickOpen = () => {
+        dispatch(MiscActions.openLoginModal());
     };
 
     return (
@@ -122,7 +131,7 @@ export function Navbar() {
                           justify="center"
                           alignItems="center">
                         <Button variant="outlined" color="primary" href="#outlined-buttons" disableRipple
-                                style={{border: 'none', marginRight: 60, fontWeight: 'bold'}}>
+                                style={{border: 'none', marginRight: 60, fontWeight: 'bold'}} onClick={handleClickOpen}>
                             Login
                         </Button>
                         <Button variant="outlined" className={classes.signUp}>
@@ -147,3 +156,6 @@ export function Navbar() {
 }
 
 
+export default connect(
+    null,
+)(Navbar);

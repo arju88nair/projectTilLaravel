@@ -1,14 +1,14 @@
-import { homeConstants } from '../_constants';
+import { HomeConstants } from '../_constants';
 
-export function users(state = {}, action) {
+export function home(state = {}, action) {
   switch (action.type) {
-    case homeConstants.OPEN_LOGIN_MODAL:
+    case HomeConstants.OPEN_LOGIN_MODAL:
       return {
-        loading: true
+        modalOpen: true
       };
-    case homeConstants.CLOSE_LOGIN_MODAL:
+    case HomeConstants.CLOSE_LOGIN_MODAL:
       return {
-        items: action.users
+        modalOpen: false
       };
     default:
       return state

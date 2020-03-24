@@ -5,7 +5,7 @@ import Main from './views/home/Main';
 import {createMuiTheme} from '@material-ui/core/styles';
 import {ThemeProvider} from '@material-ui/styles';
 import {Provider} from 'react-redux'
-import store from './redux/store'
+import { store } from './_helpers';
 
 const theme = createMuiTheme({
     typography: {
