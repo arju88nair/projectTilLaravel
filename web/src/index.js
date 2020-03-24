@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Main from './views/home/Main';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import {createMuiTheme} from '@material-ui/core/styles';
+import {ThemeProvider} from '@material-ui/styles';
+import {Provider} from 'react-redux'
+import store from './redux/store'
 
 const theme = createMuiTheme({
     typography: {
@@ -14,8 +16,10 @@ const theme = createMuiTheme({
     }
 });
 ReactDOM.render(
-    <ThemeProvider theme={theme}>
-        <Main/>
-    </ThemeProvider>, document.getElementById('root'));
+    <Provider store={store}>
+        <ThemeProvider theme={theme}>
+            <Main/>
+        </ThemeProvider></Provider>
+    , document.getElementById('root'));
 
 
