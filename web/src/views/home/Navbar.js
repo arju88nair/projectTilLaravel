@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 import SearchBar from 'material-ui-search-bar'
 import {useDispatch, useSelector} from 'react-redux';
 import { MiscActions } from '../../_actions';
-import SignUp from "./SignUp";
+import SignUp from "./SignUpModal";
 
 function TabPanel(props) {
     const {children, value, index, ...other} = props;
@@ -62,7 +62,11 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#0038FF',
     },
     signUp: {
-        background: 'linear-gradient(45deg, #0038FF 30%, #A49EE9 90%)',
+
+
+        // background: '#a770ef',
+        background: 'linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b)' ,
+        // background: 'linear-gradient(45deg, #0038FF 30%, #A49EE9 90%)',
         border: 0,
         borderRadius: 50,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',

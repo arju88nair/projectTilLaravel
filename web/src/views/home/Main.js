@@ -6,12 +6,12 @@ import Grid from '@material-ui/core/Grid';
 import {Navbar} from "./Navbar";
 import {LeftPane} from "./LeftPane";
 import {RightPane} from "./RightPane";
-import {AlertDialogSlide} from "./SignUp";
+import {SignUpModal} from "./SignUpModal";
 
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
-        padding:20
+        padding: 20
     },
     paper: {
         padding: theme.spacing(2),
@@ -25,7 +25,7 @@ export default function Main() {
     return (
         <div className={classes.root}>
             <Grid container spacing={3}>
-<AlertDialogSlide/>
+                <SignUpModal/>
                 <Navbar/>
                 <LeftPane/>
                 <RightPane/>
