@@ -1,6 +1,6 @@
 import { HomeConstants } from '../_constants';
 
-export function home(state = {}, action) {
+export function HomeReducers(state = {}, action) {
   switch (action.type) {
     case HomeConstants.OPEN_LOGIN_MODAL:
       return {

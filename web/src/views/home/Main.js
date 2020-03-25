@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import {Navbar} from "./Navbar";
 import {LeftPane} from "./LeftPane";
 import {RightPane} from "./RightPane";
+import {AlertDialogSlide} from "./SignUp";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -24,6 +25,7 @@ export default function Main() {
     return (
         <div className={classes.root}>
             <Grid container spacing={3}>
+<AlertDialogSlide/>
                 <Navbar/>
                 <LeftPane/>
                 <RightPane/>

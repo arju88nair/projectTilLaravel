@@ -9,7 +9,7 @@ import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button';
 import SearchBar from 'material-ui-search-bar'
-import {connect, mapStateToProps, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { MiscActions } from '../../_actions';
 import SignUp from "./SignUp";
 
@@ -77,18 +77,24 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-function Navbar() {
+export  function Navbar() {
 
     const classes = useStyles();
     const [value, setValue] = React.useState('one');
     const dispatch = useDispatch();
+    const modalOpen = useSelector(state => state.HomeReducers.modalOpen);
+
 
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-    const handleClickOpen = () => {
+    const handleOpen = () => {
         dispatch(MiscActions.openLoginModal());
+    };
+
+    const handleClose = () => {
+        dispatch(MiscActions.closeLoginModal());
     };
 
     return (
@@ -130,11 +136,11 @@ function Navbar() {
                           direction="row"
                           justify="center"
                           alignItems="center">
-                        <Button variant="outlined" color="primary" href="#outlined-buttons" disableRipple
-                                style={{border: 'none', marginRight: 60, fontWeight: 'bold'}} onClick={handleClickOpen}>
+                        <Button variant="outlined" color="primary"  disableRipple
+                                style={{border: 'none', marginRight: 60, fontWeight: 'bold'}} onClick={handleOpen}>
                             Login
                         </Button>
-                        <Button variant="outlined" className={classes.signUp}>
+                        <Button variant="outlined" className={classes.signUp} onClick={handleClose}>
                             Sign Up
                         </Button>
                     </Grid>
@@ -156,6 +162,3 @@ function Navbar() {
 }
 
 
-export default connect(
-    null,
-)(Navbar);
