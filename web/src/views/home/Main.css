@@ -1,13 +1,10 @@
 
 body {
   background-color: #F8F7F7;
-
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-
 
 a, a:hover, a:focus { outline: none; }
 

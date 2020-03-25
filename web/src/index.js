@@ -6,6 +6,7 @@ import {createMuiTheme} from '@material-ui/core/styles';
 import {ThemeProvider} from '@material-ui/styles';
 import {Provider} from 'react-redux'
 import { store } from './_helpers';
+require('dotenv').config()
 
 const theme = createMuiTheme({
     typography: {
