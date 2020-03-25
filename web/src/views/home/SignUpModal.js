@@ -23,12 +23,8 @@ export function SignUpModal() {
     const dispatch = useDispatch();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const handleClickOpen = () => {
-        dispatch(MiscActions.openLoginModal());
-    };
-
     const handleClose = () => {
-        dispatch(MiscActions.closeLoginModal());
+        dispatch(MiscActions.closeModal());
     };
     return (
         <div>

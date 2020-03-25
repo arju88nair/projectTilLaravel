@@ -11,7 +11,6 @@ import Button from '@material-ui/core/Button';
 import SearchBar from 'material-ui-search-bar'
 import {useDispatch, useSelector} from 'react-redux';
 import { MiscActions } from '../../_actions';
-import SignUp from "./SignUpModal";
 
 function TabPanel(props) {
     const {children, value, index, ...other} = props;
@@ -93,12 +92,12 @@ export  function Navbar() {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-    const handleOpen = () => {
-        dispatch(MiscActions.openLoginModal());
+    const handleOpen = (value) => {
+        dispatch(MiscActions.openLoginModal(value));
     };
 
     const handleClose = () => {
-        dispatch(MiscActions.closeLoginModal());
+        dispatch(MiscActions.closeModal());
     };
 
     return (
@@ -141,25 +140,16 @@ export  function Navbar() {
                           justify="center"
                           alignItems="center">
                         <Button variant="outlined" color="primary"  disableRipple
-                                style={{border: 'none', marginRight: 60, fontWeight: 'bold'}} onClick={handleOpen}>
+                                style={{border: 'none', marginRight: 60, fontWeight: 'bold'}} onClick={() => handleOpen("logIn")} >
                             Login
                         </Button>
-                        <Button variant="outlined" className={classes.signUp} onClick={handleClose}>
+                        <Button variant="outlined" className={classes.signUp} onClick={() => handleOpen("signUp")} >
                             Sign Up
                         </Button>
                     </Grid>
 
                 </Grid>
             </div>
-            {/*<TabPanel value={value} index="one">*/}
-            {/*    Item One*/}
-            {/*</TabPanel>*/}
-            {/*<TabPanel value={value} index="two">*/}
-            {/*    Item Two*/}
-            {/*</TabPanel>*/}
-            {/*<TabPanel value={value} index="three">*/}
-            {/*    Item Three*/}
-            {/*</TabPanel>*/}
         </Grid>
 
     );

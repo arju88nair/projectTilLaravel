@@ -1,24 +1,19 @@
 import React from 'react';
 import Signup from '../css/Signup.css'
-import Grid from '@material-ui/core/Grid';
+import {useDispatch, useSelector} from "react-redux";
+import {MiscActions} from "../../_actions";
 
+export function LoginWrapper()
+{
+    const dispatch = useDispatch();
+    const view = useSelector(state => state.HomeReducers.currentView);
 
-export class LoginWrapper extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            currentView: "signUp"
-        }
-    }
+    const changeView = (view) => {
+        dispatch(MiscActions.loginView(view));
+    };
 
-    changeView = (view) => {
-        this.setState({
-            currentView: view
-        })
-    }
-
-    currentView = () => {
-        switch(this.state.currentView) {
+    const currentView = () => {
+        switch(view) {
             case "signUp":
                 return (
                     <form>
@@ -41,7 +36,7 @@ export class LoginWrapper extends React.Component {
                             </ul>
                         </fieldset>
                         <button id="formButton">Submit</button>
-                        <button id="formButton" type="button" onClick={ () => this.changeView("logIn")}>Have an Account?</button>
+                        <button id="formButton" type="button" onClick={ () => changeView("logIn")}>Have an Account?</button>
                     </form>
                 )
                 break
@@ -62,12 +57,12 @@ export class LoginWrapper extends React.Component {
                                 </li>
                                 <li>
                                     <i/>
-                                    <a onClick={ () => this.changeView("PWReset")} href="#">Forgot Password?</a>
+                                    <a onClick={ () => changeView("PWReset")} href="#">Forgot Password?</a>
                                 </li>
                             </ul>
                         </fieldset>
                         <button id="formButton">Login</button>
-                        <button type="button" onClick={ () => this.changeView("signUp")} id="formButton">Create an Account</button>
+                        <button type="button" onClick={ () => changeView("signUp")} id="formButton">Create an Account</button>
                     </form>
                 )
                 break
@@ -88,7 +83,7 @@ export class LoginWrapper extends React.Component {
                             </ul>
                         </fieldset>
                         <button>Send Reset Link</button>
-                        <button type="button" onClick={ () => this.changeView("logIn")}>Go Back</button>
+                        <button type="button" onClick={ () => changeView("logIn")}>Go Back</button>
                     </form>
                 )
             default:
@@ -96,13 +91,10 @@ export class LoginWrapper extends React.Component {
         }
     }
 
-
-    render() {
-        return (
-            <section id="entry-page">
-                {this.currentView()}
-            </section>
-        )
-    }
+    return (
+        <section id="entry-page">
+            {currentView()}
+        </section>
+    )
 }
 
