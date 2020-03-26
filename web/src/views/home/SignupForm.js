@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Signup from '../css/Signup.css'
 import {useDispatch, useSelector} from "react-redux";
 import {MiscActions} from "../../_actions";
+import {UserActions} from "../../_actions/UserActions";
 
 export function LoginWrapper()
 {
+    const [user, setUser] = useState({
+        name: '',
+
+        email: '',
+        password: ''
+    });
     const dispatch = useDispatch();
     const view = useSelector(state => state.HomeReducers.currentView);
 
@@ -12,11 +19,15 @@ export function LoginWrapper()
         dispatch(MiscActions.loginView(view));
     };
 
+    function handleSubmit(e) {
+            e.preventDefault();
+            dispatch(UserActions.register(user));
+    }
     const currentView = () => {
         switch(view) {
             case "signUp":
                 return (
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <h2>Sign Up!</h2>
                         <fieldset>
                             <legend>Create Account</legend>
