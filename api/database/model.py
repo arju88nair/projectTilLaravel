@@ -48,9 +48,7 @@ class Post(db.Document):
     
 class User(db.Document):
     username = db.StringField()
-    first_name = db.StringField(required=True)
-    last_name = db.StringField(required=True)
-    full_name = db.StringField()
+    name = db.StringField(required=True)
     email = db.EmailField(required=True, unique=True)
     password = db.StringField(required=True, min_length=6)
     verified = db.BooleanField(default = False)
@@ -61,7 +59,6 @@ class User(db.Document):
     modified_date = db.DateTimeField(default=datetime.datetime.now)
     
     def save(self, *args, **kwargs):
-        self.full_name=self.first_name + " " + self.last_name
         if not self.created_date:
             self.created_date = datetime.datetime.now()
         self.modified_date = datetime.datetime.now()

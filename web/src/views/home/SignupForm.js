@@ -22,6 +22,9 @@ export function LoginWrapper()
                             <legend>Create Account</legend>
                             <ul>
                                 <li>
+                                    <label for="name">Name:</label>
+                                    <input type="text" id="username" required/>
+                                </li>                                <li>
                                     <label for="username">Username:</label>
                                     <input type="text" id="username" required/>
                                 </li>
