@@ -5,7 +5,7 @@ import {MiscActions} from "../../_actions";
 import {UserActions} from "../../_actions/UserActions";
 
 export function LoginWrapper()
-{
+
     const [user, setUser] = useState({
         name: '',
 
