@@ -9,6 +9,8 @@ import Container from '@material-ui/core/Container';
 import logo from '../../resources/images/main.png';
 import Box from '@material-ui/core/Box';
 import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import {RegisterPage} from "../RegisterPage"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -62,18 +64,15 @@ function LoginPage() {
 
     return (
         <div className={classes.root}>
-            <Grid container spacing={3}>
+            <Grid container >
                 <Grid item xs={12} sm={8}   container
                       direction="row"
                       justify="center"
                       alignItems="flex-start" className={classes.left} style = {{minHeight: "100vh" ,background : 'linear-gradient(to top, #b761dc, #af5bd3, #a756ca, #a050c2, #984bb9, #9345b4, #8e3fb0, #8939ab, #8530a9, #8027a7, #7c1ca5, #770ea3)'}}>
-                    <Grid item xs={12} container direction="row"
-                          justify="center"
-                          alignItems="center" style = {{ borderColor:'red'}}>
-                        <img src={logo} />
-                        <Container >
-                            <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} />
-                        </Container>
+                    <Grid item xs={12} container direction="column"
+                          justify="space-around"
+                          alignItems="center" style = {{maxHeight: "100vh" }}>
+                        <RegisterPage/>
                     </Grid>
 
 
@@ -103,7 +102,7 @@ function LoginPage() {
 
                 </Grid>
 
-                <Grid xs={0 } item sm={4}>
+                <Grid xs={0 } item sm={4} only ='sm'>
                     <Paper className={classes.paper}>xs=12 sm=6</Paper>
                 </Grid>
             </Grid>
