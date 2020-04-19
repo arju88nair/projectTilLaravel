@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,9 +10,13 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {ThemeProvider, makeStyles, createMuiTheme} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import logo from "../../resources/images/main.png";
+import {lime} from "@material-ui/core/colors/lime";
+import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import {useDispatch, useSelector} from "react-redux";
+import {userActions} from "../../_actions/userActions";
 
 function Copyright() {
     return (
@@ -27,6 +31,11 @@ function Copyright() {
     );
 }
 
+const theme = createMuiTheme({
+    palette: {
+        primary: lime,
+    },
+});
 const useStyles = makeStyles((theme) => ({
     paper: {
         marginTop: theme.spacing(8),
@@ -47,69 +56,125 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export  function RegisterPage() {
-    const classes = useStyles();
+function validateEmail(email) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+export function RegisterPage() {
+    const [user, setUser] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: ''
+    });
+    const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState(false);
+    const registering = useSelector(state => state.registration.registering);
+    const dispatch = useDispatch();
+
+    // reset login status
+    useEffect(() => {
+        dispatch(userActions.logout());
+    }, []);
+
+    function handleChange(e) {
+        const { name, value } = e.target;
+        setUser(user => ({ ...user, [name]: value }));
+    }
+    function handleSubmit(e) {
+        e.preventDefault();
+        const error = !validateEmail(user.email);
+        setError(error)
+        setSubmitted(true);
+        console.log(user)
+        if (user.firstName && user.lastName && user.username && user.password) {
+            dispatch(userActions.register(user));
+        }
+    }
+      const classes = useStyles();
+
+
+
 
     return (
         <Container component="main" maxWidth="xs">
 
-            <CssBaseline />
+            <CssBaseline/>
             <div className={classes.paper}>
-                <img src={logo} />
+                <img src={logo}/>
 
                 <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
+                    <LockOutlinedIcon/>
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} noValidate onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
-                            <TextField
-                                autoComplete="fname"
-                                name="firstName"
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="firstName"
-                                label="First Name"
-                                autoFocus
-                            />
+                            <ThemeProvider theme={theme}>
+                                <TextField
+                                    autoComplete="fname"
+                                    name="firstName"
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="firstName"
+                                    label="First Name"
+                                    autoFocus
+                                    value={user.firstName}
+                                    onChange={handleChange}
+                                />
+                            </ThemeProvider>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="lastName"
-                                label="Last Name"
-                                name="lastName"
-                                autoComplete="lname"
-                            />
+                            <ThemeProvider theme={theme}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="lastName"
+                                    label="Last Name"
+                                    name="lastName"
+                                    autoComplete="lname"
+                                    value={user.lastName}
+                                    onChange={handleChange}
+                                />
+                            </ThemeProvider>
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
-                            />
+                            <ThemeProvider theme={theme}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="Email Address"
+                                    name="email"
+                                    autoComplete="email"
+                                    helperText={error ? "Enter proper Email format" : ''}
+                                    error={error}
+                                    onChange={handleChange}
+                                    margin="normal"
+                                    value={user.email}
+                                />
+                            </ThemeProvider>
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                            />
+                            <ThemeProvider theme={theme}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="current-password"
+                                    value={user.password} onChange={handleChange}
+                                />
+                            </ThemeProvider>
                         </Grid>
                     </Grid>
                     <Button
@@ -131,7 +196,7 @@ export  function RegisterPage() {
                 </form>
             </div>
             <Box mt={5}>
-                <Copyright />
+                <Copyright/>
             </Box>
         </Container>
     );

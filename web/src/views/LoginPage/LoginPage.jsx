@@ -65,7 +65,7 @@ function LoginPage() {
     return (
         <div className={classes.root}>
             <Grid container >
-                <Grid item xs={12} sm={8}   container
+                <Grid item xs={12} sm={4}   container
                       direction="row"
                       justify="center"
                       alignItems="flex-start" className={classes.left} style = {{minHeight: "100vh" ,background : 'linear-gradient(to top, #b761dc, #af5bd3, #a756ca, #a050c2, #984bb9, #9345b4, #8e3fb0, #8939ab, #8530a9, #8027a7, #7c1ca5, #770ea3)'}}>
@@ -74,35 +74,9 @@ function LoginPage() {
                           alignItems="center" style = {{maxHeight: "100vh" }}>
                         <RegisterPage/>
                     </Grid>
-
-
-                    {/*<form name="form" onSubmit={handleSubmit}>*/}
-                    {/*    <div className="form-group">*/}
-                    {/*        <label>Username</label>*/}
-                    {/*        <input type="text" name="username" value={username} onChange={handleChange} className={'form-control' + (submitted && !username ? ' is-invalid' : '')} />*/}
-                    {/*        {submitted && !username &&*/}
-                    {/*        <div className="invalid-feedback">Username is required</div>*/}
-                    {/*        }*/}
-                    {/*    </div>*/}
-                    {/*    <div className="form-group">*/}
-                    {/*        <label>Password</label>*/}
-                    {/*        <input type="password" name="password" value={password} onChange={handleChange} className={'form-control' + (submitted && !password ? ' is-invalid' : '')} />*/}
-                    {/*        {submitted && !password &&*/}
-                    {/*        <div className="invalid-feedback">Password is required</div>*/}
-                    {/*        }*/}
-                    {/*    </div>*/}
-                    {/*    <div className="form-group">*/}
-                    {/*        <button className="btn btn-primary">*/}
-                    {/*            {loggingIn && <span className="spinner-border spinner-border-sm mr-1"></span>}*/}
-                    {/*            Login*/}
-                    {/*        </button>*/}
-                    {/*        <Link to="/register" className="btn btn-link">Register</Link>*/}
-                    {/*    </div>*/}
-                    {/*</form>*/}
-
                 </Grid>
 
-                <Grid xs={0 } item sm={4} only ='sm'>
+                <Grid xs={0 } item sm={8} only ='sm'>
                     <Paper className={classes.paper}>xs=12 sm=6</Paper>
                 </Grid>
             </Grid>
