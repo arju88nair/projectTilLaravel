@@ -3,8 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -13,10 +11,11 @@ import Typography from '@material-ui/core/Typography';
 import {ThemeProvider, makeStyles, createMuiTheme} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import logo from "../../resources/images/main.png";
-import {lime} from "@material-ui/core/colors/lime";
-import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import {green} from "@material-ui/core/colors/green";
 import {useDispatch, useSelector} from "react-redux";
 import {userActions} from "../../_actions/userActions";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Backdrop from "@material-ui/core/Backdrop";
 
 function Copyright() {
     return (
@@ -33,10 +32,14 @@ function Copyright() {
 
 const theme = createMuiTheme({
     palette: {
-        primary: lime,
+        primary: green,
     },
 });
 const useStyles = makeStyles((theme) => ({
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+    },
     paper: {
         marginTop: theme.spacing(8),
         display: 'flex',
@@ -68,6 +71,7 @@ export function RegisterPage() {
         email: '',
         password: ''
     });
+    const [open, setOpen] = React.useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
     const registering = useSelector(state => state.registration.registering);
@@ -79,26 +83,36 @@ export function RegisterPage() {
     }, []);
 
     function handleChange(e) {
-        const { name, value } = e.target;
-        setUser(user => ({ ...user, [name]: value }));
+        const {name, value} = e.target;
+        setUser(user => ({...user, [name]: value}));
     }
+
     function handleSubmit(e) {
         e.preventDefault();
         const error = !validateEmail(user.email);
-        setError(error)
-        setSubmitted(true);
-        console.log(user)
-        if (user.firstName && user.lastName && user.username && user.password) {
-            dispatch(userActions.register(user));
+        console.log(error)
+        if(!error)
+        {
+            setSubmitted(true);
+            // setOpen(true)
+            if (user.firstName && user.lastName && user.email && user.password) {
+                dispatch(userActions.register(user));
+            }
         }
+        else{
+            setError(error)
+        }
+
     }
-      const classes = useStyles();
 
-
+    const classes = useStyles();
 
 
     return (
         <Container component="main" maxWidth="xs">
+            <Backdrop className={classes.backdrop} open={open}>
+                <CircularProgress color="inherit"/>
+            </Backdrop>
 
             <CssBaseline/>
             <div className={classes.paper}>
@@ -110,7 +124,7 @@ export function RegisterPage() {
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
-                <form className={classes.form} noValidate onSubmit={handleSubmit}>
+                <form className={classes.form}  onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <ThemeProvider theme={theme}>
