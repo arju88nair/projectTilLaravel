@@ -54,8 +54,11 @@ function getById(id) {
 function register(user) {
     const requestOptions = {
         method: 'POST',
+        dataType : 'jsonp',   //you may use jsonp for cross origin request
+        crossDomain:true,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
+        body: JSON.stringify(user),
+
     };
     console.log(config.apiUrl)
 
@@ -83,6 +86,7 @@ function _delete(id) {
 }
 
 function handleResponse(response) {
+    console.log("Dd")
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         if (!response.ok) {

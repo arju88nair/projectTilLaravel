@@ -172,7 +172,7 @@ export function RegisterPage() {
                                     id="password"
                                     autoComplete="current-password"
                                     value={user.password} onChange={handleChange}
-                                    inputProps={{ minLength: 12 }}
+                                    inputProps={{ minLength: 2 }}
                                 />
                             </ThemeProvider>
                         </Grid>
