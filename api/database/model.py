@@ -47,8 +47,8 @@ class Post(db.Document):
     
     
 class User(db.Document):
-    username = db.StringField()
-    name = db.StringField(required=True)
+    firstName = db.StringField(required=True)
+    lastName = db.StringField(required=True)
     email = db.EmailField(required=True, unique=True)
     password = db.StringField(required=True, min_length=6)
     verified = db.BooleanField(default = False)
