@@ -59,11 +59,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function validateEmail(email) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-}
-
 export function RegisterPage() {
     const [user, setUser] = useState({
         firstName: '',
@@ -89,20 +84,11 @@ export function RegisterPage() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        const error = !validateEmail(user.email);
-        console.log(error)
-        if(!error)
-        {
-            setSubmitted(true);
-            // setOpen(true)
-            if (user.firstName && user.lastName && user.email && user.password) {
-                dispatch(userActions.register(user));
-            }
+        setSubmitted(true);
+        // setOpen(true)
+        if (user.firstName && user.lastName && user.email && user.password) {
+            dispatch(userActions.register(user));
         }
-        else{
-            setError(error)
-        }
-
     }
 
     const classes = useStyles();
@@ -167,11 +153,10 @@ export function RegisterPage() {
                                     label="Email Address"
                                     name="email"
                                     autoComplete="email"
-                                    helperText={error ? "Enter proper Email format" : ''}
-                                    error={error}
                                     onChange={handleChange}
                                     margin="normal"
                                     value={user.email}
+                                    type="email"
                                 />
                             </ThemeProvider>
                         </Grid>
@@ -187,6 +172,7 @@ export function RegisterPage() {
                                     id="password"
                                     autoComplete="current-password"
                                     value={user.password} onChange={handleChange}
+                                    inputProps={{ minLength: 12 }}
                                 />
                             </ThemeProvider>
                         </Grid>

@@ -57,8 +57,9 @@ function register(user) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     };
+    console.log(config.apiUrl)
 
-    return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/auth/signup`, requestOptions).then(handleResponse);
 }
 
 function update(user) {
