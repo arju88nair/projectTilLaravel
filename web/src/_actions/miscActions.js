@@ -1,10 +1,14 @@
-import {homeConstants} from '../_constants/homeConstants';
+import {miscConstants} from '../_constants/miscConstants';
 
 export const miscActions = {
-    loginView
+    openSpinner,
+    closeSpinner
 };
 
-function loginView(view) {
-    return {type: homeConstants.LOGIN_VIEW,view:view};
+function openSpinner(open) {
+    return {type: miscConstants.OPEN_SPINNER,open};
+}
+function closeSpinner(open) {
+    return {type: miscConstants.CLOSE_SPINNER,open};
 }
 

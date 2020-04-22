@@ -14,8 +14,7 @@ import logo from "../../resources/images/main.png";
 import {green} from "@material-ui/core/colors/green";
 import {useDispatch, useSelector} from "react-redux";
 import {userActions} from "../../_actions/userActions";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Backdrop from "@material-ui/core/Backdrop";
+import {miscActions} from "../../_actions";
 
 function Copyright() {
     return (
@@ -66,7 +65,6 @@ export function RegisterPage() {
         email: '',
         password: ''
     });
-    const [open, setOpen] = React.useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
     const registering = useSelector(state => state.registration.registering);
@@ -87,6 +85,7 @@ export function RegisterPage() {
         setSubmitted(true);
         // setOpen(true)
         if (user.firstName && user.lastName && user.email && user.password) {
+            dispatch(miscActions.openSpinner(true))
             dispatch(userActions.register(user));
         }
     }
@@ -96,10 +95,6 @@ export function RegisterPage() {
 
     return (
         <Container component="main" maxWidth="xs">
-            <Backdrop className={classes.backdrop} open={open}>
-                <CircularProgress color="inherit"/>
-            </Backdrop>
-
             <CssBaseline/>
             <div className={classes.paper}>
                 <img src={logo}/>

@@ -3,6 +3,7 @@ import { authentication } from './authenticationReducer';
 import { registration } from './registrationReducer';
 import { users } from './usersReducer';
 import { alert } from './alertReducer';
+import { misc } from './miscReducers';
 import { home } from './loginReducer';
 
 const rootReducer = combineReducers({
@@ -10,7 +11,7 @@ const rootReducer = combineReducers({
   registration,
   users,
   alert,
-  home
+  misc
 });
 
 export default rootReducer;
