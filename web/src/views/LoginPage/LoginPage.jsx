@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { userActions } from '../../_actions';
-import Container from '@material-ui/core/Container';
-import logo from '../../resources/images/main.png';
-import Box from '@material-ui/core/Box';
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
 import {RegisterPage} from "../RegisterPage"
 
 const useStyles = makeStyles((theme) => ({
@@ -68,7 +61,7 @@ function LoginPage() {
                 <Grid item xs={12} sm={4}   container
                       direction="row"
                       justify="center"
-                      alignItems="flex-start" className={classes.left} style = {{minHeight: "100vh" ,background : 'linear-gradient(to top, #b761dc, #af5bd3, #a756ca, #a050c2, #984bb9, #9345b4, #8e3fb0, #8939ab, #8530a9, #8027a7, #7c1ca5, #770ea3)'}}>
+                      alignItems="flex-start" className={classes.left}  style = {{minHeight: "100vh"}}>
                     <Grid item xs={12} container direction="column"
                           justify="space-around"
                           alignItems="center" style = {{maxHeight: "100vh" }}>
@@ -76,8 +69,7 @@ function LoginPage() {
                     </Grid>
                 </Grid>
 
-                <Grid xs={0 } item sm={8} only ='sm'>
-                    <Paper className={classes.paper}>xs=12 sm=6</Paper>
+                <Grid xs={0 } item sm={8} only ='sm' style = {{minHeight: "100vh" ,background : 'linear-gradient(to top, #b761dc, #af5bd3, #a756ca, #a050c2, #984bb9, #9345b4, #8e3fb0, #8939ab, #8530a9, #8027a7, #7c1ca5, #770ea3)'}}>
                 </Grid>
             </Grid>
         </div>
