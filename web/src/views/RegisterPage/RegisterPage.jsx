@@ -92,7 +92,6 @@ export function RegisterPage() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        dispatch(alertActions.success("Buhbye"));
 
         setSubmitted(true);
         // setOpen(true)
@@ -118,7 +117,7 @@ export function RegisterPage() {
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
-                    <form className={classes.form}  noValidate onSubmit={handleSubmit}>
+                    <form className={classes.form}   onSubmit={handleSubmit}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <ThemeProvider theme={theme}>

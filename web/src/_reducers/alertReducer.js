@@ -10,8 +10,10 @@ export function alert(state = {}, action) {
       };
     case alertConstants.ERROR:
       return {
-        type: 'alert-danger',
-        message: action.message
+        type: 'error',
+        message: action.message,
+        open:true
+
       };
     case alertConstants.CLEAR:
       return {open:false};

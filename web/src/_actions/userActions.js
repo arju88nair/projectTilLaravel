@@ -23,10 +23,13 @@ function login(username, password) {
                     history.push('/');
                 },
                 error => {
+                    console.log(error)
                     dispatch(failure(error.toString()));
                     dispatch(alertActions.error(error.toString()));
                 }
             );
+        dispatch(miscActions.openSpinner(false))
+
     };
 
     function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
@@ -56,6 +59,8 @@ function register(user) {
                     dispatch(alertActions.error(error.toString()));
                 }
             );
+        dispatch(miscActions.openSpinner(false))
+
     };
 
     function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
