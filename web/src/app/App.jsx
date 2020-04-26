@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { history } from '../_helpers';
-import { alertActions } from '../_actions';
-import { PrivateRoute } from '../_components';
-import { HomePage } from '../views/HomePage';
-import { LoginPage } from '../views/LoginPage';
-import { RegisterPage } from '../views/RegisterPage';
+import React, {useEffect} from 'react';
+import {Router, Route, Switch, Redirect} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {history} from '../_helpers';
+import {alertActions} from '../_actions';
+import {PrivateRoute} from '../_components';
+import {HomePage} from '../views/HomePage';
+import {LoginPage} from '../views/LoginPage';
+import {RegisterPage} from '../views/RegisterPage';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
-import Container from "@material-ui/core/Container";
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,12 +20,24 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 function App() {
     const open = useSelector(state => state.misc.spinner);
     const alert = useSelector(state => state.alert);
     const dispatch = useDispatch();
     const classes = useStyles();
 
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        dispatch(alertActions.clear());
+
+    };
 
     useEffect(() => {
         history.listen((location, action) => {
@@ -34,22 +47,26 @@ function App() {
     }, []);
 
     return (
-                <div >
-                    <Backdrop className={classes.backdrop} open={open}>
-                        <CircularProgress color="inherit"/>
-                    </Backdrop>
-                    {alert.message &&
-                        <div className={`alert ${alert.type}`}>{alert.message}</div>
-                    }
-                    <Router history={history}>
-                        <Switch>
-                            <PrivateRoute exact path="/" component={HomePage} />
-                            <Route path="/login" component={LoginPage} />
-                            <Route path="/register" component={RegisterPage} />
-                            <Redirect from="*" to="/" />
-                        </Switch>
-                    </Router>
-                </div>
+        <div>
+            <Snackbar open={alert.open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity={alert.type}>
+                    {alert.message}
+                </Alert>
+            </Snackbar>
+            <Backdrop className={classes.backdrop} open={open}>
+                <CircularProgress color="inherit"/>
+            </Backdrop>
+
+            <Router history={history}>
+                <Switch>
+                    <PrivateRoute exact path="/" component={HomePage}/>
+                    <Route path="/login" component={LoginPage}/>
+                    <Route path="/register" component={RegisterPage}/>
+                    <Redirect from="*" to="/"/>
+                </Switch>
+            </Router>
+        </div>
     );
 }
-export { App };
+
+export {App};

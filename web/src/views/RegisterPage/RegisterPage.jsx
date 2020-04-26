@@ -14,7 +14,8 @@ import logo from "../../resources/images/main.png";
 import {green} from "@material-ui/core/colors/green";
 import {useDispatch, useSelector} from "react-redux";
 import {userActions} from "../../_actions/userActions";
-import {miscActions} from "../../_actions";
+import {alertActions, miscActions} from "../../_actions";
+import Paper from "@material-ui/core/Paper";
 
 function Copyright() {
     return (
@@ -40,10 +41,19 @@ const useStyles = makeStyles((theme) => ({
         color: '#fff',
     },
     paper: {
-        marginTop: theme.spacing(8),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        maxHeight:'100vh'
+    },
+    formDiv: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: theme.spacing(8),
+        borderRadius:'2%',
+        backgroundColor:'#ffffff'
+
     },
     avatar: {
         margin: theme.spacing(1),
@@ -82,6 +92,8 @@ export function RegisterPage() {
 
     function handleSubmit(e) {
         e.preventDefault();
+        dispatch(alertActions.success("Buhbye"));
+
         setSubmitted(true);
         // setOpen(true)
         if (user.firstName && user.lastName && user.email && user.password) {
@@ -94,105 +106,108 @@ export function RegisterPage() {
 
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="sm">
             <CssBaseline/>
             <div className={classes.paper}>
                 <img src={logo}/>
 
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon/>
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Sign up
-                </Typography>
-                <form className={classes.form}  onSubmit={handleSubmit}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}>
-                            <ThemeProvider theme={theme}>
-                                <TextField
-                                    autoComplete="fname"
-                                    name="firstName"
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    id="firstName"
-                                    label="First Name"
-                                    autoFocus
-                                    value={user.firstName}
-                                    onChange={handleChange}
-                                />
-                            </ThemeProvider>
+                <Grid className={classes.formDiv}>
+                    <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon/>
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign up
+                    </Typography>
+                    <form className={classes.form}  noValidate onSubmit={handleSubmit}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={6}>
+                                <ThemeProvider theme={theme}>
+                                    <TextField
+                                        autoComplete="fname"
+                                        name="firstName"
+                                        variant="outlined"
+                                        required
+                                        fullWidth
+                                        id="firstName"
+                                        label="First Name"
+                                        autoFocus
+                                        value={user.firstName}
+                                        onChange={handleChange}
+                                    />
+                                </ThemeProvider>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <ThemeProvider theme={theme}>
+                                    <TextField
+                                        variant="outlined"
+                                        required
+                                        fullWidth
+                                        id="lastName"
+                                        label="Last Name"
+                                        name="lastName"
+                                        autoComplete="lname"
+                                        value={user.lastName}
+                                        onChange={handleChange}
+                                    />
+                                </ThemeProvider>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <ThemeProvider theme={theme}>
+                                    <TextField
+                                        variant="outlined"
+                                        required
+                                        fullWidth
+                                        id="email"
+                                        label="Email Address"
+                                        name="email"
+                                        autoComplete="email"
+                                        onChange={handleChange}
+                                        margin="normal"
+                                        value={user.email}
+                                        type="email"
+                                    />
+                                </ThemeProvider>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <ThemeProvider theme={theme}>
+                                    <TextField
+                                        variant="outlined"
+                                        required
+                                        fullWidth
+                                        name="password"
+                                        label="Password"
+                                        type="password"
+                                        id="password"
+                                        autoComplete="current-password"
+                                        value={user.password} onChange={handleChange}
+                                        inputProps={{minLength: 2}}
+                                    />
+                                </ThemeProvider>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <ThemeProvider theme={theme}>
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="lname"
-                                    value={user.lastName}
-                                    onChange={handleChange}
-                                />
-                            </ThemeProvider>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                        >
+                            Sign Up
+                        </Button>
+                        <Grid container justify="flex-end">
+                            <Grid item>
+                                <Link href="#" variant="body2">
+                                    Already have an account? Sign in
+                                </Link>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12}>
-                            <ThemeProvider theme={theme}>
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    id="email"
-                                    label="Email Address"
-                                    name="email"
-                                    autoComplete="email"
-                                    onChange={handleChange}
-                                    margin="normal"
-                                    value={user.email}
-                                    type="email"
-                                />
-                            </ThemeProvider>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <ThemeProvider theme={theme}>
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="current-password"
-                                    value={user.password} onChange={handleChange}
-                                    inputProps={{ minLength: 2 }}
-                                />
-                            </ThemeProvider>
-                        </Grid>
-                    </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        Sign Up
-                    </Button>
-                    <Grid container justify="flex-end">
-                        <Grid item>
-                            <Link href="#" variant="body2">
-                                Already have an account? Sign in
-                            </Link>
-                        </Grid>
-                    </Grid>
-                </form>
+                    </form>
+                </Grid>
             </div>
-            <Box mt={5}>
-                <Copyright/>
-            </Box>
+
+            {/*<Box mt={5}>*/}
+            {/*    <Copyright/>*/}
+            {/*</Box>*/}
         </Container>
     );
 }

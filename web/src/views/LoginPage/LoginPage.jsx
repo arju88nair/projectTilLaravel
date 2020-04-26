@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { userActions } from '../../_actions';
 import {RegisterPage} from "../RegisterPage"
+import bg from "../../resources/images/bg.png";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -56,23 +57,17 @@ function LoginPage() {
     }
 
     return (
-        <div className={classes.root}>
-            <Grid container >
-                <Grid item xs={12} sm={4}   container
-                      direction="row"
+            <Grid container  style = {{minHeight: "100vh",backgroundImage:`url(${bg})` }}>
+                <Grid item xs={12} sm={5}  container
+                      direction="column"
                       justify="center"
-                      alignItems="flex-start" className={classes.left}  style = {{minHeight: "100vh"}}>
-                    <Grid item xs={12} container direction="column"
-                          justify="space-around"
-                          alignItems="center" style = {{maxHeight: "100vh" }}>
-                        <RegisterPage/>
-                    </Grid>
+                      alignItems="flex-start" className={classes.left}  >
+                    <RegisterPage/>
                 </Grid>
 
-                <Grid xs={0 } item sm={8} only ='sm' style = {{minHeight: "100vh" ,background : 'linear-gradient(to top, #b761dc, #af5bd3, #a756ca, #a050c2, #984bb9, #9345b4, #8e3fb0, #8939ab, #8530a9, #8027a7, #7c1ca5, #770ea3)'}}>
+                <Grid xs={0 } item sm={7} only ='sm' style = {{minHeight: "100vh" }}>
                 </Grid>
             </Grid>
-        </div>
     );
 }
 export { LoginPage };
