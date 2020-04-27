@@ -60,8 +60,8 @@ function App() {
             <Router history={history}>
                 <Switch>
                     <PrivateRoute exact path="/" component={HomePage}/>
-                    <Route path="/login" component={LoginPage}/>
                     <Route path="/register" component={RegisterPage}/>
+                    <Route path="/login" component={LoginPage}/>
                     <Redirect from="*" to="/"/>
                 </Switch>
             </Router>
