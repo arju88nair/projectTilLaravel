@@ -2,16 +2,17 @@ from flask import Response, request
 from database.model import Category, User
 from flask_restful import Resource
 from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist, ValidationError, InvalidQueryError
-from resources.errors import SchemaValidationError, UpdatingItemError, ItemAlreadyExistsError, InternalServerError,DeletingItemError,ItemNotExistsError
-from newspaper import Article   
+from resources.errors import SchemaValidationError, UpdatingItemError, ItemAlreadyExistsError, InternalServerError, \
+    DeletingItemError, ItemNotExistsError
+from newspaper import Article
 import json
-from flask_jwt_extended import jwt_required,get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
 class CategoriesApi(Resource):
     """[Batch Category actions]
     """
-    
+
     @jwt_required
     def get(self):
         """[Retrieves all Categories]
@@ -24,14 +25,14 @@ class CategoriesApi(Resource):
         """
         try:
             posts = Category.objects().to_json()
-            data = {'data':json.loads(posts), 'message':"Successfully retreived", "count" : len(json.loads(posts))}
+            data = {'data': json.loads(posts), 'message': "Successfully retrieved", "count": len(json.loads(posts))}
             data = json.dumps(data)
-            response= Response(data, mimetype="application/json", status=200)
+            response = Response(data, mimetype="application/json", status=200)
             return response
         except Exception as e:
             raise InternalServerError
-        
-    @jwt_required    
+
+    @jwt_required
     def post(self):
         """[Batch Category API]
         
@@ -45,17 +46,17 @@ class CategoriesApi(Resource):
         """
         body = request.get_json()
 
-        #validations
-        if 'name' not in  body:
+        # validations
+        if 'name' not in body:
             raise SchemaValidationError
-        
+
         try:
             user_id = get_jwt_identity()
             user = User.objects.get(id=user_id)
-            category =  Category(**body, added_by=user)
+            category = Category(**body, added_by=user)
             category.save()
             id = category.id
-            data =  json.dumps({'id': str(id),'message':"Successfully inserted"})
+            data = json.dumps({'id': str(id), 'message': "Successfully inserted"})
             return Response(data, mimetype="application/json", status=200)
         except (FieldDoesNotExist, ValidationError):
             raise SchemaValidationError
@@ -66,11 +67,10 @@ class CategoriesApi(Resource):
             raise InternalServerError
 
 
-
-
 class CategoryApi(Resource):
     """[Individual Category actions]
     """
+
     @jwt_required
     def put(self, id):
         """[Updating single]
@@ -91,15 +91,15 @@ class CategoryApi(Resource):
             category = Category.objects.get(id=id, added_by=user_id)
             body = request.get_json()
             Category.objects.get(id=id).update(**body)
-            data =  json.dumps({'message':"Successfully updated"})
+            data = json.dumps({'message': "Successfully updated"})
             return Response(data, mimetype="application/json", status=200)
         except InvalidQueryError:
             raise SchemaValidationError
         except DoesNotExist:
             raise UpdatingItemError
         except Exception:
-            raise InternalServerError       
-    
+            raise InternalServerError
+
     @jwt_required
     def delete(self, id):
         """[Deleting single category]
@@ -118,7 +118,7 @@ class CategoryApi(Resource):
             user_id = get_jwt_identity()
             category = Category.objects.get(id=id, added_by=user_id)
             category.delete()
-            data =  json.dumps({'message':"Successfully deleted"})
+            data = json.dumps({'message': "Successfully deleted"})
             return Response(data, mimetype="application/json", status=200)
         except DoesNotExist:
             raise DeletingItemError
@@ -142,7 +142,8 @@ class CategoryApi(Resource):
         """
         try:
             posts = Category.objects.get(id=id).to_json()
-            data =  json.dumps({'data':json.loads(posts), 'message':"Successfully retreived", "count" : len(json.loads(posts))})
+            data = json.dumps(
+                {'data': json.loads(posts), 'message': "Successfully retrieved", "count": len(json.loads(posts))})
             return Response(data, mimetype="application/json", status=200)
         except DoesNotExist:
             raise ItemNotExistsError

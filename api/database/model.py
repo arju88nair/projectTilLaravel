@@ -9,17 +9,18 @@ from bson import json_util
 class Category(db.Document):
     name = db.StringField(required=True)
     symbol = db.StringField()
-    description = db.StringField(default = "")
-    is_admin = db.BooleanField(default = False)
+    description = db.StringField(default="")
+    is_admin = db.BooleanField(default=False)
     added_by = db.ReferenceField('User')
     created_date = db.DateTimeField()
     modified_date = db.DateTimeField(default=datetime.datetime.now)
-    
+
     def save(self, *args, **kwargs):
         if not self.created_date:
             self.created_date = datetime.datetime.now()
         self.modified_date = datetime.datetime.now()
         return super(Category, self).save(*args, **kwargs)
+
 
 class Post(db.Document):
     title = db.StringField()
@@ -30,34 +31,34 @@ class Post(db.Document):
     text = db.StringField()
     slug = db.StringField()
     type = db.StringField()
-    category = db.ReferenceField('Category',required=True)
+    category = db.ReferenceField('Category', required=True)
     keywords = db.ListField()
     tags = db.ListField()
     added_by = db.ReferenceField('User')
     created_date = db.DateTimeField()
     modified_date = db.DateTimeField(default=datetime.datetime.now)
     liked_by = db.ListField()
-    like_count=db.IntField()
-    
+    like_count = db.IntField()
+
     def save(self, *args, **kwargs):
         if not self.created_date:
             self.created_date = datetime.datetime.now()
         self.modified_date = datetime.datetime.now()
         return super(Post, self).save(*args, **kwargs)
-    
-    
+
+
 class User(db.Document):
     firstName = db.StringField(required=True)
     lastName = db.StringField(required=True)
     email = db.EmailField(required=True, unique=True)
     password = db.StringField(required=True, min_length=6)
-    verified = db.BooleanField(default = False)
-    is_active = db.BooleanField(default = True)
+    verified = db.BooleanField(default=False)
+    is_active = db.BooleanField(default=True)
     posts = db.ListField(db.ReferenceField('Post', reverse_delete_rule=db.PULL))
     category = db.ListField(db.ReferenceField('Category', reverse_delete_rule=db.PULL))
     created_date = db.DateTimeField()
     modified_date = db.DateTimeField(default=datetime.datetime.now)
-    
+
     def save(self, *args, **kwargs):
         if not self.created_date:
             self.created_date = datetime.datetime.now()
@@ -70,11 +71,11 @@ class User(db.Document):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+
 User.register_delete_rule(Post, 'added_by', db.CASCADE)
 User.register_delete_rule(Category, 'added_by', db.PULL)
 
 
-    
 class RevokedTokenModel(db.Document):
     jti = db.StringField()
     token_type = db.StringField(null=False)
@@ -83,37 +84,37 @@ class RevokedTokenModel(db.Document):
     expires = db.DateTimeField()
     created_date = db.DateTimeField(default=datetime.datetime.now)
     modified_date = db.DateTimeField(default=datetime.datetime.now)
-    
-    
+
     def save(self, *args, **kwargs):
         if not self.created_date:
             self.created_date = datetime.datetime.now()
         self.modified_date = datetime.datetime.now()
         return super(RevokedTokenModel, self).save(*args, **kwargs)
 
-
     @classmethod
     def is_jti_blacklisted(cls, jti):
         try:
-            query = RevokedTokenModel.objects.get(jti =jti)
+            query = RevokedTokenModel.objects.get(jti=jti)
             return query.revoked
-        except(DoesNotExist,FieldDoesNotExist):
+        except(DoesNotExist, FieldDoesNotExist):
             raise TokenNotFound
         except Exception as e:
             raise InternalServerError
+
 
 class Comment(db.Document):
     post_id = db.ReferenceField('Post')
     slug = db.StringField()
     full_slug = db.StringField()
-    comment= db.StringField()
+    comment = db.StringField()
     created_date = db.DateTimeField(default=datetime.datetime.now)
     modified_date = db.DateTimeField(default=datetime.datetime.now)
     added_by = db.ReferenceField('User')
     liked_by = db.ListField()
-    like_count=db.IntField()
+    like_count = db.IntField()
+
 
 class Like(db.EmbeddedDocumentListField):
-    user_id=db.ReferenceField('User')
+    user_id = db.ReferenceField('User')
     created_date = db.DateTimeField(default=datetime.datetime.now)
     modified_date = db.DateTimeField(default=datetime.datetime.now)

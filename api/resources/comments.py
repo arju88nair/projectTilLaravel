@@ -2,21 +2,20 @@ from flask import Response, request
 from database.model import Comment, User
 from flask_restful import Resource
 from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist, ValidationError, InvalidQueryError
-from resources.errors import SchemaValidationError, InternalServerError, UpdatingItemError, DeletingItemError,ItemNotExistsError,ItemAlreadyExistsError,UpdatingItemError
+from resources.errors import SchemaValidationError, InternalServerError, UpdatingItemError, DeletingItemError, \
+    ItemNotExistsError, ItemAlreadyExistsError, UpdatingItemError
 from datetime import datetime
-from flask_jwt_extended import jwt_required,get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from util.slugGenerator import generateSlug
 import json
 from bson import ObjectId
 from bson.json_util import dumps
 
 
-
-
 class CommentsApi(Resource):
     """[Batch Comment actions]
     """
-    
+
     @jwt_required
     def get(self):
         """[Retrieves all Comments]
@@ -29,16 +28,15 @@ class CommentsApi(Resource):
         """
         try:
             comments = Comment.objects().to_json()
-            data = {'data':json.loads(comments), 'message':"Successfully retreived", "count" : len(json.loads(comments))}
+            data = {'data': json.loads(comments), 'message': "Successfully retrieved",
+                    "count": len(json.loads(comments))}
             data = json.dumps(data)
-            response= Response(data, mimetype="application/json", status=200)
+            response = Response(data, mimetype="application/json", status=200)
             return response
         except Exception:
             raise InternalServerError
-        
-    
-    
-    @jwt_required   
+
+    @jwt_required
     def post(self):
         """[Batch Comment API]
         
@@ -49,23 +47,23 @@ class CommentsApi(Resource):
         
         Returns:
             [json] -- [Json object with message and status code]
-        """    
+        """
         payload = request.get_json()
-        
+
         # source validations
-        if 'comment' not in  payload and 'post_id' not in  payload:
+        if 'comment' not in payload and 'post_id' not in payload:
             raise SchemaValidationError
-           
-        body={}
+
+        body = {}
         posted = datetime.utcnow()
-        post_id=payload['post_id']
-        parent_slug=""
-        if 'slug_id'in payload:
-            slug_id=payload['slug_id']
+        post_id = payload['post_id']
+        parent_slug = ""
+        if 'slug_id' in payload:
+            slug_id = payload['slug_id']
             parent = Comment.objects.get(slug=slug_id, post_id=post_id)
             parent['full_slug']
-            parent_slug=parent['slug']
-             
+            parent_slug = parent['slug']
+
         # generate the unique portions of the slug and full_slug
         slug_part = generateSlug()
         full_slug_part = posted.strftime('%Y.%m.%d.%H.%M.%S') + ':' + slug_part
@@ -78,17 +76,17 @@ class CommentsApi(Resource):
             full_slug = full_slug_part
         user_id = get_jwt_identity()
         user = User.objects.get(id=user_id)
-        body["added_by"]=user
+        body["added_by"] = user
         body["post_id"] = payload['post_id']
-        body["slug"] =slug
+        body["slug"] = slug
         body["full_slug"] = full_slug
         body["comment"] = payload['comment']
-        
+
         try:
-            comment=Comment(**body)
-            comment.save()  
+            comment = Comment(**body)
+            comment.save()
             id = comment.id
-            data =  json.dumps({'id': str(id),'message':"Successfully inserted"})
+            data = json.dumps({'id': str(id), 'message': "Successfully inserted"})
             return Response(data, mimetype="application/json", status=200)
         except (FieldDoesNotExist, ValidationError):
             raise SchemaValidationError
@@ -97,14 +95,12 @@ class CommentsApi(Resource):
         except Exception as e:
             print(e)
             raise InternalServerError
-        
-        
-      
-        
-        
+
+
 class CommentApi(Resource):
     """[Individual Comment actions]
     """
+
     @jwt_required
     def put(self, id):
         """[Updating single]
@@ -124,15 +120,15 @@ class CommentApi(Resource):
             get_jwt_identity()
             body = request.get_json()
             Comment.objects.get(id=id).update(**body)
-            data =  json.dumps({'message':"Successfully updated"})
+            data = json.dumps({'message': "Successfully updated"})
             return Response(data, mimetype="application/json", status=200)
         except InvalidQueryError:
             raise SchemaValidationError
         except DoesNotExist:
             raise UpdatingItemError
         except Exception:
-            raise InternalServerError       
-    
+            raise InternalServerError
+
     @jwt_required
     def delete(self, id):
         """[Deleting single comment]
@@ -151,7 +147,7 @@ class CommentApi(Resource):
             user_id = get_jwt_identity()
             comment = Comment.objects.get(id=id, added_by=user_id)
             comment.delete()
-            data =  json.dumps({'message':"Successfully deleted"})
+            data = json.dumps({'message': "Successfully deleted"})
             return Response(data, mimetype="application/json", status=200)
         except DoesNotExist:
             raise DeletingItemError
@@ -160,7 +156,7 @@ class CommentApi(Resource):
             raise InternalServerError
 
     @jwt_required
-    def get(self,id):
+    def get(self, id):
         """[Get single comment item]
         
         Arguments:
@@ -173,21 +169,21 @@ class CommentApi(Resource):
         Returns:
             [json] -- [Json object with message and status code]
         """
-        try: 
+        try:
             user_id = get_jwt_identity()
             comments = Comment.objects.aggregate(
-    { "$match": {"post_id": ObjectId(id)}},
-     {
-        "$addFields": {
-            "liked": {
-               "$in": [ user_id, "$liked_by" ]
-            }
-        }
-    },{"$sort":{"full_slug":1}})
-            converted=[]
+                {"$match": {"post_id": ObjectId(id)}},
+                {
+                    "$addFields": {
+                        "liked": {
+                            "$in": [user_id, "$liked_by"]
+                        }
+                    }
+                }, {"$sort": {"full_slug": 1}})
+            converted = []
             for item in list(comments):
                 converted.append(item)
-            data =  dumps({'data':list(converted), 'message':"Successfully retreived" })
+            data = dumps({'data': list(converted), 'message': "Successfully retrieved"})
             return Response(data, mimetype="application/json", status=200)
         except DoesNotExist:
             raise ItemNotExistsError
