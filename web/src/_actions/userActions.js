@@ -48,10 +48,12 @@ function register(user) {
 
         userService.register(user)
             .then(
-                user => { 
+                user => {
+                    console.log(user)
                     dispatch(success());
-                    history.push('/login');
                     dispatch(alertActions.success('Registration successful'));
+                    localStorage.setItem('user', JSON.stringify(user));
+                    history.push('/');
                     dispatch(miscActions.closeSpinner(false))
                 },
                 error => {
