@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { userActions } from '../../_actions';
 import {RegisterForm} from "./RegisterForm"
 import bg from "../../resources/images/bg.png";
+import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,8 +20,8 @@ const useStyles = makeStyles((theme) => ({
     left:{
         height: '100vh'
     },
-    container:{
-
+    right:{
+backgroundColor:"#ffffff"
     }
 }));
 

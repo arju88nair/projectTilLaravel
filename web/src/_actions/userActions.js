@@ -56,10 +56,10 @@ function register(user) {
                 },
                 error => {
                     dispatch(failure(error.toString()));
+                    dispatch(miscActions.closeSpinner(false))
                     dispatch(alertActions.error(error.toString()));
                 }
             );
-        dispatch(miscActions.openSpinner(false))
 
     };
 

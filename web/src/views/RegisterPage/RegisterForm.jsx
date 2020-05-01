@@ -107,8 +107,13 @@ export function RegisterForm() {
     return (
         <Container component="main" maxWidth="sm">
             <CssBaseline/>
-            <div className={classes.paper}>
-                <img src={logo}/>
+            <Grid container spacing={3} container
+                  direction="column"
+                  justify="center"
+                  alignItems="center">
+                <Grid item xs={12}>
+                    <img src={logo}/>
+                </Grid>
 
                 <Grid className={classes.formDiv}>
                     <Avatar className={classes.avatar}>
@@ -202,7 +207,7 @@ export function RegisterForm() {
                         </Grid>
                     </form>
                 </Grid>
-            </div>
+            </Grid>
 
             {/*<Box mt={5}>*/}
             {/*    <Copyright/>*/}

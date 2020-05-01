@@ -86,7 +86,6 @@ function _delete(id) {
 }
 
 function handleResponse(response) {
-    console.log("Dd")
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         if (!response.ok) {
