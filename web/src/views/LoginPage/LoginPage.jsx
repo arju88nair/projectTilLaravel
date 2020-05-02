@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { userActions } from '../../_actions';
-import {RegisterPage} from "../RegisterPage"
 import bg from "../../resources/images/bg.png";
+import Paper from "@material-ui/core/Paper";
+import {LoginForm} from "./LoginForm";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,8 +20,8 @@ const useStyles = makeStyles((theme) => ({
     left:{
         height: '100vh'
     },
-    container:{
-
+    right:{
+        backgroundColor:"#ffffff"
     }
 }));
 
@@ -38,8 +39,8 @@ function LoginPage() {
     const dispatch = useDispatch();
 
     // reset login status
-    useEffect(() => { 
-        dispatch(userActions.logout()); 
+    useEffect(() => {
+        dispatch(userActions.logout());
     }, []);
 
     function handleChange(e) {
@@ -57,17 +58,17 @@ function LoginPage() {
     }
 
     return (
-            <Grid container  style = {{minHeight: "100vh",backgroundImage:`url(${bg})` }}>
-                <Grid item xs={12} sm={5}  container
-                      direction="column"
-                      justify="center"
-                      alignItems="flex-start" className={classes.left}  >
-                    <RegisterPage/>
-                </Grid>
-
-                <Grid xs={0 } item sm={7} only ='sm' style = {{minHeight: "100vh" }}>
-                </Grid>
+        <Grid container  style = {{minHeight: "100vh",backgroundImage:`url(${bg})` }}>
+            <Grid item xs={12} sm={5}  container
+                  direction="column"
+                  justify="center"
+                  alignItems="flex-start" className={classes.left}  >
+                <LoginForm/>
             </Grid>
+
+            <Grid xs={0 } item sm={7} only ='sm' style = {{minHeight: "100vh" }}>
+            </Grid>
+        </Grid>
     );
 }
 export { LoginPage };

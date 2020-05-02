@@ -18,17 +18,21 @@ function login(username, password) {
 
         userService.login(username, password)
             .then(
-                user => { 
-                    dispatch(success(user));
+                user => {
+                    console.log(user)
+                    dispatch(success());
+                    dispatch(alertActions.success('Login successful'));
+                    localStorage.setItem('user', JSON.stringify(user));
                     history.push('/');
+                    dispatch(miscActions.closeSpinner(false))
                 },
                 error => {
                     console.log(error)
                     dispatch(failure(error.toString()));
+                    dispatch(miscActions.closeSpinner(false))
                     dispatch(alertActions.error(error.toString()));
                 }
             );
-        dispatch(miscActions.openSpinner(false))
 
     };
 

@@ -3,9 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-// import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {ThemeProvider, makeStyles, createMuiTheme} from '@material-ui/core/styles';
@@ -56,10 +54,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export function RegisterForm() {
+export function LoginForm() {
     const [user, setUser] = useState({
-        firstName: '',
-        lastName: '',
         email: '',
         password: ''
     });
@@ -76,11 +72,13 @@ export function RegisterForm() {
     }
 
     function handleSubmit(e) {
+        console.log("Dd")
         e.preventDefault();
 
-        if (user.firstName && user.lastName && user.email && user.password) {
+
+        if (user.email && user.password) {
             dispatch(miscActions.openSpinner(true))
-            dispatch(userActions.register(user));
+            dispatch(userActions.login(user));
         }
     }
 
@@ -103,41 +101,10 @@ export function RegisterForm() {
                         <LockOutlinedIcon/>
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign up
+                        Login
                     </Typography>
                     <form className={classes.form} onSubmit={handleSubmit}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
-                                <ThemeProvider theme={theme}>
-                                    <TextField
-                                        autoComplete="fname"
-                                        name="firstName"
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        id="firstName"
-                                        label="First Name"
-                                        autoFocus
-                                        value={user.firstName}
-                                        onChange={handleChange}
-                                    />
-                                </ThemeProvider>
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <ThemeProvider theme={theme}>
-                                    <TextField
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        id="lastName"
-                                        label="Last Name"
-                                        name="lastName"
-                                        autoComplete="lname"
-                                        value={user.lastName}
-                                        onChange={handleChange}
-                                    />
-                                </ThemeProvider>
-                            </Grid>
                             <Grid item xs={12}>
                                 <ThemeProvider theme={theme}>
                                     <TextField
@@ -179,17 +146,19 @@ export function RegisterForm() {
                             color="primary"
                             className={classes.submit}
                         >
-                            Sign Up
+                            Login
                         </Button>
                         <Grid container justify="flex-end">
                             <Grid item>
-                                <Link to="/login" style={{textDecoration: 'none'}}> Already have an account? Sign in
+                                <Link to="/register" variant="body2" style={{textDecoration: 'none'}}>
+                                    New here? Sign Up
                                 </Link>
                             </Grid>
                         </Grid>
                     </form>
                 </Grid>
             </Grid>
+
         </Container>
     );
 }
