@@ -3,9 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-// import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {ThemeProvider, makeStyles, createMuiTheme} from '@material-ui/core/styles';
@@ -58,8 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 export function RegisterForm() {
     const [user, setUser] = useState({
-        firstName: '',
-        lastName: '',
+        username: '',
         email: '',
         password: ''
     });
@@ -78,7 +75,7 @@ export function RegisterForm() {
     function handleSubmit(e) {
         e.preventDefault();
 
-        if (user.firstName && user.lastName && user.email && user.password) {
+        if (user.username && user.email && user.password) {
             dispatch(miscActions.openSpinner(true))
             dispatch(userActions.register(user));
         }
@@ -110,30 +107,14 @@ export function RegisterForm() {
                             <Grid item xs={12} sm={6}>
                                 <ThemeProvider theme={theme}>
                                     <TextField
-                                        autoComplete="fname"
-                                        name="firstName"
                                         variant="outlined"
                                         required
                                         fullWidth
-                                        id="firstName"
-                                        label="First Name"
-                                        autoFocus
-                                        value={user.firstName}
-                                        onChange={handleChange}
-                                    />
-                                </ThemeProvider>
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <ThemeProvider theme={theme}>
-                                    <TextField
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        id="lastName"
-                                        label="Last Name"
-                                        name="lastName"
-                                        autoComplete="lname"
-                                        value={user.lastName}
+                                        id="username"
+                                        label="username"
+                                        name="username"
+                                        autoComplete="username"
+                                        value={user.username}
                                         onChange={handleChange}
                                     />
                                 </ThemeProvider>
