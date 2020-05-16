@@ -72,10 +72,7 @@ export function LoginForm() {
     }
 
     function handleSubmit(e) {
-        console.log("Dd")
         e.preventDefault();
-
-
         if (user.email && user.password) {
             dispatch(miscActions.openSpinner(true))
             dispatch(userActions.login(user));
