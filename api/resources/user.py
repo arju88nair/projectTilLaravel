@@ -7,7 +7,7 @@ import datetime
 import json
 from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist
 from resources.errors import (SchemaValidationError, EmailAlreadyExistsError, UnauthorizedError,
-                              InternalServerError, BadTokenError, UserDoesnotExistError)
+                              InternalServerError, BadTokenError, UserDoesnotExistError, UserNameDoesnotExistsError)
 from util.helpers import add_token_to_database, revoke_token
 from flask import current_app as app
 
@@ -37,8 +37,14 @@ class SignupApi(Resource):
         except FieldDoesNotExist as e:
             print(e)
             raise SchemaValidationError
-        except NotUniqueError:
-            raise EmailAlreadyExistsError
+        except NotUniqueError as e:
+            print(e)
+            for field in User._fields:  # You could also loop in User._fields to make something generic
+                if field in str(e):
+                    if field == 'username':
+                        raise UserNameDoesnotExistsError
+                    if field == 'email':
+                        raise EmailAlreadyExistsError
         except Exception as e:
             print(e)
             raise InternalServerError
@@ -151,5 +157,5 @@ def tokenCreation(user, body, message, userId):
     add_token_to_database(refresh_token, app.config['JWT_IDENTITY_CLAIM'])
     data = json.dumps(
         {'id': str(userId), 'access_token': access_token, "refresh_token": refresh_token,
-         'message': message})
+         'message': message, 'username': user.username, 'email': user.email})
     return Response(data, mimetype="application/json", status=200)

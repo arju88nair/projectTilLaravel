@@ -48,10 +48,10 @@ class Post(db.Document):
 
 
 class User(db.Document):
-    firstName = db.StringField(required=True)
-    lastName = db.StringField(required=True)
+    username = db.StringField(required=True, unique=True)
     email = db.EmailField(required=True, unique=True)
     password = db.StringField(required=True, min_length=6)
+    imageURL = db.StringField()
     verified = db.BooleanField(default=False)
     is_active = db.BooleanField(default=True)
     posts = db.ListField(db.ReferenceField('Post', reverse_delete_rule=db.PULL))

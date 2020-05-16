@@ -44,6 +44,9 @@ class UnauthorizedError(HTTPException):
 class EmailDoesnotExistsError(HTTPException):
     pass
 
+class UserNameDoesnotExistsError(HTTPException):
+    pass
+
 
 class BadTokenError(HTTPException):
     pass
@@ -88,6 +91,10 @@ errors = {
     },
     "EmailAlreadyExistsError": {
         "message": "User with given email address already exists",
+        "status": 400
+    },
+    "UserNameDoesnotExistsError": {
+        "message": "User with given user name already exists",
         "status": 400
     },
     "UnauthorizedError": {
