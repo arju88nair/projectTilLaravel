@@ -1,30 +1,31 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import {SideBar}from '../Components/SideBar'
+import {CategoryVIew}from './CategoryVIew'
+import {NavBar} from "../Components/Navbar";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import {makeStyles} from "@material-ui/core/styles";
 
-import { userActions } from '../../_actions';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+    },
+}));
 
 function HomePage() {
     const users = useSelector(state => state.users);
     const user = useSelector(state => state.authentication.user);
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(userActions.getAll());
-    // }, []);
-
-
-    function handleDeleteUser(id) {
-        dispatch(userActions.delete(id));
-    }
+    const classes = useStyles();
 
     return (
-        <div className="col-lg-8 offset-lg-2">
-            {/*<h1>Hi {user.firstName}!</h1>*/}
-            <p>You're logged in with React Hooks!!</p>
-            <p>
-                <Link to="/login">Logout</Link>
-            </p>
+        <div className={classes.root}>
+            <CssBaseline />
+            <NavBar></NavBar>
+            <SideBar/>
+            <CategoryVIew/>
         </div>
     );
 }
