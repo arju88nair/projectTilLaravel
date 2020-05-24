@@ -15,6 +15,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Divider from "@material-ui/core/Divider";
+import {useSelector} from "react-redux";
+import Button from "@material-ui/core/Button";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -50,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
             width: 'auto',
         },
         height: '100%',
-        border:'thin solid #cecece'
+        border: 'thin solid #cecece'
     },
     searchIcon: {
         padding: theme.spacing(0, 2),
@@ -81,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('md')]: {
             display: 'flex',
         },
-        paddingRight :'1%'
+        paddingRight: '1%'
     },
     sectionMobile: {
         display: 'flex',
@@ -100,9 +102,14 @@ const useStyles = makeStyles((theme) => ({
         height: 28,
         margin: 4,
     },
+    button: {
+        margin: theme.spacing(1),
+        textTransform: 'lowercase'
+    },
 }));
 
 export function NavBar() {
+    const user = useSelector(state => state.authentication.user);
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -190,14 +197,14 @@ export function NavBar() {
                 <Toolbar>
 
                     <IconButton className={classes.iconButton} aria-label="menu">
-                        <SearchIcon />
+                        <SearchIcon/>
                     </IconButton>
                     <InputBase
                         className={classes.input}
                         placeholder="Search Google Maps"
-                        inputProps={{ 'aria-label': 'search google maps' }}
+                        inputProps={{'aria-label': 'search google maps'}}
                     />
-                    <Divider className={classes.divider} orientation="vertical" />
+                    <Divider className={classes.divider} orientation="vertical"/>
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
                         <IconButton aria-label="show 17 new notifications" style={{color: "#9B59B6"}}>
@@ -205,17 +212,25 @@ export function NavBar() {
                                 <NotificationsIcon/>
                             </Badge>
                         </IconButton>
-                        <IconButton
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
+
+                        <Button
+                            color="default"
+                            className={classes.button}
                             onClick={handleProfileMenuOpen}
-                            color="inherit"
-                            style={{color: "#9B59B6"}}
+                            startIcon={<IconButton
+                                edge="end"
+                                aria-label="account of current user"
+                                aria-haspopup="true"
+                                color="inherit"
+                                style={{color: "#9B59B6"}}
+                            >
+                                <AccountCircle/>
+                            </IconButton>}
                         >
-                            <AccountCircle/>
-                        </IconButton>
+                            {user.username}
+                        </Button>
+
+
                     </div>
                     <div className={classes.sectionMobile}>
                         <IconButton

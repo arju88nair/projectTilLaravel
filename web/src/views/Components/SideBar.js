@@ -43,7 +43,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#8E44AD',
         ...theme.mixins.toolbar,
         minHeight: '90px'
-    }, bottomToolbar: {
+    },
+    bottomToolbar: {
         backgroundColor: '#8E44AD',
         ...theme.mixins.toolbar,
         bottom: 0,
@@ -53,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     listItem: {
         color: 'white',
         fontWeight: 'bold',
-        height: 70
+        height: 55
     },
     recentListItem: {
         color: 'white',
