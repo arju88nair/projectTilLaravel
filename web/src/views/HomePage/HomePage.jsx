@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {SideBar}from '../Components/SideBar'
 import {CategoryVIew}from './CategoryVIew'
-import {NavBar} from "../Components/Navbar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import {makeStyles} from "@material-ui/core/styles";
 
@@ -10,7 +9,6 @@ import {makeStyles} from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        fontFamily:'Raleway'
     },
 }));
 
@@ -24,7 +22,6 @@ function HomePage() {
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <NavBar></NavBar>
             <SideBar/>
             <CategoryVIew/>
         </div>

@@ -6,20 +6,100 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
+import navbar from "../../resources/images/navbar.png";
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import {fade, makeStyles, useTheme} from '@material-ui/core/styles';
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import ControlPointIcon from '@material-ui/icons/ControlPoint';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import NotesIcon from '@material-ui/icons/Notes';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
+import SearchIcon from "@material-ui/icons/Search";
+import InputBase from "@material-ui/core/InputBase";
+import Badge from "@material-ui/core/Badge";
+import MailIcon from "@material-ui/icons/Mail";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import MoreIcon from "@material-ui/icons/MoreVert";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import {useSelector} from "react-redux";
+import Button from "@material-ui/core/Button";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
+    grow: {
+        flexGrow: 1,
+    },
+    title: {
+        display: 'none',
+        [theme.breakpoints.up('sm')]: {
+            display: 'block',
+        },
+    },
+    search: {
+        color: "#333333",
+        position: 'relative',
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: fade(theme.palette.common.white, 0.15),
+        '&:hover': {
+            backgroundColor: fade(theme.palette.common.white, 0.25),
+        },
+        marginRight: theme.spacing(2),
+        marginLeft: 0,
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing(1),
+            width: '30%',
+        },
+        border: "thin solid lightgray"
+    },
+    searchIcon: {
+        padding: theme.spacing(0, 2),
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    inputRoot: {
+        color: 'inherit',
+    },
+    inputInput: {
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+        paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('md')]: {
+            width: '20ch',
+        },
+    },
+    sectionDesktop: {
+        display: 'none',
+        [theme.breakpoints.up('md')]: {
+            display: 'flex',
+        },
+    },
+    sectionMobile: {
+        display: 'flex',
+        [theme.breakpoints.up('md')]: {
+            display: 'none',
+        },
+    },
+
     root: {
         display: 'flex',
     },
@@ -28,12 +108,22 @@ const useStyles = makeStyles((theme) => ({
             width: drawerWidth,
             flexShrink: 0,
         },
+        backgroundColor: '#232323'
+
     },
     appBar: {
         [theme.breakpoints.up('sm')]: {
             width: `calc(100% - ${drawerWidth}px)`,
             marginLeft: drawerWidth,
         },
+        backgroundColor: 'white'
+    },
+    bottomToolbar: {
+        backgroundColor: '#333333',
+        ...theme.mixins.toolbar,
+        bottom: 0,
+        position: 'absolute',
+        width: "100%"
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -42,21 +132,133 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     // necessary for content to be below app bar
-    toolbar: theme.mixins.toolbar,
-    drawerPaper: {
+    toolbar: {
+        backgroundColor: '#333333',
+        ...theme.mixins.toolbar,
+        minHeight: '90px'
+    }, drawerPaper: {
         width: drawerWidth,
+        backgroundColor: '#232323'
     },
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
     },
+    listItem: {
+        color: 'white',
+        fontWeight: 'bold',
+        height: 55
+    },
+    recentListItem: {
+        color: 'white',
+        fontWeight: 'bold',
+        height: 50
+    },
+    navAdd: {
+        color: 'white',
+        fontWeight: 'bold',
+        height: 45,
+        width: 45,
+        paddingBottom: '6%',
+        alignSelf: "center"
+    },
+    dividerColor: {
+        backgroundColor: 'white',
+        width: '80%',
+        alignSelf: "center"
+    },
+    button: {
+        margin: theme.spacing(1),
+        textTransform: 'lowercase'
+    },
+
 }));
 
 export function SideBar(props) {
-    const { window } = props;
+    const {window} = props;
     const classes = useStyles();
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+    const isMenuOpen = Boolean(anchorEl);
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+    const handleProfileMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMobileMenuClose = () => {
+        setMobileMoreAnchorEl(null);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+        handleMobileMenuClose();
+    };
+
+    const handleMobileMenuOpen = (event) => {
+        setMobileMoreAnchorEl(event.currentTarget);
+    };
+
+    const menuId = 'primary-search-account-menu';
+    const renderMenu = (
+        <Menu
+            anchorEl={anchorEl}
+            anchorOrigin={{vertical: 'top', horizontal: 'right'}}
+            id={menuId}
+            keepMounted
+            transformOrigin={{vertical: 'top', horizontal: 'right'}}
+            open={isMenuOpen}
+            onClose={handleMenuClose}
+        >
+            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        </Menu>
+    );
+
+    const mobileMenuId = 'primary-search-account-menu-mobile';
+    const renderMobileMenu = (
+        <Menu
+            anchorEl={mobileMoreAnchorEl}
+            anchorOrigin={{vertical: 'top', horizontal: 'right'}}
+            id={mobileMenuId}
+            keepMounted
+            transformOrigin={{vertical: 'top', horizontal: 'right'}}
+            open={isMobileMenuOpen}
+            onClose={handleMobileMenuClose}
+        >
+            <MenuItem>
+                <IconButton aria-label="show 4 new mails" color="inherit">
+                    <Badge badgeContent={4} color="secondary">
+                        <MailIcon/>
+                    </Badge>
+                </IconButton>
+                <p>Messages</p>
+            </MenuItem>
+            <MenuItem>
+                <IconButton aria-label="show 11 new notifications" color="inherit">
+                    <Badge badgeContent={11} color="secondary">
+                        <NotificationsIcon/>
+                    </Badge>
+                </IconButton>
+                <p>Notifications</p>
+            </MenuItem>
+            <MenuItem onClick={handleProfileMenuOpen}>
+                <IconButton
+                    aria-label="account of current user"
+                    aria-controls="primary-search-account-menu"
+                    aria-haspopup="true"
+                    color="inherit"
+                >
+                    <AccountCircle/>
+                </IconButton>
+                <p>Profile</p>
+            </MenuItem>
+        </Menu>
+    );
+
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -64,56 +266,168 @@ export function SideBar(props) {
 
     const drawer = (
         <div>
-            <div className={classes.toolbar} />
-            <Divider />
+            <div className={classes.toolbar}><
+                Grid item xs={12} container
+                     direction="row"
+                     justify="center"
+                     alignItems="center"><img src={navbar}/>
+            </Grid></div>
+            <Divider/>
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
+                <ListItem button className={classes.listItem}>
+                    <ListItemIcon><DashboardIcon style={{color: "white"}}/> </ListItemIcon>
+                    <ListItemText primary={"Boards"}/>
+                </ListItem>
+                <ListItem button className={classes.listItem}>
+                    <ListItemIcon><NotesIcon style={{color: "white"}}/> </ListItemIcon>
+                    <ListItemText primary={"Notes"}/>
+                </ListItem>
+                <ListItem button className={classes.listItem}>
+                    <ListItemIcon><ListAltIcon style={{color: "white"}}/> </ListItemIcon>
+                    <ListItemText primary={"Tasks"}/>
+                </ListItem>
+                <ListItem button className={classes.listItem}>
+                    <ListItemIcon><DynamicFeedIcon style={{color: "white"}}/> </ListItemIcon>
+                    <ListItemText primary={"Feed"}/>
+                </ListItem>
+
             </List>
-            <Divider />
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
+            <Grid item xs={12} container
+                  direction="row"
+                  justify="center"
+                  alignItems="center">
+                <Divider classes={{root: classes.dividerColor}}/>
+            </Grid>
+            <Box m={1}>
+                <Typography variant="h6" component="h6" style={{color: "white", paddingTop: '4%', marginLeft: '2%'}}>
+                    Recent Notes
+                </Typography>
+                <List>
+                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                        <ListItem button key={text} className={classes.recentListItem}>
+                            <ListItemText primary={text}/>
+                        </ListItem>
+                    ))}
+                </List>
+            </Box>
+            <Grid item xs={12} container
+                  direction="row"
+                  justify="center"
+                  alignItems="center">
+                <ControlPointIcon button className={classes.navAdd}/>
+            </Grid>
+            <Grid item xs={12} container
+                  direction="row"
+                  justify="center"
+                  alignItems="center">
+                <Divider classes={{root: classes.dividerColor}}/>
+            </Grid>
+            <Grid item xs={12} container
+                  direction="row"
+                  justify="center"
+                  alignItems="center" className={classes.bottomToolbar}>
+                <FacebookIcon style={{color: "white"}}/>
+                <TwitterIcon style={{color: "white"}}/>
+            </Grid>
         </div>
     );
 
     const container = window !== undefined ? () => window().document.body : undefined;
-
+    const user = useSelector(state => state.authentication.user);
     return (
         <div className={classes.root}>
-            <CssBaseline />
+            <CssBaseline/>
+
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
                     <IconButton
-                        color="inherit"
+                        style={{color: "#333333"}}
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
                         className={classes.menuButton}
                     >
-                        <MenuIcon />
+                        <MenuIcon/>
                     </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Responsive drawer
-                    </Typography>
+
+                    <div className={classes.search}>
+                        <div className={classes.searchIcon}>
+                            <SearchIcon/>
+                        </div>
+                        <InputBase
+                            placeholder="Search…"
+                            classes={{
+                                root: classes.inputRoot,
+                                input: classes.inputInput,
+                            }}
+                            inputProps={{'aria-label': 'search'}}
+                            variant="outlined"
+                        />
+                    </div>
+                    <div className={classes.grow}/>
+                    <div className={classes.sectionDesktop}>
+                        <IconButton aria-label="show 17 new notifications" style={{color: "#333333"}}>
+                            <Badge badgeContent={17} color="secondary">
+                                <NotificationsIcon/>
+                            </Badge>
+                        </IconButton>
+                        {/*<Button*/}
+                        {/*    variant="outlined"*/}
+                        {/*    className={classes.button}*/}
+                        {/*    startIcon={<IconButton*/}
+                        {/*        edge="end"*/}
+                        {/*        aria-label="account of current user"*/}
+                        {/*        aria-controls={menuId}*/}
+                        {/*        aria-haspopup="true"*/}
+                        {/*        onClick={handleProfileMenuOpen}*/}
+                        {/*        style={{color: "#333333",border:'none'}}*/}
+                        {/*    >*/}
+                        {/*        <AccountCircle/>*/}
+                        {/*    </IconButton>}*/}
+                        {/*>{users.username}</Button>*/}
+                        <Button
+                            style={{margin:'2px'}}
+                            color="default"
+                            className={classes.button}
+                            size="small"
+                            onClick={handleProfileMenuOpen}
+                            startIcon={<IconButton
+                                edge="end"
+                                aria-label="account of current user"
+                                aria-haspopup="true"
+                                color="inherit"
+                                style={{color: "#333333"}}
+                            >
+                                <AccountCircle/>
+                            </IconButton>}
+                        >
+                            {user.username}
+                        </Button>
+
+                    </div>
+                    <div className={classes.sectionMobile}>
+                        <IconButton
+                            aria-label="show more"
+                            aria-controls={mobileMenuId}
+                            aria-haspopup="true"
+                            onClick={handleMobileMenuOpen}
+                            style={{color: "#333333"}}
+                        >
+                            <MoreIcon/>
+                        </IconButton>
+                    </div>
                 </Toolbar>
             </AppBar>
+            {renderMobileMenu}
+            {renderMenu}
+
             <nav className={classes.drawer} aria-label="mailbox folders">
                 {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                 <Hidden smUp implementation="css">
                     <Drawer
                         container={container}
                         variant="temporary"
-                        anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                        anchor='left'
                         open={mobileOpen}
                         onClose={handleDrawerToggle}
                         classes={{
@@ -150,4 +464,3 @@ SideBar.propTypes = {
     window: PropTypes.func,
 };
 
-// export default ResponsiveDrawer;
