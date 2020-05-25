@@ -1,22 +1,21 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
+import PropTypes from 'prop-types';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden';
+import IconButton from '@material-ui/core/IconButton';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import navbar from "../../resources/images/navbar.png";
-import Grid from "@material-ui/core/Grid";
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import NotesIcon from '@material-ui/icons/Notes';
-import ListAltIcon from '@material-ui/icons/ListAlt';
-import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import ControlPointIcon from '@material-ui/icons/ControlPoint';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import FacebookIcon from '@material-ui/icons/Facebook';
+import MailIcon from '@material-ui/icons/Mail';
+import MenuIcon from '@material-ui/icons/Menu';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
@@ -24,123 +23,131 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
     },
-    appBar: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-    },
     drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-        backgroundColor: '#9B59B6'
+        [theme.breakpoints.up('sm')]: {
+            width: drawerWidth,
+            flexShrink: 0,
+        },
     },
-    drawerPaper: {
-        width: drawerWidth,
-        backgroundColor: '#9B59B6'
-
+    appBar: {
+        [theme.breakpoints.up('sm')]: {
+            width: `calc(100% - ${drawerWidth}px)`,
+            marginLeft: drawerWidth,
+        },
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+        [theme.breakpoints.up('sm')]: {
+            display: 'none',
+        },
     },
     // necessary for content to be below app bar
-    toolbar: {
-        backgroundColor: '#8E44AD',
-        ...theme.mixins.toolbar,
-        minHeight: '90px'
-    },
-    bottomToolbar: {
-        backgroundColor: '#8E44AD',
-        ...theme.mixins.toolbar,
-        bottom: 0,
-        position: 'absolute',
-        width: "100%"
-    },
-    listItem: {
-        color: 'white',
-        fontWeight: 'bold',
-        height: 55
-    },
-    recentListItem: {
-        color: 'white',
-        fontWeight: 'bold',
-        height: 50
-    },
-    navAdd: {
-        color: 'white',
-        fontWeight: 'bold',
-        height: 45,
-        width: 45,
-        paddingBottom: '6%',
-        alignSelf: "center"
-    },
-    dividerColor: {
-        backgroundColor: 'white',
-        width: '80%',
-        alignSelf: "center"
+    toolbar: theme.mixins.toolbar,
+    drawerPaper: {
+        width: drawerWidth,
     },
     content: {
         flexGrow: 1,
-        backgroundColor: theme.palette.background.default,
         padding: theme.spacing(3),
     },
 }));
 
-export function SideBar() {
+export function SideBar(props) {
+    const { window } = props;
     const classes = useStyles();
+    const theme = useTheme();
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+
+    const handleDrawerToggle = () => {
+        setMobileOpen(!mobileOpen);
+    };
+
+    const drawer = (
+        <div>
+            <div className={classes.toolbar} />
+            <Divider />
+            <List>
+                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                    <ListItem button key={text}>
+                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                        <ListItemText primary={text} />
+                    </ListItem>
+                ))}
+            </List>
+            <Divider />
+            <List>
+                {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                    <ListItem button key={text}>
+                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                        <ListItemText primary={text} />
+                    </ListItem>
+                ))}
+            </List>
+        </div>
+    );
+
+    const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Drawer
-            className={classes.drawer}
-            variant="permanent"
-            classes={{
-                paper: classes.drawerPaper,
-            }}
-            anchor="left"
-        >
-            <div className={classes.toolbar}><Grid item xs={12} container
-                                                   direction="row"
-                                                   justify="center"
-                                                   alignItems="center"><img src={navbar}/>
-            </Grid></div>
-            <Divider/>
-            <List>
-                <ListItem button className={classes.listItem}>
-                    <ListItemIcon><DashboardIcon style={{color: "white"}}/> </ListItemIcon>
-                    <ListItemText primary={"Boards"}/>
-                </ListItem>
-                <ListItem button className={classes.listItem}>
-                    <ListItemIcon><NotesIcon style={{color: "white"}}/> </ListItemIcon>
-                    <ListItemText primary={"Notes"}/>
-                </ListItem>
-                <ListItem button className={classes.listItem}>
-                    <ListItemIcon><ListAltIcon style={{color: "white"}}/> </ListItemIcon>
-                    <ListItemText primary={"Tasks"}/>
-                </ListItem>
-                <ListItem button className={classes.listItem}>
-                    <ListItemIcon><DynamicFeedIcon style={{color: "white"}}/> </ListItemIcon>
-                    <ListItemText primary={"Feed"}/>
-                </ListItem>
-
-            </List>
-            <Divider classes={{root: classes.dividerColor}}/>
-            <Box component="span" m={1}>
-                <Typography variant="h6" component="h6" style={{color: "white", paddingTop: '4%'}}>
-                    Recent Notes
-                </Typography>
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text} className={classes.recentListItem}>
-                            <ListItemText primary={text}/>
-                        </ListItem>
-                    ))}
-                </List>
-            </Box>
-            <ControlPointIcon button className={classes.navAdd}/>
-            <Divider classes={{root: classes.dividerColor}}/>
-            <Grid item xs={12} container
-                  direction="row"
-                  justify="center"
-                  alignItems="center" className={classes.bottomToolbar}>
-                <FacebookIcon style={{color: "white"}}/>
-                <TwitterIcon style={{color: "white"}}/>
-            </Grid>
-        </Drawer>
+        <div className={classes.root}>
+            <CssBaseline />
+            <AppBar position="fixed" className={classes.appBar}>
+                <Toolbar>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={handleDrawerToggle}
+                        className={classes.menuButton}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" noWrap>
+                        Responsive drawer
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <nav className={classes.drawer} aria-label="mailbox folders">
+                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+                <Hidden smUp implementation="css">
+                    <Drawer
+                        container={container}
+                        variant="temporary"
+                        anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                        open={mobileOpen}
+                        onClose={handleDrawerToggle}
+                        classes={{
+                            paper: classes.drawerPaper,
+                        }}
+                        ModalProps={{
+                            keepMounted: true, // Better open performance on mobile.
+                        }}
+                    >
+                        {drawer}
+                    </Drawer>
+                </Hidden>
+                <Hidden xsDown implementation="css">
+                    <Drawer
+                        classes={{
+                            paper: classes.drawerPaper,
+                        }}
+                        variant="permanent"
+                        open
+                    >
+                        {drawer}
+                    </Drawer>
+                </Hidden>
+            </nav>
+        </div>
     );
 }
 
+SideBar.propTypes = {
+    /**
+     * Injected by the documentation to work in an iframe.
+     * You won't need it on your project.
+     */
+    window: PropTypes.func,
+};
+
+// export default ResponsiveDrawer;

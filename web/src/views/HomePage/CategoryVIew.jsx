@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: '#fdf9f3',
         padding: theme.spacing(3),
     },
     formControl: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
     createNew: {},
     addButtonTop: {
-        color: '#9B59B6',
+        color: '#333333',
         fontWeight: 'bold',
         height: 45,
         width: 45,
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
     button:{
         textTransform: 'capitalize',
-        color:'#9B59B6',
+        color:'#333333',
         fontWeight:'bold'
     }
 }));
@@ -88,18 +88,7 @@ export function CategoryVIew() {
                     </Button>
                 </Grid>
             </Grid>
-            <Typography paragraph>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-                facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-                gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-                donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-                Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-                imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-                arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-                donec massa sapien faucibus et molestie ac.
-            </Typography>
+
             <Typography paragraph>
                 Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
                 facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac

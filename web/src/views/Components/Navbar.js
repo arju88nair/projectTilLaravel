@@ -207,22 +207,24 @@ export function NavBar() {
                     <Divider className={classes.divider} orientation="vertical"/>
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="show 17 new notifications" style={{color: "#9B59B6"}}>
+                        <IconButton aria-label="show 17 new notifications" style={{color: "#333333"}}>
                             <Badge badgeContent={17} color="secondary">
                                 <NotificationsIcon/>
                             </Badge>
                         </IconButton>
 
                         <Button
+                            style={{margin:'2px'}}
                             color="default"
                             className={classes.button}
+                            size="small"
                             onClick={handleProfileMenuOpen}
                             startIcon={<IconButton
                                 edge="end"
                                 aria-label="account of current user"
                                 aria-haspopup="true"
                                 color="inherit"
-                                style={{color: "#9B59B6"}}
+                                style={{color: "#333333",margin:'2px'}}
                             >
                                 <AccountCircle/>
                             </IconButton>}
@@ -239,7 +241,7 @@ export function NavBar() {
                             aria-haspopup="true"
                             onClick={handleMobileMenuOpen}
                             color="inherit"
-                            style={{color: "#9B59B6"}}
+                            style={{color: "#333333"}}
                         >
                             <MoreIcon/>
                         </IconButton>
