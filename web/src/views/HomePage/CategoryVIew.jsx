@@ -13,6 +13,8 @@ import {Box} from "@material-ui/core";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import Button from "@material-ui/core/Button";
+import Divider from "@material-ui/core/Divider";
+import {Category} from "./Categories";
 
 const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
@@ -36,10 +38,10 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: '6%',
         alignSelf: "center"
     },
-    button:{
+    button: {
         textTransform: 'capitalize',
-        color:'#333333',
-        fontWeight:'bold'
+        color: '#333333',
+        fontWeight: 'bold'
     }
 }));
 
@@ -53,10 +55,8 @@ export function CategoryVIew() {
     return (
         <main className={classes.content}>
             <div className={classes.toolbar}/>
-
             <Grid container spacing={3}>
-
-                <Grid item xs={12} sm={4}>
+                <Grid item xs={12} sm={6}>
                     <FormControl variant="outlined" className={classes.formControl}>
                         <InputLabel id="board-sort">Recent Boards</InputLabel>
                         <Select
@@ -75,10 +75,10 @@ export function CategoryVIew() {
                         </Select>
                     </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={8} container
-                      direction="row-reverse"
-                      justify="flex-start"
-                      alignItems="center" >
+                <Grid item xs={12} sm={6} container
+                      direction="row"
+                      justify="flex-end"
+                      alignItems="center">
                     <Button
                         color="default"
                         className={classes.button}
@@ -88,7 +88,8 @@ export function CategoryVIew() {
                     </Button>
                 </Grid>
             </Grid>
-
+            <Divider/>
+<Category/>
         </main>
 
     )
