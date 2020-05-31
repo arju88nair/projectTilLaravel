@@ -15,6 +15,8 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import {Category} from "./Categories";
+import {miscActions} from "../../_actions";
+import {useDispatch} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
@@ -51,6 +53,12 @@ export function CategoryVIew() {
     const handleChange = (event) => {
         setAge(event.target.value);
     };
+    const dispatch = useDispatch();
+
+    const handleCatModal = () => {
+        dispatch(miscActions.openCategoryModal(true));
+    };
+
 
     return (
         <main className={classes.content}>
@@ -83,6 +91,7 @@ export function CategoryVIew() {
                         color="default"
                         className={classes.button}
                         startIcon={<ControlPointIcon/>}
+                        onClick={handleCatModal}
                     >
                         Create new board
                     </Button>

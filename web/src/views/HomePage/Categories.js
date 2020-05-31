@@ -21,8 +21,9 @@ import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 300,
+        maxWidth: "auto",
         maxHeight: "auto",
+        minHeight:300
     },
     cateContainer: {
         marginTop: '1%'
@@ -61,7 +62,7 @@ export function Category() {
                   justify="flex-start"
                   alignItems="center" spacing={3}>
                 {['All mail', 'Trash', 'Spam','All mail', 'Trash', 'Spam','All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <Grid item xs={12} sm={6} lg={2}>
+                    <Grid item xs={12} sm={6} lg={3} xl={2}>
                         <Card className={classes.root}>
                             <CardHeader
                                 avatar={
@@ -77,7 +78,7 @@ export function Category() {
                                 title="Shrimp and Chorizo Paella"
                                 subheader="September 14, 2016"
                             />
-
+                
                             <CardContent>
                                 <Typography variant="body2" color="textSecondary" component="p">
                                     This impressive paella is a perfect party dish and a fun meal to cook together with your
@@ -135,10 +136,7 @@ export function Category() {
                             </Collapse>
                         </Card>
                     </Grid>
-
                 ))}
-
-
             </Grid>
         </div>
     );

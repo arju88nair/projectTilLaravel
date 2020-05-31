@@ -4,6 +4,7 @@ import {SideBar}from '../Components/SideBar'
 import {CategoryVIew}from './CategoryVIew'
 import CssBaseline from "@material-ui/core/CssBaseline";
 import {makeStyles} from "@material-ui/core/styles";
+import {CategoryModal} from "../Components/CategoryModal";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,6 +22,7 @@ function HomePage() {
 
     return (
         <div className={classes.root}>
+            <CategoryModal/>
             <CssBaseline />
             <SideBar/>
             <CategoryVIew/>
