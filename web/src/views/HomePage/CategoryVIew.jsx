@@ -55,7 +55,7 @@ export function CategoryVIew() {
     };
     const dispatch = useDispatch();
 
-    const handleCatModal = () => {
+    const handleBoardModal = () => {
         dispatch(miscActions.openCategoryModal(true));
     };
 
@@ -91,7 +91,7 @@ export function CategoryVIew() {
                         color="default"
                         className={classes.button}
                         startIcon={<ControlPointIcon/>}
-                        onClick={handleCatModal}
+                        onClick={handleBoardModal}
                     >
                         Create new board
                     </Button>

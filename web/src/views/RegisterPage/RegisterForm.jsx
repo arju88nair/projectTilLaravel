@@ -74,7 +74,6 @@ export function RegisterForm() {
 
     function handleSubmit(e) {
         e.preventDefault();
-
         if (user.username && user.email && user.password) {
             dispatch(miscActions.openSpinner(true))
             dispatch(userActions.register(user));

@@ -17,6 +17,7 @@ import {green} from "@material-ui/core/colors/green";
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
+import {homeActions} from "../../_actions/homeActions";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -94,30 +95,35 @@ const DialogActions = withStyles((theme) => ({
 
 export function CategoryModal() {
     const classes = useStyles();
-    const open = useSelector(state => state.misc.catModal);
+    const modalOpen = useSelector(state => state.misc.boardModal);
     const dispatch = useDispatch();
     const [newBoard, setBoard] = useState({
     });
 
     const handleClose = () => {
+
         dispatch(miscActions.closeCategoryModal(false));
     };
-    const handleAddBoard= () => {
-        console.log(newBoard)
+
+    const handleAddBoard= (e) => {
+        e.preventDefault();
+        dispatch(miscActions.openSpinner(true))
+        dispatch(homeActions.submitAddCategory(newBoard))
+        console.log(modalOpen)
+
     }
     function handleChange(e) {
         const {name, value} = e.target;
         setBoard(newBoard => ({...newBoard, [event.target.name]: event.target.value}));
     }
-    console.log(newBoard)
 
     return (
         <div>
-            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} className={classes.modalWindow}>
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={modalOpen} className={classes.modalWindow}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                     Add a new Board
                 </DialogTitle>
-                <form>
+                <form onSubmit={handleAddBoard}>
 
             <DialogContent dividers>
                     <Typography gutterBottom>
@@ -148,7 +154,7 @@ export function CategoryModal() {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleAddBoard} color="primary" type="submit">
+                    <Button autoFocus color="primary" type="submit">
                         Save changes
                     </Button>
                 </DialogActions>
