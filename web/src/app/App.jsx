@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Router, Route, Switch, Redirect} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {history} from '../_helpers';
-import {alertActions} from '../_actions';
+import {alertActions, miscActions} from '../_actions';
 import {PrivateRoute} from '../_components';
 import {HomePage} from '../views/HomePage';
 import {LoginPage} from '../views/LoginPage';
@@ -18,19 +18,23 @@ const useStyles = makeStyles((theme) => ({
         zIndex: theme.zIndex.drawer + 1,
         color: '#fff',
     },
+    root:{}
+
 }));
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-function App() {
+export function App() {
+    const classes = useStyles();
     const open = useSelector(state => state.misc.spinner);
     const alert = useSelector(state => state.alert);
     const dispatch = useDispatch();
-    const classes = useStyles();
 
-
+    const handleBackClose = (event, reason) => {
+        dispatch(miscActions.closeSpinner(false))
+    }
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -47,15 +51,14 @@ function App() {
 
     return (
         <div>
+            <Backdrop className={classes.backdrop} open={open} onClick={handleBackClose}>
+                <CircularProgress color="inherit"/>
+            </Backdrop>
             <Snackbar open={alert.open} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity={alert.type}>
                     {alert.message}
                 </Alert>
             </Snackbar>
-            <Backdrop className={classes.backdrop} open={open}>
-                <CircularProgress color="inherit"/>
-            </Backdrop>
-
             <Router history={history}>
                 <Switch>
                     <PrivateRoute exact path="/" component={HomePage}/>
@@ -68,4 +71,3 @@ function App() {
     );
 }
 
-export {App};

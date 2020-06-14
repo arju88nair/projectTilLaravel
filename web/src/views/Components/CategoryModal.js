@@ -96,22 +96,21 @@ const DialogActions = withStyles((theme) => ({
 export function CategoryModal() {
     const classes = useStyles();
     const modalOpen = useSelector(state => state.misc.boardModal);
+    console.log(modalOpen)
     const dispatch = useDispatch();
     const [newBoard, setBoard] = useState({
     });
 
     const handleClose = () => {
-
         dispatch(miscActions.closeCategoryModal(false));
     };
 
     const handleAddBoard= (e) => {
         e.preventDefault();
+        dispatch(miscActions.openCategoryModal(false));
         dispatch(miscActions.openSpinner(true))
-        dispatch(homeActions.submitAddCategory(newBoard))
-        console.log(modalOpen)
-
     }
+
     function handleChange(e) {
         const {name, value} = e.target;
         setBoard(newBoard => ({...newBoard, [event.target.name]: event.target.value}));
@@ -119,7 +118,7 @@ export function CategoryModal() {
 
     return (
         <div>
-            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={modalOpen} className={classes.modalWindow}>
+            <Dialog  onClose={handleClose} aria-labelledby="customized-dialog-title" open={modalOpen} className={classes.modalWindow}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                     Add a new Board
                 </DialogTitle>
@@ -127,7 +126,7 @@ export function CategoryModal() {
 
             <DialogContent dividers>
                     <Typography gutterBottom>
-                        A board heps you to classify and organise your items and entries
+                        A board helps you to classify and organise your items and entries
                     </Typography>
                     <TextField
                         autoFocus
