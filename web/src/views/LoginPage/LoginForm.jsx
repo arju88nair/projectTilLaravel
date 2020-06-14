@@ -89,9 +89,9 @@ export function LoginForm() {
                   direction="column"
                   justify="center"
                   alignItems="center">
-                <Grid item xs={12}>
-                    <img src={logo}/>
-                </Grid>
+
+                    <img src={logo}  style={{ width: '55%%' ,marginTop:'25%'}}
+                    />
 
                 <Grid className={classes.formDiv}>
                     <Avatar className={classes.avatar}>
@@ -140,8 +140,9 @@ export function LoginForm() {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            color="primary"
                             className={classes.submit}
+                            buttonStyle={{ borderRadius: 25 }}
+                            style={{ borderRadius: 25 ,backgroundColor:'black',color:'white'}}
                         >
                             Login
                         </Button>

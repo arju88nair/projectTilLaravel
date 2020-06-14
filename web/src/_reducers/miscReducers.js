@@ -1,6 +1,7 @@
 import {miscConstants} from '../_constants';
+const initialState = {spinner: false}
 
-export function misc(state = {}, action) {
+export function misc(state = initialState, action) {
     switch (action.type) {
         case miscConstants.OPEN_SPINNER:
             return {spinner: true};
