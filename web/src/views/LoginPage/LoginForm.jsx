@@ -90,8 +90,6 @@ export function LoginForm() {
                   justify="center"
                   alignItems="center">
 
-                    <img src={logo}  style={{ width: '55%%' ,marginTop:'25%'}}
-                    />
 
                 <Grid className={classes.formDiv}>
                     <Avatar className={classes.avatar}>

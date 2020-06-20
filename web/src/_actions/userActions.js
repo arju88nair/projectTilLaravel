@@ -42,9 +42,8 @@ function login(username, password) {
 }
 
 function logout() {
-    console.log("dd")
     userService.logout();
-    history.push('/login');
+    history.push('/landing');
     return { type: userConstants.LOGOUT };
 }
 
