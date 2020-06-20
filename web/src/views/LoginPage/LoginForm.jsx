@@ -14,7 +14,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {userActions} from "../../_actions/userActions";
 import {alertActions, miscActions} from "../../_actions";
 import {Link} from 'react-router-dom';
-
+import { GoogleLoginButton } from "react-social-login-buttons";
 
 const theme = createMuiTheme({
     palette: {
@@ -30,7 +30,16 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        maxHeight: '100vh'
+        maxHeight: '100vh',
+        margin: 0,
+        position: "absolute",
+        top: '50%',
+        "MsTransform": "translateY(-50%)",
+        "transform": "translateY(-50%)",
+        "borderRadius": "15px",
+        "background": "#fefef9",
+        "boxShadow": "12px 12px 24px #c6c2ca, \n             -12px -12px 24px #ffffff"
+
     },
     formDiv: {
         display: 'flex',
@@ -48,10 +57,13 @@ const useStyles = makeStyles((theme) => ({
     form: {
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(3),
+        padding:'10%',
+
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    loginBay: {}
 }));
 
 export function LoginForm() {
@@ -83,78 +95,70 @@ export function LoginForm() {
 
 
     return (
-        <Container component="main" maxWidth="sm">
+        <Container component="main" maxWidth="sm" className={classes.loginBay}>
             <CssBaseline/>
-            <Grid container spacing={3} container
-                  direction="column"
-                  justify="center"
-                  alignItems="center">
-
-
-                <Grid className={classes.formDiv}>
-                    <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon/>
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
+            <div className={classes.paper}>
+                <Avatar className={classes.avatar}>
+                    <LockOutlinedIcon/>
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    Login
+                </Typography>
+                <form className={classes.form} onSubmit={handleSubmit}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <ThemeProvider theme={theme}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="Email Address"
+                                    name="email"
+                                    autoComplete="email"
+                                    onChange={handleChange}
+                                    margin="normal"
+                                    value={user.email}
+                                    type="email"
+                                />
+                            </ThemeProvider>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <ThemeProvider theme={theme}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="current-password"
+                                    value={user.password} onChange={handleChange}
+                                    inputProps={{minLength: 2}}
+                                />
+                            </ThemeProvider>
+                        </Grid>
+                    </Grid>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        className={classes.submit}
+                        buttonStyle={{borderRadius: 25}}
+                        style={{borderRadius: 25, backgroundColor: 'black', color: 'white'}}
+                    >
                         Login
-                    </Typography>
-                    <form className={classes.form} onSubmit={handleSubmit}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <ThemeProvider theme={theme}>
-                                    <TextField
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        id="email"
-                                        label="Email Address"
-                                        name="email"
-                                        autoComplete="email"
-                                        onChange={handleChange}
-                                        margin="normal"
-                                        value={user.email}
-                                        type="email"
-                                    />
-                                </ThemeProvider>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <ThemeProvider theme={theme}>
-                                    <TextField
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        name="password"
-                                        label="Password"
-                                        type="password"
-                                        id="password"
-                                        autoComplete="current-password"
-                                        value={user.password} onChange={handleChange}
-                                        inputProps={{minLength: 2}}
-                                    />
-                                </ThemeProvider>
-                            </Grid>
+                    </Button>
+                    <Grid container justify="flex-end">
+                        <Grid item>
+                            <Link to="/register" variant="body2" style={{textDecoration: 'none'}}>
+                                New here? Sign Up
+                            </Link>
                         </Grid>
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            className={classes.submit}
-                            buttonStyle={{ borderRadius: 25 }}
-                            style={{ borderRadius: 25 ,backgroundColor:'black',color:'white'}}
-                        >
-                            Login
-                        </Button>
-                        <Grid container justify="flex-end">
-                            <Grid item>
-                                <Link to="/register" variant="body2" style={{textDecoration: 'none'}}>
-                                    New here? Sign Up
-                                </Link>
-                            </Grid>
-                        </Grid>
-                    </form>
-                </Grid>
-            </Grid>
-
+                    </Grid>
+                </form>
+            </div>
         </Container>
     );
 }
