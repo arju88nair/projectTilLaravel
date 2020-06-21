@@ -14,7 +14,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {userActions} from "../../_actions/userActions";
 import {alertActions, miscActions} from "../../_actions";
 import {Link} from 'react-router-dom';
-import { GoogleLoginButton } from "react-social-login-buttons";
+
+// get our fontawesome imports
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faFacebook, faGoogle} from "@fortawesome/free-brands-svg-icons"
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Divider from "@material-ui/core/Divider";
 
 const theme = createMuiTheme({
     palette: {
@@ -33,12 +39,11 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: '100vh',
         margin: 0,
         position: "absolute",
-        top: '50%',
-        "MsTransform": "translateY(-50%)",
-        "transform": "translateY(-50%)",
-        "borderRadius": "15px",
-        "background": "#fefef9",
-        "boxShadow": "12px 12px 24px #c6c2ca, \n             -12px -12px 24px #ffffff"
+        top: '10%',
+
+        // "MsTransform": "translateY(-50%)",
+        // "transform": "translateY(-50%)",
+
 
     },
     formDiv: {
@@ -56,14 +61,27 @@ const useStyles = makeStyles((theme) => ({
     },
     form: {
         width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(3),
-        padding:'10%',
+        // marginTop: theme.spacing(1),
+        padding: '3% 10% 3% 10%',
+        // marginTop:"-10%"
+
+    },
+    socialButton: {
+        width: '100%', // Fix IE 11 issue.
+        // marginTop: theme.spacing(3),
+        padding: '3% 10% 3% 10%',
 
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
-    loginBay: {}
+    loginBay: {
+        position: "relative",
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    }
 }));
 
 export function LoginForm() {
@@ -98,13 +116,39 @@ export function LoginForm() {
         <Container component="main" maxWidth="sm" className={classes.loginBay}>
             <CssBaseline/>
             <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon/>
-                </Avatar>
+
                 <Typography component="h1" variant="h5">
-                    Login
+                    Log in to your account
                 </Typography>
+                <div className={classes.socialButton}>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="outlined"
+                        style={{
+                            borderRadius: 25, margin: theme.spacing(1, 0, 1),
+                            color: 'black'
+                        }}
+                        startIcon={<FontAwesomeIcon icon={faGoogle}/>}
+                    >
+                        Continue with Google
+                    </Button>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="outlined"
+                        style={{
+                            borderRadius: 25, margin: theme.spacing(1, 0, 1),
+                            color: 'black'
+                        }}
+                        startIcon={<FontAwesomeIcon icon={faFacebook}/>}
+                    >
+                        Continue with Facebook
+                    </Button>
+                </div>
+                <Divider style={{backgroundColor: 'gray', width: '80%'}}/>
                 <form className={classes.form} onSubmit={handleSubmit}>
+
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <ThemeProvider theme={theme}>
@@ -139,20 +183,26 @@ export function LoginForm() {
                                 />
                             </ThemeProvider>
                         </Grid>
+                        <Grid item xs={12}>
+
+                            <FormControlLabel
+                                control={<Checkbox value="remember" color="primary"/>}
+                                label="Remember me"
+                            />
+                        </Grid>
                     </Grid>
                     <Button
                         type="submit"
                         fullWidth
                         variant="contained"
                         className={classes.submit}
-                        buttonStyle={{borderRadius: 25}}
                         style={{borderRadius: 25, backgroundColor: 'black', color: 'white'}}
                     >
                         Login
                     </Button>
                     <Grid container justify="flex-end">
                         <Grid item>
-                            <Link to="/register" variant="body2" style={{textDecoration: 'none'}}>
+                            <Link to="/register" variant="body2" style={{textDecoration: 'none', color: 'inherit',}}>
                                 New here? Sign Up
                             </Link>
                         </Grid>
