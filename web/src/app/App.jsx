@@ -5,6 +5,7 @@ import {history} from '../_helpers';
 import {alertActions, miscActions} from '../_actions';
 import {PrivateRoute} from '../_components';
 import {HomePage} from '../views/HomePage';
+import {LandingPage} from '../views/LandingPage';
 import {LoginPage} from '../views/LoginPage';
 import {RegisterPage} from '../views/RegisterPage';
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -64,6 +65,8 @@ export function App() {
                     <PrivateRoute exact path="/" component={HomePage}/>
                     <Route path="/register" component={RegisterPage}/>
                     <Route path="/login" component={LoginPage}/>
+                    <Route path="/landing" component={LandingPage}/>
+                    <Route path="/home" component={HomePage}/>
                     <Redirect from="*" to="/"/>
                 </Switch>
             </Router>

@@ -18,10 +18,21 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(jpg|png)$/,
+                test: /\.(jpg|png|svg)$/,
                 use: {
                     loader: 'url-loader',
                 }
+            },
+            {
+                test: /\.ttf$/,
+                use: [
+                    {
+                        loader: 'ttf-loader',
+                        options: {
+                            name: './fonts/[hash].[ext]',
+                        },
+                    },
+                ]
             }
         ]
     },

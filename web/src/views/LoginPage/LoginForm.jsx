@@ -15,6 +15,12 @@ import {userActions} from "../../_actions/userActions";
 import {alertActions, miscActions} from "../../_actions";
 import {Link} from 'react-router-dom';
 
+// get our fontawesome imports
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faFacebook, faGoogle} from "@fortawesome/free-brands-svg-icons"
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Divider from "@material-ui/core/Divider";
 
 const theme = createMuiTheme({
     palette: {
@@ -30,7 +36,16 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        maxHeight: '100vh'
+        maxHeight: '100vh',
+        margin: '10%',
+        position: "absolute",
+        top: '10%',
+
+
+        // "MsTransform": "translateY(-50%)",
+        // "transform": "translateY(-50%)",
+
+
     },
     formDiv: {
         display: 'flex',
@@ -47,11 +62,26 @@ const useStyles = makeStyles((theme) => ({
     },
     form: {
         width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(3),
+        // marginTop: theme.spacing(1),
+        padding: '3% 10% 3% 10%',
+        // marginTop:"-10%"
+
+    },
+    socialButton: {
+        width: '100%', // Fix IE 11 issue.
+        // marginTop: theme.spacing(3),
+        padding: '3% 10% 3% 10%',
+
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    loginBay: {
+        position: "relative",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    }
 }));
 
 export function LoginForm() {
@@ -83,80 +113,103 @@ export function LoginForm() {
 
 
     return (
-        <Container component="main" maxWidth="sm">
+        <Container component="main" maxWidth="sm" className={classes.loginBay}>
             <CssBaseline/>
-            <Grid container spacing={3} container
-                  direction="column"
-                  justify="center"
-                  alignItems="center">
+            <div className={classes.paper}>
 
-                    <img src={logo}  style={{ width: '55%%' ,marginTop:'25%'}}
-                    />
+                <Typography component="h1" variant="h5">
+                    Log in to your account
+                </Typography>
+                <div className={classes.socialButton}>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="outlined"
+                        style={{
+                            borderRadius: 25, margin: theme.spacing(1, 0, 1),
+                            color: 'black'
+                        }}
+                        startIcon={<FontAwesomeIcon icon={faGoogle}/>}
+                    >
+                        Continue with Google
+                    </Button>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="outlined"
+                        style={{
+                            borderRadius: 25, margin: theme.spacing(1, 0, 1),
+                            color: 'black'
+                        }}
+                        startIcon={<FontAwesomeIcon icon={faFacebook}/>}
+                    >
+                        Continue with Facebook
+                    </Button>
+                </div>
+                <Divider style={{backgroundColor: 'gray', width: '80%'}}/>
+                <form className={classes.form} onSubmit={handleSubmit}>
 
-                <Grid className={classes.formDiv}>
-                    <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon/>
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Login
-                    </Typography>
-                    <form className={classes.form} onSubmit={handleSubmit}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <ThemeProvider theme={theme}>
-                                    <TextField
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        id="email"
-                                        label="Email Address"
-                                        name="email"
-                                        autoComplete="email"
-                                        onChange={handleChange}
-                                        margin="normal"
-                                        value={user.email}
-                                        type="email"
-                                    />
-                                </ThemeProvider>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <ThemeProvider theme={theme}>
-                                    <TextField
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        name="password"
-                                        label="Password"
-                                        type="password"
-                                        id="password"
-                                        autoComplete="current-password"
-                                        value={user.password} onChange={handleChange}
-                                        inputProps={{minLength: 2}}
-                                    />
-                                </ThemeProvider>
-                            </Grid>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <ThemeProvider theme={theme}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="Email Address"
+                                    name="email"
+                                    autoComplete="email"
+                                    onChange={handleChange}
+                                    margin="normal"
+                                    value={user.email}
+                                    type="email"
+                                />
+                            </ThemeProvider>
                         </Grid>
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            className={classes.submit}
-                            buttonStyle={{ borderRadius: 25 }}
-                            style={{ borderRadius: 25 ,backgroundColor:'black',color:'white'}}
-                        >
-                            Login
-                        </Button>
-                        <Grid container justify="flex-end">
-                            <Grid item>
-                                <Link to="/register" variant="body2" style={{textDecoration: 'none'}}>
-                                    New here? Sign Up
-                                </Link>
-                            </Grid>
+                        <Grid item xs={12}>
+                            <ThemeProvider theme={theme}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="current-password"
+                                    value={user.password} onChange={handleChange}
+                                    inputProps={{minLength: 2}}
+                                    color="inherit"
+                                />
+                            </ThemeProvider>
                         </Grid>
-                    </form>
-                </Grid>
-            </Grid>
+                        <Grid item xs={12}>
 
+                            <FormControlLabel
+                                control={<Checkbox value="remember" color="default"/>}
+                                label="Remember me"
+                            />
+                        </Grid>
+                    </Grid>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        className={classes.submit}
+                        style={{borderRadius: 25, backgroundColor: 'black', color: 'white'}}
+                    >
+                        Log In
+                    </Button>
+                    <Grid container justify="center">
+                        <Grid item>
+                            <Link to="/register" variant="body2" style={{textDecoration: 'none', color: 'inherit'}}>
+                                New here? Sign Up
+                            </Link>
+                        </Grid>
+                    </Grid>
+                </form>
+            </div>
         </Container>
     );
 }
