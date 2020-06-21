@@ -37,9 +37,10 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         alignItems: 'center',
         maxHeight: '100vh',
-        margin: 0,
+        margin: '10%',
         position: "absolute",
         top: '10%',
+
 
         // "MsTransform": "translateY(-50%)",
         // "transform": "translateY(-50%)",
@@ -77,7 +78,6 @@ const useStyles = makeStyles((theme) => ({
     },
     loginBay: {
         position: "relative",
-        height: '100vh',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -180,13 +180,14 @@ export function LoginForm() {
                                     autoComplete="current-password"
                                     value={user.password} onChange={handleChange}
                                     inputProps={{minLength: 2}}
+                                    color="inherit"
                                 />
                             </ThemeProvider>
                         </Grid>
                         <Grid item xs={12}>
 
                             <FormControlLabel
-                                control={<Checkbox value="remember" color="primary"/>}
+                                control={<Checkbox value="remember" color="default"/>}
                                 label="Remember me"
                             />
                         </Grid>
@@ -198,11 +199,11 @@ export function LoginForm() {
                         className={classes.submit}
                         style={{borderRadius: 25, backgroundColor: 'black', color: 'white'}}
                     >
-                        Login
+                        Log In
                     </Button>
-                    <Grid container justify="flex-end">
+                    <Grid container justify="center">
                         <Grid item>
-                            <Link to="/register" variant="body2" style={{textDecoration: 'none', color: 'inherit',}}>
+                            <Link to="/register" variant="body2" style={{textDecoration: 'none', color: 'inherit'}}>
                                 New here? Sign Up
                             </Link>
                         </Grid>

@@ -172,7 +172,7 @@ export function PreAppBar() {
                                 Create an account
                             </Button>
                             <Button href="/login" style={{fontWeight: "600"}}>
-                                Sign In
+                                Log In
                             </Button>
                         </div>
                     </div>
