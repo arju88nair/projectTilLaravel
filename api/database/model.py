@@ -118,3 +118,12 @@ class Like(db.EmbeddedDocumentListField):
     user_id = db.ReferenceField('User')
     created_date = db.DateTimeField(default=datetime.datetime.now)
     modified_date = db.DateTimeField(default=datetime.datetime.now)
+
+class AuthMethods(db.Document):
+    name = db.StringField()
+
+class AuthProvider(db.Document):
+    provider_key = db.StringField()
+    added_by = db.ReferenceField('User')
+    method_id = db.ReferenceField('AuthMethod')
+    
