@@ -8,8 +8,6 @@ import {HomePage} from '../views/HomePage';
 import {LandingPage} from '../views/LandingPage';
 import {LoginPage} from '../views/LoginPage';
 import {RegisterPage} from '../views/RegisterPage';
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Backdrop from "@material-ui/core/Backdrop";
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import {makeStyles} from "@material-ui/core/styles";
@@ -28,9 +26,6 @@ function Alert(props) {
 }
 
 export function App() {
-    const classes = useStyles();
-    const open = useSelector(state => state.misc.spinner);
-    const alert = useSelector(state => state.alert);
     const dispatch = useDispatch();
 
     const handleBackClose = (event, reason) => {
@@ -52,14 +47,11 @@ export function App() {
 
     return (
         <div>
-            {/*<Backdrop className={classes.backdrop} open={open} onClick={handleBackClose}>*/}
-            {/*    <CircularProgress color="inherit"/>*/}
-            {/*</Backdrop>*/}
-            <Snackbar open={alert.open} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity={alert.type}>
-                    {alert.message}
-                </Alert>
-            </Snackbar>
+            {/*<Snackbar open={alert.open} autoHideDuration={6000} onClose={handleClose}>*/}
+            {/*    <Alert onClose={handleClose} severity={alert.type}>*/}
+            {/*        {alert.message}*/}
+            {/*    </Alert>*/}
+            {/*</Snackbar>*/}
             <Router history={history}>
                 <Switch>
                     <PrivateRoute exact path="/" component={HomePage}/>

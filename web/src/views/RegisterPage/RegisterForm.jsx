@@ -87,7 +87,8 @@ const useStyles = makeStyles((theme) => ({
 export function RegisterForm() {
     const [user, setUser] = useState({
         email: '',
-        password: ''
+        password: '',
+        username:''
     });
     const dispatch = useDispatch();
     const alert = useSelector(state => state.alert);
@@ -105,6 +106,7 @@ export function RegisterForm() {
     function handleSubmit(e) {
         e.preventDefault();
         if (user.email && user.password) {
+            dispatch(alertActions.clear());
             dispatch(miscActions.openSpinner(true))
             dispatch(userActions.register(user));
         }
@@ -159,10 +161,10 @@ export function RegisterForm() {
                                     label="Username"
                                     name="username"
                                     autoComplete="username"
-                                    // error={user.username === ""}
-                                    // helperText={user.username === "" ? 'Empty field!' : ' '}
                                     value={user.username}
                                     onChange={handleChange}
+                                    type="text"
+
                                 />
                         </Grid>
                         <Grid item xs={12}>
@@ -189,9 +191,9 @@ export function RegisterForm() {
                                     type="password"
                                     id="password"
                                     autoComplete="current-password"
-                                    value={user.password} onChange={handleChange}
+                                    value={user.password}
+                                    onChange={handleChange}
                                     inputProps={{minLength: 2}}
-                                    color="default"
                                 />
                         </Grid>
                         <Grid item xs={12}>

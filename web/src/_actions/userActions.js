@@ -28,7 +28,7 @@ function login(username, password) {
                 error => {
                     console.log(error)
                     dispatch(failure(error.toString()));
-                    dispatch(miscActions.closeSpinner(false))
+                    dispatch(miscActions.F(false))
                     dispatch(alertActions.error(error.toString()));
                 }
             );
@@ -57,7 +57,6 @@ function register(user) {
                     dispatch(alertActions.success('Registration successful'));
                     localStorage.setItem('user', JSON.stringify(user));
                     history.push('/');
-                    dispatch(miscActions.closeSpinner(false))
                 },
                 error => {
                     dispatch(failure(error.toString()));

@@ -20,6 +20,9 @@ import {NavLink} from 'react-router-dom'
 import {LoginPage} from "../LoginPage";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
+import Backdrop from "@material-ui/core/Backdrop";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import {useSelector} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -91,7 +94,11 @@ const useStyles = makeStyles((theme) => ({
     logoDiv: {
         display: "grid",
         alignContent: "center",
-    }
+    },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+    },
 }));
 
 export function PreAppBar() {
@@ -115,6 +122,7 @@ export function PreAppBar() {
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
+    const open = useSelector(state => state.misc.spinner);
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -156,7 +164,11 @@ export function PreAppBar() {
     );
 
     return (
+
         <div className={classes.grow}>
+            <Backdrop className={classes.backdrop} open={open}>
+                <CircularProgress color="inherit"/>
+            </Backdrop>
             <AppBar position="static" style={{background: '#fefef9'}}>
                 <Toolbar>
                     <Grid item className={classes.logoDiv}>
