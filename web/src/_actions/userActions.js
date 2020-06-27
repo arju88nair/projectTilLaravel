@@ -16,7 +16,7 @@ function login(username, password) {
     return dispatch => {
         dispatch(request({ username }));
 
-        userService.login(username, password)s
+        userService.login(username, password)
             .then(
                 user => {
                     console.log(user)
