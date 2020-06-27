@@ -106,7 +106,7 @@ export function RegisterForm() {
         e.preventDefault();
         if (user.email && user.password) {
             dispatch(miscActions.openSpinner(true))
-            dispatch(userActions.login(user));
+            dispatch(userActions.register(user));
         }
     }
 

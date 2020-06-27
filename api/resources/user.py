@@ -33,7 +33,7 @@ class SignupApi(Resource):
             userId = user.id
             category = Category(name="Miscellaneous", added_by=userId)
             category.save()
-            return tokenCreation(user, body, "Successfully Signed Up",userId)
+            return tokenCreation(user, body, "Successfully Signed Up", userId)
         except FieldDoesNotExist as e:
             print(e)
             raise SchemaValidationError
@@ -143,7 +143,7 @@ class LogoutRefreshAPI(Resource):
             return InternalServerError
 
 
-def tokenCreation(user, body, message, userId):
+def  tokenCreation(user, body, message, userId):
     authorized = user.check_password(body.get('password'))
     if not authorized:
         raise UnauthorizedError

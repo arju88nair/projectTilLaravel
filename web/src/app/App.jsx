@@ -52,9 +52,9 @@ export function App() {
 
     return (
         <div>
-            <Backdrop className={classes.backdrop} open={open} onClick={handleBackClose}>
-                <CircularProgress color="inherit"/>
-            </Backdrop>
+            {/*<Backdrop className={classes.backdrop} open={open} onClick={handleBackClose}>*/}
+            {/*    <CircularProgress color="inherit"/>*/}
+            {/*</Backdrop>*/}
             <Snackbar open={alert.open} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity={alert.type}>
                     {alert.message}

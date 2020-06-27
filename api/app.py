@@ -11,10 +11,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-JWT_SECRET_KEY = '0BC2zAA09nfH%%URaXh#N1a&71'
-MONGODB_SETTINGS = {
-    'host': 'mongodb://localhost/til'
-}
+app.config.from_envvar('ENV_FILE_LOCATION')
 api = Api(app, errors=errors)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
