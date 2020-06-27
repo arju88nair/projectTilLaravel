@@ -16,7 +16,7 @@ function login(username, password) {
     return dispatch => {
         dispatch(request({ username }));
 
-        userService.login(username, password)
+        userService.login(username, password)s
             .then(
                 user => {
                     console.log(user)
@@ -24,8 +24,7 @@ function login(username, password) {
                     dispatch(alertActions.success('Login successful'));
                     localStorage.setItem('user', JSON.stringify(user));
                     history.push('/');
-                    dispatch(miscActions.closeSpinner(false))
-                },
+                 },
                 error => {
                     console.log(error)
                     dispatch(failure(error.toString()));

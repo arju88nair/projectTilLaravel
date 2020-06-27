@@ -150,7 +150,6 @@ export function RegisterForm() {
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <ThemeProvider theme={theme}>
                                 <TextField
                                     variant="outlined"
                                     required
@@ -159,13 +158,13 @@ export function RegisterForm() {
                                     label="Username"
                                     name="username"
                                     autoComplete="username"
+                                    // error={user.username === ""}
+                                    // helperText={user.username === "" ? 'Empty field!' : ' '}
                                     value={user.username}
                                     onChange={handleChange}
                                 />
-                            </ThemeProvider>
                         </Grid>
                         <Grid item xs={12}>
-                            <ThemeProvider theme={theme}>
                                 <TextField
                                     variant="outlined"
                                     required
@@ -178,10 +177,8 @@ export function RegisterForm() {
                                     value={user.email}
                                     type="email"
                                 />
-                            </ThemeProvider>
                         </Grid>
                         <Grid item xs={12}>
-                            <ThemeProvider theme={theme}>
                                 <TextField
                                     variant="outlined"
                                     required
@@ -195,11 +192,10 @@ export function RegisterForm() {
                                     inputProps={{minLength: 2}}
                                     color="default"
                                 />
-                            </ThemeProvider>
                         </Grid>
                         <Grid item xs={12}>
                             <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" color="default" />}
+                                control={<Checkbox value="allowExtraEmails" color="default" required />}
                                 label="I agree to the terms and conditions."
                             />
                         </Grid>
