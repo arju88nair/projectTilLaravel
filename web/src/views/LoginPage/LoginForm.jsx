@@ -90,7 +90,8 @@ export function LoginForm() {
         password: ''
     });
     const dispatch = useDispatch();
-
+    const alert = useSelector(state => state.alert);
+    const errorOpen = alert.open
     // reset login status
     useEffect(() => {
         dispatch(userActions.logout());
@@ -191,6 +192,12 @@ export function LoginForm() {
                                 label="Remember me"
                             />
                         </Grid>
+                        {errorOpen ? <Grid item xs={12}>
+                            <Typography variant="caption" display="block" gutterBottom
+                                        style={{color: 'red'}}>
+                                {alert.message}
+                            </Typography>
+                        </Grid> : null}
                     </Grid>
                     <Button
                         type="submit"
