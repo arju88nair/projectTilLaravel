@@ -61,8 +61,8 @@ export function Category() {
             <Grid container direction="row"
                   justify="flex-start"
                   alignItems="center" spacing={3}>
-                {['All mail', 'Trash', 'Spam','All mail', 'Trash', 'Spam','All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <Grid item xs={12} sm={6} lg={3} xl={2}>
+                {['All mail', 'Trash', 'Spam','All mails', 'Trashed', 'Spams','All mailed', 'Trashy', 'Spammed'].map((text, index) => (
+                    <Grid item xs={12} sm={6} lg={3} xl={2} key={text}>
                         <Card className={classes.root}>
                             <CardHeader
                                 avatar={
@@ -82,7 +82,7 @@ export function Category() {
                             <CardContent>
                                 <Typography variant="body2" color="textSecondary" component="p">
                                     This impressive paella is a perfect party dish and a fun meal to cook together with your
-                                    guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                                    guests. Add 1 cup of frozen peas along with the mussels, if you like.{text}
                                 </Typography>
                             </CardContent>
                             <CardActions disableSpacing>

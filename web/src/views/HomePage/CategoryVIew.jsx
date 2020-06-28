@@ -98,7 +98,7 @@ export function CategoryVIew() {
                 </Grid>
             </Grid>
             <Divider/>
-<Category/>
+            <Category/>
         </main>
 
     )

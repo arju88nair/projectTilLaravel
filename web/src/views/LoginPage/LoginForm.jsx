@@ -105,7 +105,8 @@ export function LoginForm() {
     function handleSubmit(e) {
         e.preventDefault();
         if (user.email && user.password) {
-            dispatch(miscActions.openSpinner(true))
+            dispatch(alertActions.clear());
+            dispatch(miscActions.openSpinner(true));
             dispatch(userActions.login(user));
         }
     }
@@ -188,7 +189,7 @@ export function LoginForm() {
                         <Grid item xs={12}>
 
                             <FormControlLabel
-                                control={<Checkbox value="remember" color="default"/>}
+                                control={<Checkbox value="allowExtraEmails" color="default" required />}
                                 label="Remember me"
                             />
                         </Grid>

@@ -8,8 +8,7 @@ import {HomePage} from '../views/HomePage';
 import {LandingPage} from '../views/LandingPage';
 import {LoginPage} from '../views/LoginPage';
 import {RegisterPage} from '../views/RegisterPage';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
+ import MuiAlert from '@material-ui/lab/Alert';
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({

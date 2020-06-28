@@ -33,8 +33,9 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Button from "@material-ui/core/Button";
+import {userActions} from "../../_actions";
 
 const drawerWidth = 240;
 
@@ -177,13 +178,13 @@ const useStyles = makeStyles((theme) => ({
 export function SideBar(props) {
     const {window} = props;
     const classes = useStyles();
-    const theme = useTheme();
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const dispatch = useDispatch();
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -194,7 +195,7 @@ export function SideBar(props) {
     };
 
     const handleMenuClose = () => {
-        setAnchorEl(null);
+        dispatch(userActions.logout());
         handleMobileMenuClose();
     };
 
@@ -214,7 +215,7 @@ export function SideBar(props) {
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
         </Menu>
     );
 
@@ -275,19 +276,19 @@ export function SideBar(props) {
             <Divider/>
             <List>
                 <ListItem button className={classes.listItem}>
-                    <ListItemIcon><DashboardIcon style={{color: "white"}}/> </ListItemIcon>
+                    <ListItemIcon><DashboardIcon style={{color: "white"}}/></ListItemIcon>
                     <ListItemText primary={"Boards"}/>
                 </ListItem>
                 <ListItem button className={classes.listItem}>
-                    <ListItemIcon><NotesIcon style={{color: "white"}}/> </ListItemIcon>
+                    <ListItemIcon><NotesIcon style={{color: "white"}}/></ListItemIcon>
                     <ListItemText primary={"Notes"}/>
                 </ListItem>
                 <ListItem button className={classes.listItem}>
-                    <ListItemIcon><ListAltIcon style={{color: "white"}}/> </ListItemIcon>
+                    <ListItemIcon><ListAltIcon style={{color: "white"}}/></ListItemIcon>
                     <ListItemText primary={"Tasks"}/>
                 </ListItem>
                 <ListItem button className={classes.listItem}>
-                    <ListItemIcon><DynamicFeedIcon style={{color: "white"}}/> </ListItemIcon>
+                    <ListItemIcon><DynamicFeedIcon style={{color: "white"}}/></ListItemIcon>
                     <ListItemText primary={"Feed"}/>
                 </ListItem>
 
@@ -314,7 +315,7 @@ export function SideBar(props) {
                   direction="row"
                   justify="center"
                   alignItems="center">
-                <ControlPointIcon button className={classes.navAdd}/>
+                <ControlPointIcon className={classes.navAdd}/>
             </Grid>
             <Grid item xs={12} container
                   direction="row"
@@ -334,6 +335,7 @@ export function SideBar(props) {
 
     const container = window !== undefined ? () => window().document.body : undefined;
     const user = useSelector(state => state.authentication.user);
+    console.log(user)
     return (
         <div className={classes.root}>
             <CssBaseline/>
@@ -391,15 +393,7 @@ export function SideBar(props) {
                             className={classes.button}
                             size="small"
                             onClick={handleProfileMenuOpen}
-                            startIcon={<IconButton
-                                edge="end"
-                                aria-label="account of current user"
-                                aria-haspopup="true"
-                                color="inherit"
-                                style={{color: "#333333"}}
-                            >
-                                <AccountCircle/>
-                            </IconButton>}
+                            startIcon={<AccountCircle/>}
                         >
                             {user.username}
                         </Button>

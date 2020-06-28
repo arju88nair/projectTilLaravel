@@ -1,5 +1,5 @@
 import {miscConstants} from '../_constants';
-const initialState = {spinner: false}
+const initialState = {spinner: false,boardModal:false}
 
 export function misc(state = initialState, action) {
     switch (action.type) {

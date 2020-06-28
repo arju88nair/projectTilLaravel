@@ -12,23 +12,23 @@ export const userActions = {
     delete: _delete
 };
 
-function login(username, password) {
+function login(user) {
     return dispatch => {
-        dispatch(request({ username }));
+        dispatch(request({ user }));
 
-        userService.login(username, password)
+        userService.login(user)
             .then(
                 user => {
                     console.log(user)
-                    dispatch(success());
                     dispatch(alertActions.success('Login successful'));
                     localStorage.setItem('user', JSON.stringify(user));
+                    dispatch(success(user));
                     history.push('/');
                  },
                 error => {
                     console.log(error)
                     dispatch(failure(error.toString()));
-                    dispatch(miscActions.F(false))
+                    dispatch(miscActions.closeSpinner(false))
                     dispatch(alertActions.error(error.toString()));
                 }
             );
@@ -53,9 +53,9 @@ function register(user) {
             .then(
                 user => {
                     console.log(user)
-                    dispatch(success());
                     dispatch(alertActions.success('Registration successful'));
                     localStorage.setItem('user', JSON.stringify(user));
+                    dispatch(success(user));
                     history.push('/');
                 },
                 error => {

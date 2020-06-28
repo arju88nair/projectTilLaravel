@@ -14,10 +14,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function HomePage() {
-    const users = useSelector(state => state.users);
-    const user = useSelector(state => state.authentication.user);
-    const dispatch = useDispatch();
-
     const classes = useStyles();
 
     return (
