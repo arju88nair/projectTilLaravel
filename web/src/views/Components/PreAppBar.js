@@ -18,7 +18,7 @@ import logo from "../../resources/images/main.png";
 import Button from "@material-ui/core/Button";
 import {NavLink} from 'react-router-dom'
 import {LoginPage} from "../LoginPage";
-import Link from "@material-ui/core/Link";
+import { Link } from 'react-router-dom';
 import Grid from "@material-ui/core/Grid";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -96,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
         alignContent: "center",
     },
     backdrop: {
-        zIndex: theme.zIndex.drawer + 1,
+        zIndex: theme.zIndex.drawer + 1000,
         color: '#fff',
     },
 }));
@@ -180,10 +180,10 @@ export function PreAppBar() {
                             <Button style={{fontWeight: "600"}}>
                                 Feed
                             </Button>
-                            <Button href="/register" style={{fontWeight: "600"}}>
+                            <Button  component={ Link } to="/register"  style={{fontWeight: "600"}}>
                                 Create an account
                             </Button>
-                            <Button href="/login" style={{fontWeight: "600"}}>
+                            <Button style={{fontWeight: "600"}}  component={ Link } to="/login" >
                                 Log In
                             </Button>
                         </div>
