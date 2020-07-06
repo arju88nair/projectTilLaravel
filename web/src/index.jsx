@@ -11,7 +11,7 @@ import ThemeProvider from "@material-ui/styles/ThemeProvider";
 const theme = createMuiTheme({
     typography: {
         fontFamily: [
-            'Merriweather',
+            'Roboto',
             '-apple-system',
             'BlinkMacSystemFont',
             '"Segoe UI"',

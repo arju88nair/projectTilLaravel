@@ -189,7 +189,7 @@ export function LoginForm() {
                         <Grid item xs={12}>
 
                             <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" color="default" required />}
+                                control={<Checkbox value="allowExtraEmails" color="default"  />}
                                 label="Remember me"
                             />
                         </Grid>

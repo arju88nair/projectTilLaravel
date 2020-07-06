@@ -14,7 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import {green} from "@material-ui/core/colors/green";
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
 import {homeActions} from "../../_actions/homeActions";
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
-            // border: '2px solid #000',
+        // border: '2px solid #000',
         boxShadow: theme.shadows[5],
         // padding: theme.spacing(2, 4, 3),
     },
@@ -39,10 +39,10 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
-        alignSelf:'right'
+        alignSelf: 'right'
     },
-    modalWindow:{
-        bottom:'35%'
+    modalWindow: {
+        bottom: '35%'
     }
 }));
 
@@ -66,13 +66,13 @@ const theme = createMuiTheme({
 
 
 const DialogTitle = withStyles(styles)((props) => {
-    const { children, classes, onClose, ...other } = props;
+    const {children, classes, onClose, ...other} = props;
     return (
         <MuiDialogTitle disableTypography className={classes.root} {...other}>
             <Typography variant="h6">{children}</Typography>
             {onClose ? (
                 <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-                    <CloseIcon />
+                    <CloseIcon/>
                 </IconButton>
             ) : null}
         </MuiDialogTitle>
@@ -96,16 +96,14 @@ const DialogActions = withStyles((theme) => ({
 export function CategoryModal() {
     const classes = useStyles();
     const modalOpen = useSelector(state => state.misc.boardModal);
-    console.log(modalOpen)
     const dispatch = useDispatch();
-    const [newBoard, setBoard] = useState({
-    });
+    const [newBoard, setBoard] = useState({});
 
     const handleClose = () => {
         dispatch(miscActions.closeCategoryModal(false));
     };
 
-    const handleAddBoard= (e) => {
+    const handleAddBoard = (e) => {
         e.preventDefault();
         dispatch(miscActions.openCategoryModal(false));
         dispatch(miscActions.openSpinner(true))
@@ -118,46 +116,45 @@ export function CategoryModal() {
 
     return (
         <div>
-            <Dialog  onClose={handleClose} aria-labelledby="customized-dialog-title" open={modalOpen} className={classes.modalWindow}>
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={modalOpen}
+                    className={classes.modalWindow}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    Add a new Board
+                    Add a shelf
                 </DialogTitle>
-                <form onSubmit={handleAddBoard}>
-
-            <DialogContent dividers>
+                <DialogContent dividers>
                     <Typography gutterBottom>
-                        A board helps you to classify and organise your items and entries
+                        Shelves help you to categorise your items
                     </Typography>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        name="name"
-                        label="Title"
-                        type="text"
-                        fullWidth
-                        required
-                        value={newBoard.title}
-                        onChange={handleChange}
-
-                    />
-                    <TextField
-                        id="outlined-textarea"
-                        label="Description"
-                        name="description"
-                        multiline
-                        // variant="outlined"
-                        fullWidth
-                        value={newBoard.description}
-                        onChange={handleChange}
-                    />
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="title"
+                                label="Title"
+                                name="title"
+                                onChange={handleChange}
+                                margin="normal"
+                                type="text"
+                            />
+                        </Grid> <Grid item xs={12}>
+                        <TextField
+                            id="Description"
+                            label="Description"
+                            multiline
+                            fullWidth
+                            rows={4}
+                            variant="outlined"
+                        />
+                    </Grid>
+                    </Grid>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus color="primary" type="submit">
+                    <Button autoFocus onClick={handleClose} color="primary">
                         Save changes
                     </Button>
                 </DialogActions>
-            </form>
             </Dialog>
         </div>
     );

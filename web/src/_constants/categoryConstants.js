@@ -1,0 +1,5 @@
+export const categoryConstants = {
+    ADD_REQUEST: 'ADD_CATEGORY',
+    ADD_SUCCESS: 'ADD_CATEGORY_SUCCESS',
+    ADD_FAILURE: 'ADD_CATEGORY_FAILURE',
+};
