@@ -18,6 +18,8 @@ import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
 import {homeActions} from "../../_actions/homeActions";
+import {Spinner} from "./Spinner";
+import {categoryActions} from "../../_actions/categoryActions";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -97,7 +99,7 @@ export function CategoryModal() {
     const classes = useStyles();
     const modalOpen = useSelector(state => state.misc.boardModal);
     const dispatch = useDispatch();
-    const [newBoard, setBoard] = useState({});
+    const [newBoard, setBoard] = useState({title: '', description: ''});
 
     const handleClose = () => {
         dispatch(miscActions.closeCategoryModal(false));
@@ -105,17 +107,19 @@ export function CategoryModal() {
 
     const handleAddBoard = (e) => {
         e.preventDefault();
-        dispatch(miscActions.openCategoryModal(false));
         dispatch(miscActions.openSpinner(true))
+        dispatch(categoryActions.add(true))
     }
 
     function handleChange(e) {
         const {name, value} = e.target;
         setBoard(newBoard => ({...newBoard, [event.target.name]: event.target.value}));
+        console.log(newBoard)
     }
 
     return (
         <div>
+            <Spinner/>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={modalOpen}
                     className={classes.modalWindow}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
@@ -142,16 +146,18 @@ export function CategoryModal() {
                         <TextField
                             id="Description"
                             label="Description"
+                            name="description"
                             multiline
                             fullWidth
                             rows={4}
                             variant="outlined"
+                            onChange={handleChange}
                         />
                     </Grid>
                     </Grid>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose} color="primary">
+                    <Button autoFocus onClick={handleAddBoard} color="primary">
                         Save changes
                     </Button>
                 </DialogActions>
