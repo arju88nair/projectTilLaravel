@@ -122,6 +122,7 @@ export function CategoryModal() {
             <Spinner/>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={modalOpen}
                     className={classes.modalWindow}>
+                <form onSubmit={handleAddBoard}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                     Add a shelf
                 </DialogTitle>
@@ -157,10 +158,11 @@ export function CategoryModal() {
                     </Grid>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleAddBoard} color="primary">
+                    <Button autoFocus type="submit" color="default">
                         Save changes
                     </Button>
                 </DialogActions>
+                </form>
             </Dialog>
         </div>
     );
