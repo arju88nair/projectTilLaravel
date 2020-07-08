@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
 export function Spinner() {
     const classes = useStyles();
     const open = useSelector(state => state.misc.spinner);
-    console.log(open)
 
     return (
         <Backdrop className={classes.backdrop} open={open}>

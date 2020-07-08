@@ -114,7 +114,6 @@ export function CategoryModal() {
     function handleChange(e) {
         const {name, value} = e.target;
         setBoard(newBoard => ({...newBoard, [event.target.name]: event.target.value}));
-        console.log(newBoard)
     }
 
     return (

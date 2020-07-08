@@ -8,14 +8,15 @@ export const categoryActions = {
 }
 
 function add(payload) {
+
     return dispatch => {
         dispatch(request({payload}));
-
         categoryService.add(payload)
             .then(
                 payload => {
-                    console.log(payload)
+                    console.log("sss")
                     dispatch(alertActions.success('Added successfully'));
+                    return false;
                     // dispatch(success(payload));
                 },
                 error => {

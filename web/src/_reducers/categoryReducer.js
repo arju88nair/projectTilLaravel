@@ -6,7 +6,7 @@ export function category(state = {}, action) {
     switch (action.type) {
         case categoryConstants.ADD_REQUEST:
             return {
-                added: true,
+                adding: true,
                 category: action.category
             };
         case categoryConstants.ADD_SUCCESS:

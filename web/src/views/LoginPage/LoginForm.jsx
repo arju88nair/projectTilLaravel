@@ -182,7 +182,7 @@ export function LoginForm() {
                                     autoComplete="current-password"
                                     value={user.password} onChange={handleChange}
                                     inputProps={{minLength: 2}}
-                                    color="inherit"
+                                    color="primary"
                                 />
                             </ThemeProvider>
                         </Grid>
@@ -202,6 +202,7 @@ export function LoginForm() {
                     </Grid>
                     <Button
                         type="submit"
+                        type="submit"
                         fullWidth
                         variant="contained"
                         className={classes.submit}
@@ -211,7 +212,7 @@ export function LoginForm() {
                     </Button>
                     <Grid container justify="center">
                         <Grid item>
-                            <Link to="/register" variant="body2" style={{textDecoration: 'none', color: 'inherit'}}>
+                            <Link to="/register" variant="body2" style={{textDecoration: 'none', color: 'black'}}>
                                 New here? Sign Up
                             </Link>
                         </Grid>
