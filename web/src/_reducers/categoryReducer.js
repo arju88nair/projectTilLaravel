@@ -16,6 +16,7 @@ export function category(state = {}, action) {
             };
         case categoryConstants.ADD_FAILURE:
             return {
+                ...state,
                 added: false,
             };
         default:

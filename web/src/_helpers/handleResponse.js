@@ -1,4 +1,5 @@
 import {history} from "./history";
+import {userService} from "../_services";
 
 export function handleResponse(response) {
     return response.text().then(text => {
@@ -6,7 +7,7 @@ export function handleResponse(response) {
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
-                logout();
+                userService.logout();
                 location.reload(true);
             }
 
@@ -17,9 +18,4 @@ export function handleResponse(response) {
         return data;
     });
 }
-function logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('user');
-    history.push('/login');
 
-}

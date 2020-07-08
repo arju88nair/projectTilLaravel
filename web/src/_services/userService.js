@@ -1,8 +1,9 @@
 import config from 'config';
-import {authHeader, handleResponse} from '../_helpers';
+import {authHeader, handleResponse, history} from '../_helpers';
 
 export const userService = {
     login,
+    logout,
     register,
     getAll,
     getById,
@@ -80,3 +81,9 @@ function _delete(id) {
     return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
 }
 
+function logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('user');
+    history.push('/login');
+
+}

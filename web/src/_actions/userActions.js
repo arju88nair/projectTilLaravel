@@ -22,6 +22,8 @@ function login(user) {
                     console.log(user)
                     dispatch(alertActions.success('Login successful'));
                     localStorage.setItem('user', JSON.stringify(user));
+                    dispatch(miscActions.closeSpinner(false))
+
                     dispatch(success(user));
                     history.push('/');
                  },

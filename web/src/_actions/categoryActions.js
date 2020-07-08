@@ -16,11 +16,11 @@ function add(payload) {
                 payload => {
                     console.log(payload)
                     dispatch(alertActions.success('Added successfully'));
-                    dispatch(success(payload));
+                    // dispatch(success(payload));
                 },
                 error => {
                     console.log(error)
-                    dispatch(failure(error.toString()));
+                    // dispatch(failure(error.toString()));
                     dispatch(miscActions.closeSpinner(false))
                     dispatch(alertActions.error(error.toString()));
                 }
