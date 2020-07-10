@@ -108,7 +108,7 @@ export function CategoryModal() {
     const handleAddBoard = (e) => {
         e.preventDefault();
         dispatch(miscActions.openSpinner(true))
-        dispatch(categoryActions.add(true))
+        dispatch(categoryActions.add(newBoard))
     }
 
     function handleChange(e) {

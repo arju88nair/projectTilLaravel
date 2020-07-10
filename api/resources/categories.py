@@ -47,7 +47,7 @@ class CategoriesApi(Resource):
         body = request.get_json()
 
         # validations
-        if 'name' not in body:
+        if 'title' not in body:
             raise SchemaValidationError
 
         try:

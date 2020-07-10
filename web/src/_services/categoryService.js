@@ -9,10 +9,12 @@ export const categoryService = {
 function add(payload) {
     const requestOptions = {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(payload)
-    };
+        dataType: "jsonp",
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
 
+    };
+console.log(requestOptions)
     return fetch(`${config.apiUrl}/categories`, requestOptions)
         .then(handleResponse)
         .then(category => {

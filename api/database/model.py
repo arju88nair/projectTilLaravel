@@ -7,7 +7,7 @@ from bson import json_util
 
 
 class Category(db.Document):
-    name = db.StringField(required=True)
+    title = db.StringField(required=True)
     symbol = db.StringField()
     description = db.StringField(default="")
     is_admin = db.BooleanField(default=False)
