@@ -56,7 +56,7 @@ class CategoriesApi(Resource):
             category = Category(**body, added_by=user)
             category.save()
             id = category.id
-            data = json.dumps({'id': str(id), 'message': "Successfully inserted"})
+            data = json.dumps({'id': str(id), 'message': "Successfully inserted", 'category': category})
             return Response(data, mimetype="application/json", status=200)
         except (FieldDoesNotExist, ValidationError):
             raise SchemaValidationError
