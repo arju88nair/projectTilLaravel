@@ -18,14 +18,6 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
-    card: {
-        maxWidth: "auto",
-        maxHeight: "auto",
-        minHeight: 300,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-    },
     cateContainer: {
         marginTop: '1%'
     },
@@ -45,6 +37,15 @@ const useStyles = makeStyles((theme) => ({
     },
     avatar: {
         backgroundColor: red[500],
+    },
+    card: {
+        width: 240,
+        minHeight: 320,
+        // maxHeight: 300,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+
     },
 
 }));
@@ -140,7 +141,7 @@ export function Category() {
 
                 {['All mail', 'Trash', 'Spam', 'All mails', 'Trashed', 'Spams', 'All mailed', 'Trashy', 'Spammed'].map((text, index) => (
                     <Grid item xs={12} sm={6} lg={3} xl={2} key={text}>
-                        <Card className={classes.root}>
+                        <Card className={classes.card}>
                             <CardHeader
                                 avatar={
                                     <Avatar aria-label="recipe" className={classes.avatar}>

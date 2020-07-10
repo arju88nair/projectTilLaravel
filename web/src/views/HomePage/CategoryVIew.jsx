@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
-        backgroundColor: '#fdf9f3',
+        backgroundColor: '#fcfcf6',
         padding: theme.spacing(3),
     },
     formControl: {

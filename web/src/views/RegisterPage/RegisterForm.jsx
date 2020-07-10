@@ -91,10 +91,10 @@ export function RegisterForm() {
     const dispatch = useDispatch();
     const alert = useSelector(state => state.alert);
     const errorOpen = alert.open
-    // reset login status
-    useEffect(() => {
-        dispatch(userActions.logout());
-    }, []);
+    // // reset login status
+    // useEffect(() => {
+    //     dispatch(userActions.logout());
+    // }, []);
 
     function handleChange(e) {
         const {name, value} = e.target;
