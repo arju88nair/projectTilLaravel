@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {SideBar}from '../Components/SideBar'
-import {CategoryVIew}from './CategoryVIew'
+import {CategoryView}from './CategoryView'
 import CssBaseline from "@material-ui/core/CssBaseline";
 import {makeStyles} from "@material-ui/core/styles";
 import {CategoryModal} from "../Components/CategoryModal";
@@ -21,7 +21,7 @@ function HomePage() {
             <CategoryModal/>
             <CssBaseline />
             <SideBar/>
-            <CategoryVIew/>
+            <CategoryView/>
         </div>
     );
 }

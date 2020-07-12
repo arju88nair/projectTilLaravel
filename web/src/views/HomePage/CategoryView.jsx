@@ -17,6 +17,7 @@ import Divider from "@material-ui/core/Divider";
 import {Category} from "./Categories";
 import {miscActions} from "../../_actions";
 import {useDispatch} from "react-redux";
+import {CategorySkeleton} from "../Components/CategorySkeleton";
 
 const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export function CategoryVIew() {
+export function CategoryView() {
     const classes = useStyles();
     const [age, setAge] = React.useState('');
     const handleChange = (event) => {
@@ -70,7 +71,6 @@ export function CategoryVIew() {
                         <Select
                             labelId="board-sort"
                             id="board-sort"
-                            value={age}
                             onChange={handleChange}
                             label="Recent Boards"
                         >
@@ -98,6 +98,7 @@ export function CategoryVIew() {
                 </Grid>
             </Grid>
             <Divider/>
+            {/*<CategorySkeleton/>*/}
             <Category/>
         </main>
 
