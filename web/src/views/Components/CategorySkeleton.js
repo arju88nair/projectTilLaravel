@@ -22,9 +22,8 @@ const useStyles = makeStyles((theme) => ({
     cateContainer: {
         marginTop: '1%'
     },
-    card: {
+    box: {
         width: 240,
-        minHeight: 320,
         // maxHeight: 300,
         display: 'flex',
         flexDirection: 'column',
@@ -148,45 +147,19 @@ export  function CategorySkeleton() {
     const classes = useStyles();
 
     return (
-        <div>
-        {/*<Box  width={210} marginRight={0.5} my={5} className={classes.box}>*/}
-        {/*    <Skeleton variant="rect" width={210} height={118} />*/}
+
+            <Grid item xs={12} sm={6} lg={3} xl={2}>
+                <Box  width={220} marginRight={1} my={5} className={classes.box}>
+                    <Skeleton variant="rect" width={210} height={118} />
 
 
-        {/*    <Box pt={0.5}>*/}
-        {/*        <Skeleton />*/}
-        {/*        <Skeleton width="60%" />*/}
-        {/*    </Box>*/}
-        {/*</Box>*/}
+                    <Box pt={0.5}>
+                        <Skeleton />
+                        <Skeleton width="60%" />
+                    </Box>
+                </Box>
+            </Grid>
 
 
-            <Card className={classes.card}>
-                <CardHeader
-                    avatar={
-                            <Skeleton animation="wave" variant="circle" width={40} height={40} />
-
-                    }
-                    />
-
-
-                            <Skeleton animation="wave" height={10} width="80%" style={{ marginBottom: 6 }} />
-
-
-                    <Skeleton animation="wave" height={10} width="40%" />
-
-
-                    <Skeleton animation="wave" variant="rect" className={classes.media} />
-
-
-                <CardContent>
-
-                        <React.Fragment>
-                            <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
-                            <Skeleton animation="wave" height={10} width="80%" />
-                        </React.Fragment>
-
-                </CardContent>
-            </Card>
-        </div>
     );
 }

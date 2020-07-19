@@ -22,7 +22,6 @@ export function categories(state = {}, action) {
                 loading: true,
             };
         case categoryConstants.GET_SUCCESS:
-            console.log(action)
 
             return {
                 loading: false,
@@ -31,7 +30,7 @@ export function categories(state = {}, action) {
         case categoryConstants.GET_FAILURE:
             return {
                 ...state,
-                added: false,
+                loading: false,
                 error: action.error
 
             };

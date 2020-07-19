@@ -21,10 +21,14 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import {CategorySkeleton} from "../Components/CategorySkeleton";
 import {useDispatch, useSelector} from "react-redux";
 import {categoryActions} from "../../_actions/categoryActions";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
     cateContainer: {
-        marginTop: '1%'
+        marginTop: '1%',
+        // display: 'flex',
+        // verticalAlign: 'middle',
+        // height:'100%'
     },
     media: {
         height: 0,
@@ -55,13 +59,122 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+function ErrorRefresh() {
+    const dispatch = useDispatch();
+
+    const handleErrorRefresh = (event) => {
+        dispatch(categoryActions.get());
+    };
+    return (
+        <Grid container
+              direction="column"
+              justify="center"
+              alignItems="center" xs={12}>
+            <Typography gutterBottom variant="body2">
+                Something went wrong.Please Try again
+            </Typography>
+            <Button onClick={handleErrorRefresh}>Retry</Button>
+        </Grid>
+    )
+}
+
+function CategoryCards()
+{
+    {['All mail', 'Trash', 'Spam', 'All mails', 'Trashed', 'Spams', 'All mailed', 'Trashy', 'Spammed'].map((text, index) => (
+        <Grid item xs={12} sm={6} lg={3} xl={2} key={text}>
+            <Card className={classes.card}>
+                <CardHeader
+                    avatar={
+                        <Avatar aria-label="recipe" className={classes.avatar}>
+                            R
+                        </Avatar>
+                    }
+                    action={
+                        <IconButton aria-label="settings">
+                            <MoreVertIcon/>
+                        </IconButton>
+                    }
+                    title="Shrimp and Chorizo Paella"
+                    subheader="September 14, 2016"
+                />
+
+                <CardContent>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        This impressive paella is a perfect party dish and a fun meal to cook together with
+                        your
+                        guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                    </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                    <IconButton aria-label="add to favorites">
+                        <FavoriteIcon/>
+                    </IconButton>
+                    <IconButton aria-label="share">
+                        <ShareIcon/>
+                    </IconButton>
+                    <IconButton
+                        className={clsx(classes.expand, {
+                            [classes.expandOpen]: expanded,
+                        })}
+                        onClick={handleExpandClick}
+                        aria-expanded={expanded}
+                        aria-label="show more"
+                    >
+                        <ExpandMoreIcon/>
+                    </IconButton>
+                </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <CardContent>
+                        <Typography paragraph>Method:</Typography>
+                        <Typography paragraph>
+                            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside
+                            for 10
+
+                            minutes.
+                        </Typography>
+                        <Typography paragraph>
+                            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over
+                            medium-high
+                            heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until
+                            lightly
+                            browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving
+                            chicken
+                            and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt
+                            and
+                            pepper, and cook, stirring often until thickened and fragrant, about 10 minutes.
+                            Add
+                            saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+                        </Typography>
+                        <Typography paragraph>
+                            Add rice and stir very gently to distribute. Top with artichokes and peppers,
+                            and
+                            cook
+                            without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce
+                            heat to
+                            medium-low, add reserved shrimp and mussels, tucking them down into the rice,
+                            and
+                            cook
+                            again without stirring, until mussels have opened and rice is just tender, 5 to
+                            7
+                            minutes more. (Discard any mussels that don’t open.)
+                        </Typography>
+                        <Typography>
+                            Set aside off of the heat to let rest for 10 minutes, and then serve.
+                        </Typography>
+                    </CardContent>
+                </Collapse>
+            </Card>
+        </Grid>
+    ))}
+}
+
 export function Category() {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
-    const categories = useSelector(state => state.categories);
+    const categoryState = useSelector(state => state.categories);
     const dispatch = useDispatch();
-console.log(categories)
-console.log("Blah")
+    console.log(categoryState)
+    console.log("Blah")
     useEffect(() => {
         dispatch(categoryActions.get());
     }, []);
@@ -73,111 +186,16 @@ console.log("Blah")
     return (
         <div className={classes.cateContainer}>
 
-            {categories.loading && <em>Loading categories...</em>}
-            {categories.error && <span className="text-danger">ERROR: {categories.error}</span>}
-            {categories.items &&
-            <ul>
-                <h1>sds</h1>
-                )}
-            </ul>
-            }
+
             <Typography style={{marginBottom: '1%'}} variant="h6" gutterBottom>Your Boards</Typography>
 
-            {categories.loading && <em>Loading categories...</em>}
             <Grid container direction="row"
                   justify="flex-start"
                   alignItems="center" spacing={3}>
+                {categoryState.loading && Array(6).fill(<CategorySkeleton/>)}
+                {categoryState.error && <ErrorRefresh/>}
+                {categoryState.categories && <CategoryCards/>}
 
-                <Grid item xs={12} sm={6} lg={3} xl={2}>
-                  <CategorySkeleton/>
-                </Grid>
-
-
-                {['All mail', 'Trash', 'Spam', 'All mails', 'Trashed', 'Spams', 'All mailed', 'Trashy', 'Spammed'].map((text, index) => (
-                    <Grid item xs={12} sm={6} lg={3} xl={2} key={text}>
-                        <Card className={classes.card}>
-                            <CardHeader
-                                avatar={
-                                    <Avatar aria-label="recipe" className={classes.avatar}>
-                                        R
-                                    </Avatar>
-                                }
-                                action={
-                                    <IconButton aria-label="settings">
-                                        <MoreVertIcon/>
-                                    </IconButton>
-                                }
-                                title="Shrimp and Chorizo Paella"
-                                subheader="September 14, 2016"
-                            />
-
-                            <CardContent>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    This impressive paella is a perfect party dish and a fun meal to cook together with
-                                    your
-                                    guests. Add 1 cup of frozen peas along with the mussels, if you like.
-                                </Typography>
-                            </CardContent>
-                            <CardActions disableSpacing>
-                                <IconButton aria-label="add to favorites">
-                                    <FavoriteIcon/>
-                                </IconButton>
-                                <IconButton aria-label="share">
-                                    <ShareIcon/>
-                                </IconButton>
-                                <IconButton
-                                    className={clsx(classes.expand, {
-                                        [classes.expandOpen]: expanded,
-                                    })}
-                                    onClick={handleExpandClick}
-                                    aria-expanded={expanded}
-                                    aria-label="show more"
-                                >
-                                    <ExpandMoreIcon/>
-                                </IconButton>
-                            </CardActions>
-                            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                                <CardContent>
-                                    <Typography paragraph>Method:</Typography>
-                                    <Typography paragraph>
-                                        Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside
-                                        for 10
-                                        minutes.
-                                    </Typography>
-                                    <Typography paragraph>
-                                        Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over
-                                        medium-high
-                                        heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until
-                                        lightly
-                                        browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving
-                                        chicken
-                                        and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt
-                                        and
-                                        pepper, and cook, stirring often until thickened and fragrant, about 10 minutes.
-                                        Add
-                                        saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-                                    </Typography>
-                                    <Typography paragraph>
-                                        Add rice and stir very gently to distribute. Top with artichokes and peppers,
-                                        and
-                                        cook
-                                        without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce
-                                        heat to
-                                        medium-low, add reserved shrimp and mussels, tucking them down into the rice,
-                                        and
-                                        cook
-                                        again without stirring, until mussels have opened and rice is just tender, 5 to
-                                        7
-                                        minutes more. (Discard any mussels that don’t open.)
-                                    </Typography>
-                                    <Typography>
-                                        Set aside off of the heat to let rest for 10 minutes, and then serve.
-                                    </Typography>
-                                </CardContent>
-                            </Collapse>
-                        </Card>
-                    </Grid>
-                ))}
             </Grid>
         </div>
     );

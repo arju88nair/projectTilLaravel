@@ -21,7 +21,7 @@ function add(payload) {
                 },
                 error => {
                     console.log(error)
-                    // dispatch(failure(error.toString()));
+                    dispatch(failure(error.toString()));
                     dispatch(miscActions.closeSpinner(false))
                     dispatch(alertActions.error(error.toString()));
                 }
@@ -56,12 +56,11 @@ function get(payload) {
                 },
                 error => {
                     console.log(error)
-                    // dispatch(failure(error.toString()));
+                    dispatch(failure(error.toString()));
                     dispatch(miscActions.closeSpinner(false))
                     dispatch(alertActions.error(error.toString()));
                 }
             );
-
     };
 
     function request(payload) {
@@ -73,6 +72,8 @@ function get(payload) {
     }
 
     function failure(error) {
+        console.log(error)
+
         return {type: categoryConstants.GET_FAILURE, error}
     }
 }
