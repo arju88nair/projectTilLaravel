@@ -18,7 +18,6 @@ function add(payload) {
     return fetch(`${config.apiUrl}/categories`, requestOptions)
         .then(handleResponse)
         .then(category => {
-            console.log(category)
             return category;
         });
 }

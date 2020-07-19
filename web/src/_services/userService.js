@@ -56,7 +56,6 @@ function register(user) {
         body: JSON.stringify(user),
 
     };
-    console.log(config.apiUrl)
 
     return fetch(`${config.apiUrl}/auth/signup`, requestOptions).then(handleResponse);
 }

@@ -10,7 +10,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import navbar from "../../resources/images/navbar.png";
+import navbar from "../../resources/images/main.png";
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -120,11 +120,12 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'white'
     },
     bottomToolbar: {
-        backgroundColor: '#333333',
+        backgroundColor: '#fff',
         ...theme.mixins.toolbar,
         bottom: 0,
         position: 'absolute',
-        width: "100%"
+        width: "100%",
+        borderTop:'thin solid grey'
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -134,29 +135,29 @@ const useStyles = makeStyles((theme) => ({
     },
     // necessary for content to be below app bar
     toolbar: {
-        backgroundColor: '#333333',
+        backgroundColor: '#white',
         ...theme.mixins.toolbar,
         minHeight: '90px'
     }, drawerPaper: {
         width: drawerWidth,
-        backgroundColor: '#232323'
+        backgroundColor: '#white'
     },
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
     },
     listItem: {
-        color: 'white',
+        color: 'black',
         fontWeight: 'bold',
         height: 55
     },
     recentListItem: {
-        color: 'white',
+        color: 'black',
         fontWeight: 'bold',
         height: 50
     },
     navAdd: {
-        color: 'white',
+        color: 'black',
         fontWeight: 'bold',
         height: 45,
         width: 45,
@@ -164,7 +165,7 @@ const useStyles = makeStyles((theme) => ({
         alignSelf: "center"
     },
     dividerColor: {
-        backgroundColor: 'white',
+        backgroundColor: 'black',
         width: '80%',
         alignSelf: "center"
     },
@@ -276,19 +277,19 @@ export function SideBar(props) {
             <Divider/>
             <List>
                 <ListItem button className={classes.listItem}>
-                    <ListItemIcon><DashboardIcon style={{color: "white"}}/></ListItemIcon>
+                    <ListItemIcon><DashboardIcon style={{color: "black"}}/></ListItemIcon>
                     <ListItemText primary={"Boards"}/>
                 </ListItem>
                 <ListItem button className={classes.listItem}>
-                    <ListItemIcon><NotesIcon style={{color: "white"}}/></ListItemIcon>
+                    <ListItemIcon><NotesIcon style={{color: "black"}}/></ListItemIcon>
                     <ListItemText primary={"Notes"}/>
                 </ListItem>
                 <ListItem button className={classes.listItem}>
-                    <ListItemIcon><ListAltIcon style={{color: "white"}}/></ListItemIcon>
+                    <ListItemIcon><ListAltIcon style={{color: "black"}}/></ListItemIcon>
                     <ListItemText primary={"Tasks"}/>
                 </ListItem>
                 <ListItem button className={classes.listItem}>
-                    <ListItemIcon><DynamicFeedIcon style={{color: "white"}}/></ListItemIcon>
+                    <ListItemIcon><DynamicFeedIcon style={{color: "black"}}/></ListItemIcon>
                     <ListItemText primary={"Feed"}/>
                 </ListItem>
 
@@ -300,7 +301,7 @@ export function SideBar(props) {
                 <Divider classes={{root: classes.dividerColor}}/>
             </Grid>
             <Box m={1}>
-                <Typography variant="h6" component="h6" style={{color: "white", paddingTop: '4%', marginLeft: '2%'}}>
+                <Typography variant="h6" component="h6" style={{color: "black", paddingTop: '4%', marginLeft: '2%'}}>
                     Recent Notes
                 </Typography>
                 <List>
@@ -327,15 +328,14 @@ export function SideBar(props) {
                   direction="row"
                   justify="center"
                   alignItems="center" className={classes.bottomToolbar}>
-                <FacebookIcon style={{color: "white"}}/>
-                <TwitterIcon style={{color: "white"}}/>
+                <FacebookIcon style={{color: "black"}}/>
+                <TwitterIcon style={{color: "black"}}/>
             </Grid>
         </div>
     );
 
     const container = window !== undefined ? () => window().document.body : undefined;
     const user = useSelector(state => state.authentication.user);
-    console.log(user)
     return (
         <div className={classes.root}>
             <CssBaseline/>
