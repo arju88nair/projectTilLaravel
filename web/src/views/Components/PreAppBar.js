@@ -9,7 +9,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import logo from "../../resources/images/main.png";
 import Button from "@material-ui/core/Button";
 import {NavLink} from 'react-router-dom'
-import { Link } from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import Grid from "@material-ui/core/Grid";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -96,7 +96,8 @@ export function PreAppBar() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+    const location = useLocation();
+    console.log(location)
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -148,11 +149,49 @@ export function PreAppBar() {
             <MenuItem style={{background: '#fefef9'}}>
                 <NavLink to="/register" style={{textDecoration: 'none', color: 'inherit',}}>Create an account </NavLink>
             </MenuItem>
-            <MenuItem style={{background: '#fefef9'}}>
-                <NavLink to="/login" style={{textDecoration: 'none', color: 'inherit',}}>Log In </NavLink>
+            <MenuItem style={{border: "4px solid #457FCA"}}>
+                <NavLink to="/login" style={{textDecoration: 'none', color: '#1488cc'}}>Log In </NavLink>
             </MenuItem>
         </Menu>
     );
+
+    const renderButtons = () => {
+        switch (location.pathname) {
+
+            case "/login":
+                return <Button
+                    variant="contained"
+                    style={{
+                        "backgroundImage": "linear-gradient(to right, #1488cc, #0076cb, #0062c7, #004cbf, #2b32b2)",
+                        color: 'white', fontWeight: "600"
+                    }}
+                    component={Link} to="/register">
+                    Get Started
+                </Button>;
+            case "/register":
+                return <Button
+                    variant="contained"
+                    style={{
+                        "backgroundImage": "linear-gradient(to right, #1488cc, #0076cb, #0062c7, #004cbf, #2b32b2)",
+                        color: 'white', fontWeight: "600"
+                    }}
+                    component={Link} to="/login">
+                    Log In
+                </Button>;
+            case "/landing":
+                return <Button
+                    variant="contained"
+                    style={{
+                        "backgroundImage": "linear-gradient(to right, #1488cc, #0076cb, #0062c7, #004cbf, #2b32b2)",
+                        color: 'white', fontWeight: "600"
+                    }}
+                    component={Link} to="/register">
+                    Get Started
+                </Button>;
+
+
+        }
+    }
 
     return (
 
@@ -168,15 +207,16 @@ export function PreAppBar() {
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
                         <div>
-                            <Button style={{fontWeight: "600"}}>
+                            <Button style={{fontWeight: "600"}} component={Link} to="/landing">
                                 Feed
                             </Button>
-                            <Button  component={ Link } to="/register"  style={{fontWeight: "600"}}>
-                                Create an account
+                            <Button style={{fontWeight: "600"}} component={Link} to="/landing">
+                                Blog
                             </Button>
-                            <Button style={{fontWeight: "600"}}  component={ Link } to="/login" >
-                                Log In
-                            </Button>
+
+                            {renderButtons()}
+
+
                         </div>
                     </div>
                     <div className={classes.sectionMobile}>
