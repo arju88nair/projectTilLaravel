@@ -10,7 +10,7 @@ import {LoginPage} from '../views/LoginPage';
 import {RegisterPage} from '../views/RegisterPage';
  import MuiAlert from '@material-ui/lab/Alert';
 import {makeStyles} from "@material-ui/core/styles";
-
+import '../resources/css/App.css';
 const useStyles = makeStyles((theme) => ({
     root:{}
 

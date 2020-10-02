@@ -278,7 +278,8 @@ export function SideBar(props) {
             <List>
                 <ListItem button className={classes.listItem}>
                     <ListItemIcon><DashboardIcon style={{color: "black"}}/></ListItemIcon>
-                    <ListItemText primary={"Boards"}/>
+                    <ListItemText primary={"Boardstrial" +
+                    ""}/>
                 </ListItem>
                 <ListItem button className={classes.listItem}>
                     <ListItemIcon><NotesIcon style={{color: "black"}}/></ListItemIcon>
