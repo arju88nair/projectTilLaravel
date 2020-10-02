@@ -46,7 +46,7 @@ module.exports = {
     externals: {
         // global app config object
         config: JSON.stringify({
-            apiUrl: 'https://ptil.thenair.me/api'
+            apiUrl: 'http://ptil.thenair.me/api'
         })
     }
 }
