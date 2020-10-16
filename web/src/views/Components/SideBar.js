@@ -195,9 +195,12 @@ export function SideBar(props) {
         setMobileMoreAnchorEl(null);
     };
 
-    const handleMenuClose = () => {
+    const handleLogout = () => {
         dispatch(userActions.logout());
         handleMobileMenuClose();
+    };
+ const handleMenuClose = () => {
+     setAnchorEl(null);
     };
 
     const handleMobileMenuOpen = (event) => {
@@ -216,7 +219,7 @@ export function SideBar(props) {
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+            <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
     );
 
