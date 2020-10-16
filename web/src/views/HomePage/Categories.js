@@ -16,8 +16,6 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Skeleton from "@material-ui/lab/Skeleton";
 import {CategorySkeleton} from "../Components/CategorySkeleton";
 import {useDispatch, useSelector} from "react-redux";
 import {categoryActions} from "../../_actions/categoryActions";
