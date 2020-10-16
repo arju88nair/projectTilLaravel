@@ -41,13 +41,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7771a31a-3615-4bde-ae01-1696cda3f989" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/env.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.test" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/til.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/til.py" beforeDir="false" afterPath="$PROJECT_DIR$/til.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/fontawesome-svg-core/index.es.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/fontawesome-svg-core/index.es.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/fontawesome-svg-core/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/fontawesome-svg-core/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/fontawesome-svg-core/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/fontawesome-svg-core/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faBacteria.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faBacteria.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faBacterium.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faBacterium.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faBoxTissue.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faBoxTissue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faFaucet.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faFaucet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHandHoldingMedical.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHandHoldingMedical.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHandSparkles.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHandSparkles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHandsWash.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHandsWash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHandshakeAltSlash.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHandshakeAltSlash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHandshakeSlash.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHandshakeSlash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHeadSideCough.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHeadSideCough.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHeadSideCoughSlash.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHeadSideCoughSlash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHeadSideMask.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHeadSideMask.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHeadSideVirus.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHeadSideVirus.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHouseUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faHouseUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faLaptopHouse.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faLaptopHouse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faLungsVirus.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faLungsVirus.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faPeopleArrows.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faPeopleArrows.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faPlaneSlash.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faPlaneSlash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faPumpMedical.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faPumpMedical.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faPumpSoap.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faPumpSoap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faShieldVirus.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faShieldVirus.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faSink.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faSink.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faSoap.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faSoap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faStopwatch20.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faStopwatch20.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faStoreAltSlash.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faStoreAltSlash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faStoreSlash.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faStoreSlash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faToiletPaperSlash.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faToiletPaperSlash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faTrailer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faTrailer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faUsersSlash.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faUsersSlash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faVirus.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faVirus.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faVirusSlash.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faVirusSlash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faViruses.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/faViruses.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/index.es.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/index.es.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/@fortawesome/free-solid-svg-icons/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/file-loader/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/file-loader/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/file-loader/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/file-loader/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/file-loader/dist/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/file-loader/dist/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/file-loader/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/file-loader/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +141,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="670" y="333" width="559" height="403" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1599406888602">

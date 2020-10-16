@@ -6,9 +6,9 @@ from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from resources.routes import initialize_routes
 from database.model import RevokedTokenModel
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app)
 
 # app.config.from_envvar('ENV_FILE_LOCATION')
 # app.config['JWT_SECRET_KEY'] = environ.get('JWT_SECRET_KEY')
@@ -31,8 +31,8 @@ app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 app.config['MONGODB_SETTINGS'] = {
     'host': 'mongodb://localhost/til'
 }
+app.config['CORS_HEADERS'] = 'Content-Type'
 
-print(app.config)
 initialize_db(app)
 initialize_routes(api)
 if __name__ == "__main__":
