@@ -14,6 +14,7 @@ import Grid from "@material-ui/core/Grid";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {useSelector} from "react-redux";
+import {COLORS} from '../../_helpers/';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -90,6 +91,13 @@ const useStyles = makeStyles((theme) => ({
         zIndex: theme.zIndex.drawer + 1000,
         color: '#fff',
     },
+    navBar:{
+        background: 'var(--color-topBar)',
+    },
+    navBarText:{
+        textDecoration: 'none',
+        color: 'var(--color-text)'
+    },
 }));
 
 export function PreAppBar() {
@@ -97,7 +105,6 @@ export function PreAppBar() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const location = useLocation();
-    console.log(location)
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -144,10 +151,10 @@ export function PreAppBar() {
             onClose={handleMobileMenuClose}
         >
             <MenuItem style={{background: '#fefef9'}}>
-                <NavLink to="/login" style={{textDecoration: 'none', color: 'inherit',}}>Feed </NavLink>
+                <NavLink to="/login"  className={classes.navBarText}>Feed </NavLink>
             </MenuItem>
             <MenuItem style={{background: '#fefef9'}}>
-                <NavLink to="/register" style={{textDecoration: 'none', color: 'inherit',}}>Create an account </NavLink>
+                <NavLink to="/register" className={classes.navBarText}>Create an account </NavLink>
             </MenuItem>
             <MenuItem style={{border: "4px solid #457FCA"}}>
                 <NavLink to="/login" style={{textDecoration: 'none', color: '#1488cc'}}>Log In </NavLink>
@@ -199,7 +206,7 @@ export function PreAppBar() {
             <Backdrop className={classes.backdrop} open={open}>
                 <CircularProgress color="inherit"/>
             </Backdrop>
-            <AppBar position="static" style={{background: '#fefef9'}}>
+            <AppBar position="static" className={classes.navBar} >
                 <Toolbar>
                     <Grid item className={classes.logoDiv}>
                         <img src={logo} alt="logo" className={classes.logo}/>
@@ -207,10 +214,10 @@ export function PreAppBar() {
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
                         <div>
-                            <Button style={{fontWeight: "600"}} component={Link} to="/landing">
+                            <Button className={classes.navBarText} style={{fontWeight: "600"}} component={Link} to="/landing">
                                 Feed
                             </Button>
-                            <Button style={{fontWeight: "600"}} component={Link} to="/landing">
+                            <Button className={classes.navBarText} style={{fontWeight: "600"}} component={Link} to="/landing">
                                 Blog
                             </Button>
 

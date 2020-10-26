@@ -1,5 +1,5 @@
 :root {
     --color-surface: white;
-    --color-solid: black;
-    --color-primary: teal;
+    --color-topBar: #2b3038;
+    --color-text: white;
 }
