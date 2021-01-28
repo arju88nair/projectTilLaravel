@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import {Divider} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -14,6 +15,8 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
+        color:"black",
+        fontWeight:"bold"
     },
     appBar: {
         background: 'var(--color-topBar)',
@@ -29,7 +32,11 @@ export function LandingAppBar() {
                     <Typography variant="h6" className={classes.title}>
                         Shelved
                     </Typography>
-                    <Button color="inherit">Login</Button>
+                    <Button >How it works</Button>
+                    <Button >Resources</Button>
+                    <Divider orientation="vertical" flexItem />
+                    <Button>Sign Up</Button>
+                    <Button >Login</Button>
                 </Toolbar>
             </AppBar>
         </div>

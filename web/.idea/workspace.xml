@@ -3,13 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="07bcdafe-46be-49a6-8ed4-ab8f8bce9bc6" name="Default Changelist" comment="Hero Banner">
       <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/LandingPage/AppBar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../webOld/src/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/LandingPage/LandingPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LandingPage/LandingPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/css/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/css/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/LandingPage/AppBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LandingPage/AppBar.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +87,7 @@
       <workItem from="1611683647505" duration="796000" />
       <workItem from="1611774087693" duration="1343000" />
       <workItem from="1611775477657" duration="322000" />
+      <workItem from="1611852328803" duration="436000" />
     </task>
     <task id="LOCAL-00001" summary="Clean slate">
       <created>1611600888932</created>
