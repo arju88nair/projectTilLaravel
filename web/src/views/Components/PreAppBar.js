@@ -149,7 +149,7 @@ export function PreAppBar() {
                             </Button>
                             <Button variant="contained" className={classes.navBarText}
                                     style={{
-                                        backgroundColor:"black",
+                                        background: 'var(--color-button)',
                                         color: 'white', fontWeight: "600"
                                     }}
                                     component={Link} to="/register">
