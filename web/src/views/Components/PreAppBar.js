@@ -93,6 +93,7 @@ const useStyles = makeStyles((theme) => ({
     },
     navBar:{
         background: 'var(--color-topBar)',
+        alignContent:"center"
     },
     navBarText:{
         textDecoration: 'none',
@@ -151,14 +152,17 @@ export function PreAppBar() {
             onClose={handleMobileMenuClose}
         >
             <MenuItem style={{background: '#fefef9'}}>
-                <NavLink to="/login"  className={classes.navBarText}>Feed </NavLink>
+                <NavLink to="/landing"  className={classes.navBarText}>Feed </NavLink>
             </MenuItem>
             <MenuItem style={{background: '#fefef9'}}>
-                <NavLink to="/register" className={classes.navBarText}>Create an account </NavLink>
+                <NavLink to="/landing" className={classes.navBarText}>Blog </NavLink>
             </MenuItem>
-            <MenuItem style={{border: "4px solid #457FCA"}}>
-                <NavLink to="/login" style={{textDecoration: 'none', color: '#1488cc'}}>Log In </NavLink>
+            <MenuItem style={{background: '#fefef9'}}>
+                <NavLink to="/register" className={classes.navBarText}>Get Started </NavLink>
             </MenuItem>
+            {/*<MenuItem style={{border: "4px solid #457FCA"}}>*/}
+            {/*    <NavLink to="/login" style={{textDecoration: 'none', color: '#1488cc'}}>Log In </NavLink>*/}
+            {/*</MenuItem>*/}
         </Menu>
     );
 
@@ -173,7 +177,7 @@ export function PreAppBar() {
                         color: 'white', fontWeight: "600"
                     }}
                     component={Link} to="/register">
-                    Get Started
+                    Sign Up
                 </Button>;
             case "/register":
                 return <Button
@@ -193,7 +197,7 @@ export function PreAppBar() {
                         color: 'white', fontWeight: "600"
                     }}
                     component={Link} to="/register">
-                    Get Started
+                    Get started
                 </Button>;
 
 
@@ -208,16 +212,16 @@ export function PreAppBar() {
             </Backdrop>
             <AppBar position="static" className={classes.navBar} >
                 <Toolbar>
-                    <Grid item className={classes.logoDiv}>
-                        <img src={logo} alt="logo" className={classes.logo}/>
+                    <Grid item className={classes.logoDiv} component={Link} to="/landing">
+                        <img src={logo} alt="logo" className={classes.logo} />
                     </Grid>
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
                         <div>
-                            <Button className={classes.navBarText} style={{fontWeight: "600"}} component={Link} to="/landing">
+                            <Button className={classes.navBarText} style={{fontWeight: "600",backgroundColor: 'transparent'}} component={Link} to="/landing">
                                 Feed
                             </Button>
-                            <Button className={classes.navBarText} style={{fontWeight: "600"}} component={Link} to="/landing">
+                            <Button className={classes.navBarText} style={{fontWeight: "600",backgroundColor: 'transparent'}} component={Link} to="/landing">
                                 Blog
                             </Button>
 
