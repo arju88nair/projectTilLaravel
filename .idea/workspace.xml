@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="50b4c61a-d793-4e03-bf66-a9b538ec1351" name="Default Changelist" comment="Board CMD and migrated" />
+    <list default="true" id="eefae304-4a06-4992-8067-86c08d333b8d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/jetstream.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/jetstream.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -24,11 +25,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/app/Models/User.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/routes/api.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/routes/web.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -150,32 +146,17 @@
       <path value="$PROJECT_DIR$/vendor/graham-campbell/result-type" />
     </include_path>
   </component>
-  <component name="ProjectId" id="1pfIQsg9ITQopfFK04Lo1mliy4y" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1rRMWHYJqqhpZmO002lYENLgd1u" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -186,162 +167,16 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="50b4c61a-d793-4e03-bf66-a9b538ec1351" name="Default Changelist" comment="" />
-      <created>1615389914519</created>
+      <changelist id="eefae304-4a06-4992-8067-86c08d333b8d" name="Default Changelist" comment="" />
+      <created>1618934481745</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1615389914519</updated>
-      <workItem from="1615389921655" duration="6509000" />
-      <workItem from="1615567710803" duration="19000" />
-      <workItem from="1615567733050" duration="1419000" />
-      <workItem from="1615642758365" duration="7802000" />
-      <workItem from="1615703084834" duration="4535000" />
-      <workItem from="1615737694414" duration="474000" />
-      <workItem from="1615739636047" duration="275000" />
-      <workItem from="1615741986318" duration="145000" />
-      <workItem from="1615742144325" duration="193000" />
-      <workItem from="1615742355694" duration="913000" />
-      <workItem from="1615743284101" duration="363000" />
-      <workItem from="1615832792724" duration="5184000" />
-      <workItem from="1616163392473" duration="4997000" />
-      <workItem from="1618588459616" duration="138000" />
-      <workItem from="1618588625299" duration="653000" />
-      <workItem from="1618842147494" duration="608000" />
-      <workItem from="1618842828062" duration="1649000" />
+      <updated>1618934481745</updated>
+      <workItem from="1618934489690" duration="128000" />
     </task>
-    <task id="LOCAL-00001" summary="Switching to Laravel because &quot;Fuck it&quot;">
-      <created>1615404436125</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1615404436125</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Readme">
-      <created>1615404596812</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1615404596812</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Jenssengers successful installation">
-      <created>1615479454900</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1615479454900</updated>
-    </task>
-    <task id="LOCAL-00004" summary="SQL shift">
-      <created>1615567879033</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1615567879033</updated>
-    </task>
-    <task id="LOCAL-00005" summary="PGSQL install">
-      <created>1615644646515</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1615644646515</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Passport configuration">
-      <created>1615644808508</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1615644808508</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Register and login phase 1">
-      <created>1615706738012</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1615706738012</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Jetstream">
-      <created>1615739898691</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1615739898691</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Jetstream Stuff">
-      <created>1615908904602</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1615908904602</updated>
-    </task>
-    <task id="LOCAL-00010" summary="AUthentication routes. TOken verification pending">
-      <created>1616000091293</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1616000091293</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Working user route">
-      <created>1616000373381</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1616000373382</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Board CMD and migrated">
-      <created>1616172489897</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1616172489897</updated>
-    </task>
-    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="UnknownFeatures">
-    <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Switching to Laravel because &quot;Fuck it&quot;" />
-    <MESSAGE value="Readme" />
-    <MESSAGE value="Jenssengers successful installation" />
-    <MESSAGE value="SQL shift" />
-    <MESSAGE value="PGSQL install" />
-    <MESSAGE value="Passport configuration" />
-    <MESSAGE value="Register and login phase 1" />
-    <MESSAGE value="Jetstream" />
-    <MESSAGE value="Jetstream Stuff" />
-    <MESSAGE value="AUthentication routes. TOken verification pending" />
-    <MESSAGE value="Working user route" />
-    <MESSAGE value="Board CMD and migrated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Board CMD and migrated" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/config/auth.php</url>
-          <line>48</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>
