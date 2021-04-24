@@ -58,4 +58,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Get the comments for the boards
+     */
+    public function boards()
+    {
+        return $this->hasMany(Board::class);
+    }
 }

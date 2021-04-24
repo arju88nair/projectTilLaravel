@@ -12,4 +12,12 @@ class Board extends Model
     protected $table = 'boards';
     public $timestamps = true;
 
+
+    /**
+     * Get the post that owns the comment.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

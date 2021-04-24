@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eefae304-4a06-4992-8067-86c08d333b8d" name="Default Changelist" comment="Boards migration">
+    <list default="true" id="eefae304-4a06-4992-8067-86c08d333b8d" name="Default Changelist" comment="Boards Controller initial">
+      <change afterPath="$PROJECT_DIR$/resources/views/boards/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BoardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BoardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Board.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Board.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +20,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable path="composer" />
+    </execution>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -189,7 +196,6 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="eefae304-4a06-4992-8067-86c08d333b8d" name="Default Changelist" comment="" />
-      <changelist id="" name="Don't commit" comment="" />
       <created>1618934481745</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -197,7 +203,8 @@
       <workItem from="1618934489690" duration="1486000" />
       <workItem from="1618938182090" duration="1471000" />
       <workItem from="1619012994477" duration="2627000" />
-      <workItem from="1619197929147" duration="3161000" />
+      <workItem from="1619197929147" duration="4772000" />
+      <workItem from="1619272919769" duration="2373000" />
     </task>
     <task id="LOCAL-00001" summary="Configuration">
       <created>1618934659565</created>
@@ -227,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619205839654</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Boards Controller initial">
+      <created>1619207690737</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1619207690737</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,6 +263,18 @@
     <MESSAGE value="Configuration" />
     <MESSAGE value="API authentication" />
     <MESSAGE value="Boards migration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Boards migration" />
+    <MESSAGE value="Boards Controller initial" />
+    <option name="LAST_COMMIT_MESSAGE" value="Boards Controller initial" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/boards/create.blade.php</url>
+          <line>17</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
