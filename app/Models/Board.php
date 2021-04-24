@@ -17,7 +17,7 @@ class Board extends Model
      *
      * @var array
      */
-    protected $fillable = ['title','description','unique_url'];
+    protected $fillable = ['title','description','slug'];
     private mixed $description;
     private mixed $unique_url;
     /**

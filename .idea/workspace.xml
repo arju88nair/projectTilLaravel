@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eefae304-4a06-4992-8067-86c08d333b8d" name="Default Changelist" comment="Relationship before testing">
+      <change afterPath="$PROJECT_DIR$/app/Traits/SlugGenerator.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BoardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BoardController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Board.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Board.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_23_191630_create_boards_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_23_191630_create_boards_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,6 +207,7 @@
       <workItem from="1619012994477" duration="2627000" />
       <workItem from="1619197929147" duration="4772000" />
       <workItem from="1619272919769" duration="8477000" />
+      <workItem from="1619290640940" duration="2918000" />
     </task>
     <task id="LOCAL-00001" summary="Configuration">
       <created>1618934659565</created>

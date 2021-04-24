@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Board;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\ApiResponder;
+use App\Traits\SlugGenerator;
 
 class BoardController extends Controller
 {
+    use ApiResponder, SlugGenerator;
 
     /**
      * Display a listing of the resource.
@@ -47,21 +50,16 @@ class BoardController extends Controller
             'title' => 'required',
             'description' => 'required',
         ]);
-//        $user=Auth::user();
-//
-//        $board= new Board();
-//        $board->title=$request->title;
-//        $board->description=$request->description;
-//        $board->unique_url=$request->unique_url;
-//        $board->user_id=$user;
-//        $board->save();
         $board=Auth::user()->boards()->create([
             'title' => $request->title,
             'description' => $request->description,
-            'unique_url'=>$request->unique_url
+            'slug'=>$this->generateSlug()
         ]);
+
         if ($request->wantsJson()) {
-            return response()->json($board);
+            return $this->success([
+                'payload' => $board
+            ],"Successfully created");
         }
         return redirect('/oneway');
     }

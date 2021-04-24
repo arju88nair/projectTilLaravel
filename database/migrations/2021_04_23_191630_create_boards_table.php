@@ -17,11 +17,11 @@ class CreateBoardsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->string('unique_url')->unique();
-            $table->string('image_url')->nullable();
+            $table->string('slug')->unique();
+            $table->string('image_url')->nullable()->default('');
             $table->integer('is_admin')->default(0);
             $table->integer('is_default')->default(0);
-            $table->integer('is_pinned')->default('0');
+            $table->integer('is_pinned')->default(0);
             $table->integer('pinned_order')->nullable();
             $table->timestamp('last_viewed', $precision = 0)->useCurrent();
             $table->foreignId('user_id')->constrained('users');
