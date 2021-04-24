@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Board;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BoardController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -41,13 +43,25 @@ class BoardController extends Controller
     {
         //
 
-        $order = Order::create($request->all());
-
-        //Store order into TB
-        $order->save();
-
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+//        $user=Auth::user();
+//
+//        $board= new Board();
+//        $board->title=$request->title;
+//        $board->description=$request->description;
+//        $board->unique_url=$request->unique_url;
+//        $board->user_id=$user;
+//        $board->save();
+        $board=Auth::user()->boards()->create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'unique_url'=>$request->unique_url
+        ]);
         if ($request->wantsJson()) {
-            return response()->json($order);
+            return response()->json($board);
         }
         return redirect('/oneway');
     }
