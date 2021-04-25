@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eefae304-4a06-4992-8067-86c08d333b8d" name="Default Changelist" comment="Board creation with slug generator">
+    <list default="true" id="eefae304-4a06-4992-8067-86c08d333b8d" name="Default Changelist" comment="Before API resource change">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BoardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BoardController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Board.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Board.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_23_191630_create_boards_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_23_191630_create_boards_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,6 +180,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -208,7 +209,7 @@
       <workItem from="1619272919769" duration="8477000" />
       <workItem from="1619290640940" duration="3052000" />
       <workItem from="1619362101857" duration="615000" />
-      <workItem from="1619362982002" duration="2136000" />
+      <workItem from="1619362982002" duration="5829000" />
     </task>
     <task id="LOCAL-00001" summary="Configuration">
       <created>1618934659565</created>
@@ -259,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619293626367</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Before API resource change">
+      <created>1619371673033</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1619371673033</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,7 +292,8 @@
     <MESSAGE value="Boards Controller initial" />
     <MESSAGE value="Relationship before testing" />
     <MESSAGE value="Board creation with slug generator" />
-    <option name="LAST_COMMIT_MESSAGE" value="Board creation with slug generator" />
+    <MESSAGE value="Before API resource change" />
+    <option name="LAST_COMMIT_MESSAGE" value="Before API resource change" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
