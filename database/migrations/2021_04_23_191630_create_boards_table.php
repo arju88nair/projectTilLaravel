@@ -25,6 +25,7 @@ class CreateBoardsTable extends Migration
             $table->integer('pinned_order')->nullable();
             $table->timestamp('last_viewed', $precision = 0)->useCurrent();
             $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('created_from')->nullable();
             $table->softDeletes('deleted_at', 0);
             $table->timestamps();
         });

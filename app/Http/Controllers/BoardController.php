@@ -96,6 +96,17 @@ class BoardController extends Controller
     public function update(Request $request, Board $board)
     {
         //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        $board->update($request->all());
+        if ($request->wantsJson()) {
+            return $this->success([
+                'payload' => $board
+            ],"Successfully updated");
+        }
+
     }
 
     /**
