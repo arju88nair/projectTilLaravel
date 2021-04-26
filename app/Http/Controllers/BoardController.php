@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Traits\ApiResponder;
 use App\Traits\SlugGenerator;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 class BoardController extends Controller
 {
     use ApiResponder, SlugGenerator;
@@ -25,6 +25,9 @@ class BoardController extends Controller
     public function index(Request $request): JsonResponse
     {
         $boards = Board::all();
+        if (!$boards) {
+            return $this->error('There are no Boards available.', 404);
+        }
         if ($request->wantsJson()) {
             return $this->success([
                 'payload' => $boards
@@ -61,9 +64,12 @@ class BoardController extends Controller
             'slug' => $this->generateSlug()
         ]);
 
-            return $this->success([
-                'payload' => $board
-            ], "Successfully created");
+        if (!$board) {
+            return $this->error('Something went wrong while saving the Board. Please try again later', 500);
+        }
+        return $this->success([
+            'payload' => $board
+        ], "Successfully created");
     }
 
     /**
@@ -74,6 +80,10 @@ class BoardController extends Controller
      */
     public function show(Board $board): JsonResponse
     {
+
+        if (!$board) {
+            return $this->error('No Board exist with this name', 404);
+        }
         return $this->success([
             'payload' => $board
         ], "Successfully created");
@@ -104,10 +114,20 @@ class BoardController extends Controller
             'title' => 'required',
             'description' => 'required',
         ]);
-        $board->update($request->only(['title', 'description']));
+        try {
+            $update = $board->update($request->only(['title', 'description']));
+
+    } catch (ModelNotFoundException $exception) {
+        $message = "Error";
+            return response()->json($message, 500);
+        }
+        if (!$update) {
+            return $this->error('Something went wrong while updating the Board. Please try again later', 500);
+        }
         return $this->success([
             'payload' => $board
         ], "Successfully updated");
+
     }
 
     /**
@@ -118,7 +138,10 @@ class BoardController extends Controller
      */
     public function destroy(Board $board): JsonResponse
     {
-        $board->delete();
+        $delete=$board->delete();
+        if (!$delete) {
+            return $this->error('Something went wrong while deleting the Board. Please try again later', 500);
+        }
         return $this->success([
             'payload' => $board
         ], "Successfully deleted");
