@@ -14,7 +14,7 @@ use App\Traits\SlugGenerator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 class BoardController extends Controller
 {
-    use ApiResponder, SlugGenerator;
+    use SlugGenerator, ApiResponder;
 
     /**
      * Display a listing of the resource.

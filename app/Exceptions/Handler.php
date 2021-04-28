@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use App\Traits\ApiResponseTrait;
+use App\Traits\ApiResponder;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
@@ -14,7 +14,7 @@ use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    use ApiResponseTrait;
+    use ApiResponder;
     /**
      * A list of the exception types that are not reported.
      *
@@ -100,7 +100,7 @@ class Handler extends ExceptionHandler
                 return $this->apiResponse(
                     [
                         'success' => false,
-                        'message' => 'Entry for ' . str_replace('App\\', '', $exception->getModel()) . ' not found'
+                        'message' => 'No results found'
                     ],
                     404
                 );
