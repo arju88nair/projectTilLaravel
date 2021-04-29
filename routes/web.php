@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\SocialLoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,3 +23,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::resource('board', BoardController::class);
+Route::get('auth/facebook', [SocialLoginController::class, 'redirect']);
+
+Route::get('auth/facebook/callback', [SocialLoginController::class, 'signInFacebook']);
